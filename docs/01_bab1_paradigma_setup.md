@@ -180,18 +180,19 @@ public class HelloFunctional {
 
 ## Quiz
 1. Apakah OOP selalu lebih baik dari prosedural?
+
    **Jawaban:** …
 
-2. Kapan functional programming lebih cocok digunakan dibanding OOP atau prosedural?
+3. Kapan functional programming lebih cocok digunakan dibanding OOP atau prosedural?
    **Jawaban:** …
 
-3. Bagaimana paradigma (prosedural, OOP, fungsional) memengaruhi maintainability dan scalability aplikasi?
+4. Bagaimana paradigma (prosedural, OOP, fungsional) memengaruhi maintainability dan scalability aplikasi?
    **Jawaban:** …
 
-4. Mengapa OOP lebih cocok untuk mengembangkan aplikasi POS dibanding prosedural?
+5. Mengapa OOP lebih cocok untuk mengembangkan aplikasi POS dibanding prosedural?
    **Jawaban:** …
 
-5. Bagaimana paradigma fungsional dapat membantu mengurangi kode berulang (*boilerplate code*)?
+6. Bagaimana paradigma fungsional dapat membantu mengurangi kode berulang (*boilerplate code*)?
    **Jawaban:** …
 
 ---
