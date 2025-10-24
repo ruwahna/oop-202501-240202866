@@ -100,14 +100,13 @@ public class HelloProcedural {
 ## Hasil Eksekusi
 
 - HelloFunvtional
-
-![praktikum/week1-setup-hello-pos/screenshots/Functional.png](Functional.png)
+![praktikum/week1-setup-hello-pos/screenshots/Functional.png](/praktikum/week1-setup-hello-pos/screenshots/Functional.png)
 
 - HelloOOP
-![praktikum/week1-setup-hello-pos/screenshots/OOP.png](OOP.png)
+![praktikum/week1-setup-hello-pos/screenshots/OOP.png](/praktikum/week1-setup-hello-pos/screenshots/OOP.png)
 
 - HelloProcedural
-![praktikum/week1-setup-hello-pos/screenshots/Procedural.png](Procedural.png)
+![praktikum/week1-setup-hello-pos/screenshots/Procedural.png](/praktikum/week1-setup-hello-pos/screenshots/Procedural.png)
 
 ---
 

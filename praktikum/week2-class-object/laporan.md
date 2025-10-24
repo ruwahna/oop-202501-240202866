@@ -145,7 +145,8 @@ public class MainProduk {
 
 ## Hasil Eksekusi
 
-![ praktikum/week2-class-object/screenshots/Class&Object.png](Class&Object-1.png)
+![ praktikum/week2-class-object/screenshots/Class&Object.png](/praktikum/week2-class-object/screenshots/Class&Object.png)
+
 ---
 
 ## Analisis
