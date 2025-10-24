@@ -1,5 +1,5 @@
 # Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
-Topik: [Tuliskan judul topik, misalnya "Class dan Object"]
+Topik: Bab 3 – Inheritance
 
 ## Identitas
 - Nama  : [Indah Ruwahna Anugraheni]
