@@ -1,33 +1,52 @@
-# Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
-Topik: [Tuliskan judul topik, misalnya "Class dan Object"]
-
+# Laporan Praktikum Minggu 7
+Topik: Collections dan Implementasi Keranjang Belanja
 ## Identitas
-- Nama  : [Nama Mahasiswa]
-- NIM   : [NIM Mahasiswa]
-- Kelas : [Kelas]
+- Nama  : [Indah Ruwahna Anugraheni]
+- NIM   : [240202866]
+- Kelas : [3IKRB]
 
 ---
 
 ## Tujuan
-(Tuliskan tujuan praktikum minggu ini.  
-Contoh: *Mahasiswa memahami konsep class dan object serta dapat membuat class Produk dengan enkapsulasi.*)
+
+Mahasiswa mampu:
+1. Menjelaskan konsep collection dalam Java (List, Map, Set).
+2. Menggunakan ArrayList untuk menyimpan dan mengelola objek.
+3. Mengimplementasikan Map atau Set sesuai kebutuhan pengelolaan data.
+4. Melakukan operasi dasar pada collection: tambah, hapus, dan hitung total.
+5. Menganalisis efisiensi penggunaan collection dalam konteks sistem Agri-POS.
 
 ---
 
 ## Dasar Teori
-(Tuliskan ringkasan teori singkat (3–5 poin) yang mendasari praktikum.  
-Contoh:  
-1. Class adalah blueprint dari objek.  
-2. Object adalah instansiasi dari class.  
-3. Enkapsulasi digunakan untuk menyembunyikan data.)
+1. Java Collections Framework (JCF) Struktur data dinamis yang mampu menyimpan objek tanpa ditentukan ukurannya di awal. Berbeda dengan Array biasa, Collection dapat bertambah dan berkurang secara otomatis.
+
+2. Karakteristik Utama
+
+   - ArrayList: Menyimpan data berdasarkan Indeks. Keunggulannya adalah akses cepat secara berurutan, namun lambat untuk pencarian data spesifik.
+
+   - HashMap: Menyimpan data berdasarkan Key-Value (Kunci-Nilai). Sangat efektif untuk sistem POS karena satu produk (Key) bisa langsung dihubungkan dengan jumlah belinya (Value).
+
+   - HashSet: Koleksi yang menjamin Keunikan. Jika ada data duplikat yang masuk, otomatis akan ditolak.
+
+3. Konsep Generics (<T>) Penggunaan tanda kurung sudut (misal: <Product>) memastikan koleksi hanya berisi tipe data yang ditentukan. Hal ini mencegah error saat aplikasi dijalankan (Type Safety).
+
+4. Efisiensi Operasi Dalam keranjang belanja, Map lebih efisien daripada List karena tidak perlu melakukan perulangan (looping) berulang kali hanya untuk memperbarui jumlah (quantity) barang yang sama.
 
 ---
 
 ## Langkah Praktikum
-(Tuliskan Langkah-langkah dalam prakrikum, contoh:
-1. Langkah-langkah yang dilakukan (setup, coding, run).  
-2. File/kode yang dibuat.  
-3. Commit message yang digunakan.)
+
+**1. Membuat Class Product**
+
+```java
+// Contoh
+Produk p1 = new Produk("BNH-001", "Benih Padi", 25000, 100);
+System.out.println(p1.getNama());
+
+```
+
+
 
 ---
 

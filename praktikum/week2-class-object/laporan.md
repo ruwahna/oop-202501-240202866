@@ -1,4 +1,4 @@
-# Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
+# Laporan Praktikum Minggu 2
 Topik: [Class dan Object (Produk Pertanian)]
 
 ## Identitas

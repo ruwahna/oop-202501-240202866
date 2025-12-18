@@ -1,5 +1,5 @@
-# Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
-Topik: [Tuliskan judul topik, misalnya "Class dan Object"]
+# Laporan Praktikum Minggu 5 
+Topik: Abstraction (Abstract Class & Interface)
 
 ## Identitas
 - Nama  : [Indah Ruwahna Anugraheni]

@@ -1,4 +1,4 @@
-# Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
+# Laporan Praktikum Minggu 1 
 Topik: [Pengenalan Paradigma Pemrograman (Prosedural, OOP, dan Fungsional)]
 
 ## Identitas

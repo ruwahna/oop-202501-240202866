@@ -1,4 +1,4 @@
-# Laporan Praktikum Minggu 1 (sesuaikan minggu ke berapa?)
+# Laporan Praktikum Minggu 3
 Topik: Bab 3 – Inheritance
 
 ## Identitas
