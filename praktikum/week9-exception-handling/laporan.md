@@ -225,9 +225,9 @@ public class ShoppingCart {
 ---
 
 ## Hasil Eksekusi
-(Sertakan screenshot hasil eksekusi program.  
+  
 ![Screenshot hasil](/praktikum/week9-exception-handling/screenshots/week%209-Exception.png)
-)
+
 ---
 
 ## Analisis
