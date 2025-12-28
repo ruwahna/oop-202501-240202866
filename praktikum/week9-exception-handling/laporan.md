@@ -248,18 +248,18 @@ Dengan menerapkan Exception Handling, aplikasi menjadi lebih tangguh (robust) ka
 
 1. Apa perbedaan mendasar antara Checked Exception dan Unchecked Exception?
 
- Jawaban: 
- 
- Checked Exception harus ditangani saat waktu kompilasi (menggunakan try-catch atau throws), sedangkan Unchecked Exception (Runtime) tidak wajib dideklarasikan secara eksplisit.
+   Jawaban: 
+   
+    Checked Exception harus ditangani saat waktu kompilasi (menggunakan try-catch atau throws), sedangkan Unchecked Exception (Runtime) tidak wajib dideklarasikan secara eksplisit.
 
 2. Kapan waktu yang tepat untuk menggunakan blok finally?
+   
+   Jawaban:
 
- Jawaban:
-
-  Saat kita memiliki kode yang harus dijalankan apapun yang terjadi, baik ada error maupun tidak (seperti menutup koneksi database).
+   Saat kita memiliki kode yang harus dijalankan apapun yang terjadi, baik ada error maupun tidak (seperti menutup koneksi database).
 
 3. Mengapa Singleton Pattern berguna dalam aplikasi keranjang belanja?
 
- Jawaban:
+   Jawaban:
  
-  Agar seluruh bagian aplikasi mengakses satu objek keranjang yang sama, sehingga data belanja tidak terduplikasi atau hilang antar halaman/class.
+   Agar seluruh bagian aplikasi mengakses satu objek keranjang yang sama, sehingga data belanja tidak terduplikasi atau hilang antar halaman/class.
