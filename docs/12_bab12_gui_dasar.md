@@ -71,7 +71,7 @@ GUI minimal harus memiliki:
 
 ## Arsitektur yang Digunakan
 Disarankan menggunakan pendekatan MVC:
-
+~
 - Model   : `Product`
 - View    : JavaFX Form
 - Controller : `ProductController`
