@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.upb.agripos.controller.TransactionController">
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #34495e;">
+            <TextField fx:id="txtProductCode" promptText="Masukkan Kode Produk"/>
+            <Spinner fx:id="spinQty" prefWidth="80"/>
+            <Button text="Tambah ke Keranjang" onAction="#handleAddToOrder" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tableCart">
+            <columns>
+                <TableColumn fx:id="colProductName" text="Nama Produk" prefWidth="200"/>
+                <TableColumn fx:id="colQty" text="Qty" prefWidth="50"/>
+                <TableColumn fx:id="colSubtotal" text="Subtotal" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+    <bottom>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox alignment="CENTER_RIGHT" spacing="20">
+                <Label text="TOTAL HARGA:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblTotalHarga" text="Rp 0" style="-fx-font-size: 18px; -fx-text-fill: #e74c3c;"/>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <ComboBox fx:id="comboPaymentMethod" promptText="Pilih Pembayaran"/>
+                <Button text="Bayar Sekarang" onAction="#handleCheckout" prefHeight="40" prefWidth="150" 
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

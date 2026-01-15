@@ -93,7 +93,7 @@ view.getBtnDelete().setOnAction(e -> {
 
 ## Hasil Eksekusi
   
-![Screenshot hasil](/oop-202501-240202866/praktikum/week13-gui-lanjutan/screenshots/hasilweek13.png)
+![Screenshot hasil](/praktikum/week13-gui-lanjutan/screenshots/hasilweek13.png)
 
 ---
 

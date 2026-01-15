@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.upb.agripos.controller.TransactionController">
+    <top>
+        <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #34495e;">
+            <Label text="Tambah Produk ke Keranjang" style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Kode Produk:" style="-fx-text-fill: white;"/>
+                <TextField fx:id="txtProductCode" promptText="Contoh: P001" prefWidth="100"/>
+                <Label text="Qty:" style="-fx-text-fill: white;"/>
+                <Spinner fx:id="spinQty" prefWidth="100" editable="true"/>
+                <Button text="Tambah ke Keranjang" onAction="#handleAddToOrder" 
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 8;"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.35" style="-fx-padding: 10;">
+            <!-- Daftar Produk Tersedia (kiri) -->
+            <VBox spacing="10" style="-fx-border-color: #bdc3c7; -fx-border-width: 1; -fx-padding: 10;">
+                <Label text="📦 Daftar Produk Tersedia" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                <TableView fx:id="tableProduk" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colProdKode" text="Kode" prefWidth="60"/>
+                        <TableColumn fx:id="colProdNama" text="Nama" prefWidth="100"/>
+                        <TableColumn fx:id="colProdHarga" text="Harga" prefWidth="80"/>
+                        <TableColumn fx:id="colProdStok" text="Stok" prefWidth="50"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            
+            <!-- Keranjang (kanan) -->
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <Label text="🛒 Keranjang Belanja" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                <TableView fx:id="tableCart" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colProductName" text="Nama Produk" prefWidth="150"/>
+                        <TableColumn fx:id="colQty" text="Qty" prefWidth="50"/>
+                        <TableColumn fx:id="colSubtotal" text="Subtotal" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </SplitPane>
+    </center>
+    <bottom>
+        <VBox spacing="10" style="-fx-padding: 10;">
+            <HBox alignment="CENTER_RIGHT" spacing="20">
+                <Label text="TOTAL HARGA:" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblTotalHarga" text="Rp 0" style="-fx-font-size: 18px; -fx-text-fill: #e74c3c;"/>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <ComboBox fx:id="comboPaymentMethod" promptText="Pilih Pembayaran"/>
+                <Button text="Bayar Sekarang" onAction="#handleCheckout" prefHeight="40" prefWidth="150" 
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>

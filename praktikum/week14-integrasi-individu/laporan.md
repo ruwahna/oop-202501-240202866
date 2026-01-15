@@ -491,7 +491,7 @@ public class CartServiceTest {
 
 **
   
-![Screenshot hasil](/oop-202501-240202866/praktikum/week14-integrasi-individu/screenshots/hasilweek14.png)
+![Screenshot hasil](/praktikum/week14-integrasi-individu/screenshots/Hasil-week14.png)
 
 ---
 ## Analisis Fitur GUI:
@@ -507,7 +507,7 @@ public class CartServiceTest {
 
 **Receipt Output (saat Checkout):**
 
-![Screenshot hasil](/oop-202501-240202866/praktikum/week14-integrasi-individu/screenshots/receipt.png)
+![Screenshot hasil](/praktikum/week14-integrasi-individu/screenshots/receipt.png)
 
 
 ---
