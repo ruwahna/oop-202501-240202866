@@ -2,10 +2,13 @@
 ## Agri-POS - Sistem Point of Sale Pertanian
 
 ### Informasi Praktikan
-- **NIM**: [Masukkan NIM]
-- **Nama**: [Masukkan Nama]
-- **Kelas**: [Masukkan Kelas]
-- **Tanggal**: [Masukkan Tanggal]
+- **Nama+Nim**: [1. Indah Ruwahna Anugraheni (240202866)] 
+                [2. Lia Lusianti (2402028)]
+                [3. Fikianto (2402028)]
+                [4. Rizal(240202866)]
+
+- **Kelas**: [3IKRB]
+- **Tanggal**: [18 Januari 2026]
 
 ---
 
@@ -55,65 +58,14 @@ Aplikasi Agri-POS mencakup:
 | FR-4 | Struk dan Laporan | High |
 | FR-5 | Login dan Akses Kontrol | High |
 
+
+
 ### 2.2 Use Case Diagram
 
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                                   AGRI-POS                                   │
-│                                                                              │
-│   ┌───────┐                                                    ┌───────┐    │
-│   │ Kasir │                                                    │ Admin │    │
-│   └───┬───┘                                                    └───┬───┘    │
-│       │                                                            │        │
-│       │              ═══════ USE CASE BERSAMA ═══════              │        │
-│       │                                                            │        │
-│       │            ┌─────────────────────────┐                     │        │
-│       ├───────────>│         Login           │<────────────────────┤        │
-│       │            └─────────────────────────┘                     │        │
-│       │            ┌─────────────────────────┐                     │        │
-│       ├───────────>│        Logout           │<────────────────────┤        │
-│       │            └─────────────────────────┘                     │        │
-│       │            ┌─────────────────────────┐                     │        │
-│       ├───────────>│     View Products       │<────────────────────┤        │
-│       │            └─────────────────────────┘                     │        │
-│       │                                                            │        │
-│       │   ═══════ KASIR ONLY ═══════       ═══════ ADMIN ONLY ═══════       │
-│       │                                                            │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│    New Transaction      │  │      Dashboard          │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│    Search Product       │  │    Add Product          │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│     Add to Cart         │  │    Edit Product         │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│   Update Cart Qty       │  │   Delete Product        │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│   Remove from Cart      │  │  View Low Stock Alert   │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│     Clear Cart          │  │   Daily Sales Report    │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│   Checkout (Cash)       │  │  Period Sales Report    │<┤        │
-│       │   └─────────────────────────┘  └─────────────────────────┘ │        │
-│       │   ┌─────────────────────────┐  ┌─────────────────────────┐ │        │
-│       ├──>│  Checkout (E-Wallet)    │  │    Export Report        │<┘        │
-│       │   └─────────────────────────┘  └─────────────────────────┘          │
-│       │   ┌─────────────────────────┐                                       │
-│       ├──>│   Checkout (QRIS)       │                                       │
-│       │   └─────────────────────────┘                                       │
-│       │   ┌─────────────────────────┐                                       │
-│       ├──>│    Print Receipt        │                                       │
-│       │   └─────────────────────────┘                                       │
-│       │   ┌─────────────────────────┐                                       │
-│       └──>│  Transaction History    │                                       │
-│           └─────────────────────────┘                                       │
-└──────────────────────────────────────────────────────────────────────────────┘
-```
+
+![UseCase](/praktikum/week15-proyek-kelompok/screenshots/usecase%20agripos.jpg)
+
+
 
 ### 2.3 Actor Description
 
@@ -247,263 +199,33 @@ Aplikasi Agri-POS mencakup:
 
 ### 3.2 Class Diagram
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                                MODEL CLASSES                                    │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│  ┌─────────────────────────┐    ┌─────────────────────────┐                    │
-│  │        Product          │    │          User           │                    │
-│  ├─────────────────────────┤    ├─────────────────────────┤                    │
-│  │ - code: String          │    │ - id: int               │                    │
-│  │ - name: String          │    │ - username: String      │                    │
-│  │ - category: String      │    │ - password: String      │                    │
-│  │ - price: double         │    │ - role: Role            │                    │
-│  │ - stock: int            │    ├─────────────────────────┤                    │
-│  ├─────────────────────────┤    │ + isAdmin(): boolean    │                    │
-│  │ + reduceStock(qty): bool│    │ + isKasir(): boolean    │                    │
-│  │ + addStock(qty): void   │    └─────────────────────────┘                    │
-│  └─────────────────────────┘                  │                                │
-│              │                                │ <<enum>>                       │
-│              │                    ┌───────────┴───────────┐                    │
-│              │                    │        Role           │                    │
-│              ▼                    ├───────────────────────┤                    │
-│  ┌─────────────────────────┐      │ KASIR                 │                    │
-│  │        CartItem         │      │ ADMIN                 │                    │
-│  ├─────────────────────────┤      └───────────────────────┘                    │
-│  │ - product: Product      │◆────────────────────────────────────────┐         │
-│  │ - quantity: int         │                                         │         │
-│  ├─────────────────────────┤                                         │         │
-│  │ + getSubtotal(): double │                                         │         │
-│  │ + getProductCode(): Str │                                         │         │
-│  │ + getProductName(): Str │                                         │         │
-│  └─────────────────────────┘                                         │         │
-│              │                                                       │         │
-│              │ *                                                     │         │
-│              ▼                                                       │         │
-│  ┌─────────────────────────┐                                         │         │
-│  │          Cart           │                                         │         │
-│  ├─────────────────────────┤                                         │         │
-│  │ - items: Map<String,    │                                         │         │
-│  │          CartItem>      │                                         │         │
-│  ├─────────────────────────┤                                         │         │
-│  │ + addItem(prod, qty)    │                                         │         │
-│  │ + removeItem(code)      │                                         │         │
-│  │ + updateQuantity(c,q)   │                                         │         │
-│  │ + clear()               │                                         │         │
-│  │ + getTotal(): double    │                                         │         │
-│  │ + getItems(): List      │                                         │         │
-│  └─────────────────────────┘                                         │         │
-│                                                                      │         │
-│  ┌─────────────────────────┐      ┌─────────────────────────┐       │         │
-│  │      Transaction        │      │    TransactionItem      │       │         │
-│  ├─────────────────────────┤      ├─────────────────────────┤       │         │
-│  │ - id: int               │◆────>│ - transactionId: int    │       │         │
-│  │ - transactionCode: Str  │   *  │ - productCode: String   │◆──────┘         │
-│  │ - transactionDate: LDT  │      │ - productName: String   │                 │
-│  │ - cashierUsername: Str  │      │ - quantity: int         │                 │
-│  │ - items: List<TransItem>│      │ - unitPrice: double     │                 │
-│  │ - subtotal: double      │      │ - subtotal: double      │                 │
-│  │ - tax: double           │      └─────────────────────────┘                 │
-│  │ - total: double         │                                                   │
-│  │ - paymentMethod: String │                                                   │
-│  │ - amountPaid: double    │      <<enum>>                                     │
-│  │ - changeAmount: double  │      ┌───────────────────────┐                    │
-│  │ - status: TransStatus   │◆────>│  TransactionStatus    │                    │
-│  └─────────────────────────┘      ├───────────────────────┤                    │
-│                                   │ PENDING               │                    │
-│                                   │ COMPLETED             │                    │
-│                                   │ CANCELLED             │                    │
-│                                   └───────────────────────┘                    │
-└─────────────────────────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                      STRATEGY PATTERN - PaymentMethod                           │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│                    ┌───────────────────────────────────────┐                    │
-│                    │      <<interface>> PaymentMethod      │                    │
-│                    ├───────────────────────────────────────┤                    │
-│                    │ + getMethodName(): String             │                    │
-│                    │ + processPayment(total, paid): double │                    │
-│                    │ + validatePayment(total, paid): bool  │                    │
-│                    │ + getReceiptDescription(): String     │                    │
-│                    └───────────────────┬───────────────────┘                    │
-│                                        │                                        │
-│              ┌─────────────────────────┼─────────────────────────┐              │
-│              │                         │                         │              │
-│              ▼                         ▼                         ▼              │
-│  ┌───────────────────────┐ ┌───────────────────────┐ ┌───────────────────────┐ │
-│  │     CashPayment       │ │    EWalletPayment     │ │     QRISPayment       │ │
-│  ├───────────────────────┤ ├───────────────────────┤ ├───────────────────────┤ │
-│  │ + getMethodName()     │ │ - walletProvider: Str │ │ + getMethodName()     │ │
-│  │   return "Tunai"      │ │ - transactionRef: Str │ │   return "QRIS"       │ │
-│  │ + processPayment()    │ │ + getMethodName()     │ │ + processPayment()    │ │
-│  │   return change       │ │   return "E-Wallet"   │ │   exact payment       │ │
-│  │ + validatePayment()   │ │ + processPayment()    │ │ + validatePayment()   │ │
-│  │   paid >= total       │ │   mock payment        │ │   paid >= total       │ │
-│  └───────────────────────┘ └───────────────────────┘ └───────────────────────┘ │
-│                                                                                 │
-│                    ┌───────────────────────────────────────┐                    │
-│                    │      PaymentMethodFactory             │                    │
-│                    │           (Factory Pattern)           │                    │
-│                    ├───────────────────────────────────────┤                    │
-│                    │ - methods: Map<String, PaymentMethod> │                    │
-│                    │ + registerPaymentMethod(name, impl)   │                    │
-│                    │ + getPaymentMethod(name): PaymentMethod│                   │
-│                    │ + getAvailableMethods(): List<String> │                    │
-│                    └───────────────────────────────────────┘                    │
-└─────────────────────────────────────────────────────────────────────────────────┘
+![Model classes](/praktikum/week15-proyek-kelompok/screenshots/class%20diagram-model%20classes.drawio.png)
 
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                           DAO INTERFACES (DIP)                                  │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│  ┌─────────────────────────┐  ┌─────────────────────────┐                      │
-│  │ <<interface>> ProductDAO│  │  <<interface>> UserDAO  │                      │
-│  ├─────────────────────────┤  ├─────────────────────────┤                      │
-│  │ + insert(Product)       │  │ + findByUsername(name)  │                      │
-│  │ + update(Product)       │  │ + findByUsernameAndPwd()│                      │
-│  │ + delete(code: String)  │  │ + insert(User)          │                      │
-│  │ + findByCode(code): Prod│  │ + existsByUsername(): bool│                    │
-│  │ + findAll(): List<Prod> │  └───────────┬─────────────┘                      │
-│  │ + findByCategory(): List│              │                                    │
-│  │ + updateStock(code, qty)│              ▼                                    │
-│  └───────────┬─────────────┘  ┌─────────────────────────┐                      │
-│              │                │     JdbcUserDAO         │                      │
-│              ▼                │ - connection: Connection│                      │
-│  ┌─────────────────────────┐  └─────────────────────────┘                      │
-│  │    JdbcProductDAO       │                                                   │
-│  │ - connection: Connection│  ┌─────────────────────────┐                      │
-│  └─────────────────────────┘  │<<interface>> TransDAO   │                      │
-│                               ├─────────────────────────┤                      │
-│                               │ + insert(Transaction)   │                      │
-│                               │ + findById(id): Trans   │                      │
-│                               │ + findByCode(code): Trans│                     │
-│                               │ + findAll(): List<Trans>│                      │
-│                               │ + findByDate(date): List│                      │
-│                               │ + findByPeriod(): List  │                      │
-│                               └───────────┬─────────────┘                      │
-│                                           ▼                                    │
-│                               ┌─────────────────────────┐                      │
-│                               │   JdbcTransactionDAO    │                      │
-│                               │ - connection: Connection│                      │
-│                               └─────────────────────────┘                      │
-└─────────────────────────────────────────────────────────────────────────────────┘
-```
+*model classes*
 
-### 3.3 Sequence Diagram
+![strategi pattern-paymentment-menthod](/praktikum/week15-proyek-kelompok/screenshots/strategy%20pattern-paymentmethod.drawio.png)
 
-#### 3.3.1 Login Sequence
-```
-┌─────────┐     ┌───────────────┐     ┌─────────────┐     ┌──────────┐     ┌──────────┐
-│  User   │     │   LoginView   │     │LoginController│   │AuthService│    │ UserDAO  │
-└────┬────┘     └───────┬───────┘     └──────┬───────┘    └─────┬─────┘    └─────┬────┘
-     │                  │                    │                   │               │
-     │ 1. Enter credentials                 │                   │               │
-     │─────────────────>│                    │                   │               │
-     │                  │                    │                   │               │
-     │                  │ 2. login(user,pwd) │                   │               │
-     │                  │───────────────────>│                   │               │
-     │                  │                    │                   │               │
-     │                  │                    │ 3. authenticate() │               │
-     │                  │                    │──────────────────>│               │
-     │                  │                    │                   │               │
-     │                  │                    │                   │ 4. findByUsernameAndPassword()
-     │                  │                    │                   │──────────────>│
-     │                  │                    │                   │               │
-     │                  │                    │                   │ 5. User/null  │
-     │                  │                    │                   │<──────────────│
-     │                  │                    │                   │               │
-     │                  │                    │ 6. User/null      │               │
-     │                  │                    │<──────────────────│               │
-     │                  │                    │                   │               │
-     │                  │ 7. Success/Fail    │                   │               │
-     │                  │<───────────────────│                   │               │
-     │                  │                    │                   │               │
-     │ 8. Show MainView (based on Role)     │                   │               │
-     │<─────────────────│                    │                   │               │
-     │                  │                    │                   │               │
-```
+*strategi pattern-paymentment-menthod*
+
+![DAO interface](/praktikum/week15-proyek-kelompok/screenshots/DAO%20interface.drawio.png)
+
+*DAO interface*
+
 
 #### 3.3.2 Checkout Transaction Sequence
-```
-┌─────────┐   ┌───────────────┐   ┌─────────────┐   ┌────────────┐   ┌─────────────┐   ┌───────────┐
-│  Kasir  │   │TransactionView│   │PosController│   │CartService │   │TransService │   │ProductDAO │
-└────┬────┘   └───────┬───────┘   └──────┬──────┘   └──────┬─────┘   └──────┬──────┘   └─────┬─────┘
-     │                │                  │                 │                │               │
-     │ 1. Add products to cart          │                 │                │               │
-     │───────────────>│                  │                 │                │               │
-     │                │ 2. addToCart()   │                 │                │               │
-     │                │─────────────────>│                 │                │               │
-     │                │                  │ 3. addItem()    │                │               │
-     │                │                  │────────────────>│                │               │
-     │                │                  │                 │                │               │
-     │ 4. Select payment & checkout     │                 │                │               │
-     │───────────────>│                  │                 │                │               │
-     │                │ 5. processCheckout(method, paid)  │                │               │
-     │                │─────────────────>│                 │                │               │
-     │                │                  │                 │                │               │
-     │                │                  │ 6. getTotal()   │                │               │
-     │                │                  │────────────────>│                │               │
-     │                │                  │<────────────────│ total          │               │
-     │                │                  │                 │                │               │
-     │                │                  │ 7. PaymentMethodFactory.get(method)             │
-     │                │                  │─────────────────────────────────────────────────>│
-     │                │                  │                 │                │               │
-     │                │                  │ 8. paymentMethod.processPayment(total, paid)    │
-     │                │                  │─────────────────────────────────────────────────>│
-     │                │                  │                 │                │               │
-     │                │                  │ 9. saveTransaction(trans)        │               │
-     │                │                  │────────────────────────────────>│               │
-     │                │                  │                 │                │               │
-     │                │                  │                 │      10. Update stock for each item
-     │                │                  │                 │                │──────────────>│
-     │                │                  │                 │                │<──────────────│
-     │                │                  │                 │                │               │
-     │                │                  │                 │ 11. insert()   │               │
-     │                │                  │                 │                │──────────────>│
-     │                │                  │                 │                │<──────────────│
-     │                │                  │                 │                │               │
-     │                │                  │ 12. CheckoutSummary             │               │
-     │                │<─────────────────│                 │                │               │
-     │                │                  │                 │                │               │
-     │ 13. Show Receipt                 │                 │                │               │
-     │<───────────────│                  │                 │                │               │
-     │                │                  │                 │                │               │
-```
+
+![checkout](/praktikum/week15-proyek-kelompok/screenshots/Checkout%20Transaction%20Sequence-Page-4.drawio.png)
+
+*checkout transaktion*
+
 
 #### 3.3.3 Admin - Add Product Sequence
-```
-┌─────────┐   ┌─────────────────────┐   ┌─────────────┐   ┌──────────────┐   ┌───────────┐
-│  Admin  │   │ProductManagementView│   │PosController│   │ProductService│   │ProductDAO │
-└────┬────┘   └──────────┬──────────┘   └──────┬──────┘   └──────┬───────┘   └─────┬─────┘
-     │                   │                     │                  │                 │
-     │ 1. Fill product form & click Save      │                  │                 │
-     │──────────────────>│                     │                  │                 │
-     │                   │                     │                  │                 │
-     │                   │ 2. addProduct(prod) │                  │                 │
-     │                   │────────────────────>│                  │                 │
-     │                   │                     │                  │                 │
-     │                   │                     │ 3. addProduct()  │                 │
-     │                   │                     │─────────────────>│                 │
-     │                   │                     │                  │                 │
-     │                   │                     │                  │ 4. insert()     │
-     │                   │                     │                  │────────────────>│
-     │                   │                     │                  │                 │
-     │                   │                     │                  │ 5. Success/Fail │
-     │                   │                     │                  │<────────────────│
-     │                   │                     │                  │                 │
-     │                   │                     │ 6. Result        │                 │
-     │                   │                     │<─────────────────│                 │
-     │                   │                     │                  │                 │
-     │                   │ 7. Refresh Table    │                  │                 │
-     │                   │<────────────────────│                  │                 │
-     │                   │                     │                  │                 │
-     │ 8. Show success message                │                  │                 │
-     │<──────────────────│                     │                  │                 │
-     │                   │                     │                  │                 │
-```
+
+![admin sequence](/praktikum/week15-proyek-kelompok/screenshots/Admin%20-%20Add%20Product%20Sequence-Page-5.drawio.png)
+
+*admin sequence*
+
 
 ### 3.4 Design Patterns
 
@@ -769,19 +491,49 @@ void shouldThrowExceptionWhenInsufficientStock() {
 
 ### 6.1 Login Screen
 ![Login Screen](screenshots/login.png)
-*Form login dengan username dan password*
+*Form login dengan username dan password untuk admin & kasir*
+
+
+**KASIR**
 
 ### 6.2 Transaction View
-![Transaction](screenshots/transaction.png)
+![Transaction](/praktikum/week15-proyek-kelompok/screenshots/transaksi%20agripos.png)
+
 *Tampilan transaksi dengan produk, keranjang, dan checkout*
 
-### 6.3 Product Management (Admin)
-![Product Management](screenshots/product-management.png)
-*CRUD produk untuk Admin*
+![Transaction](/praktikum/week15-proyek-kelompok/screenshots/transaksi%20agripos2.png)
 
-### 6.4 Report View
-![Report](screenshots/report.png)
-*Laporan penjualan harian dan periodik*
+*Tampilan transaksi dengan produk, keranjang, dan checkout*
+
+![Transaction](/praktikum/week15-proyek-kelompok/screenshots/Daftra%20produk%20kasir.png)
+
+*Tampilan daftar product kasir*
+
+![Transaction](/praktikum/week15-proyek-kelompok/screenshots/riwayat%20transaksi%20kasir.png)
+
+*tampilan riwayat transaksi kasir*
+
+![Transaction](/praktikum/week15-proyek-kelompok/screenshots/struk%20.png)
+
+*Tampilan struk kasir*
+
+### 6.3 Product Management (Admin)
+![Product Management](/praktikum/week15-proyek-kelompok/screenshots/dasboard%20admin.png)
+
+*dasboard admin*
+
+![Product Management](/praktikum/week15-proyek-kelompok/screenshots/dasboasrd2%20admin.png)
+
+*dasboard admin*
+
+![Product Management](/praktikum/week15-proyek-kelompok/screenshots/manajemen%20product%20admin.png)
+
+*manajement produk admin*
+
+![Product Management](/praktikum/week15-proyek-kelompok/screenshots/laporan%20penjualan%20admin.png)
+
+*laporan penjualan admin*
+
 
 ---
 
@@ -806,14 +558,6 @@ void shouldThrowExceptionWhenInsufficientStock() {
 2. Connection pooling dengan HikariCP
 3. Export laporan ke PDF/Excel
 4. Tambahan metode pembayaran (QRIS)
-
----
-
-## Referensi
-1. Oracle Java Documentation
-2. JavaFX Documentation
-3. JUnit 5 User Guide
-4. Head First Design Patterns
 
 ---
 
@@ -851,35 +595,10 @@ Lihat folder `docs/` untuk dokumentasi teknis lengkap.
 Produk p1 = new Produk("BNH-001", "Benih Padi", 25000, 100);
 System.out.println(p1.getNama());
 ```
-)
----
-
-## Hasil Eksekusi
-(Sertakan screenshot hasil eksekusi program.  
-![Screenshot hasil](screenshots/hasil.png)
-)
----
-
-## Analisis
-(
-- Jelaskan bagaimana kode berjalan.  
-- Apa perbedaan pendekatan minggu ini dibanding minggu sebelumnya.  
-- Kendala yang dihadapi dan cara mengatasinya.  
-)
 ---
 
 ## Kesimpulan
 (Tuliskan kesimpulan dari praktikum minggu ini.  
 Contoh: *Dengan menggunakan class dan object, program menjadi lebih terstruktur dan mudah dikembangkan.*)
 
----
 
-## Quiz
-(1. [Tuliskan kembali pertanyaan 1 dari panduan]  
-   **Jawaban:** …  
-
-2. [Tuliskan kembali pertanyaan 2 dari panduan]  
-   **Jawaban:** …  
-
-3. [Tuliskan kembali pertanyaan 3 dari panduan]  
-   **Jawaban:** …  )
