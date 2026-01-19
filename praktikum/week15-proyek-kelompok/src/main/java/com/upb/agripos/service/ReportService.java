@@ -1,130 +1,199 @@
 package com.upb.agripos.service;
 
-import com.upb.agripos.dao.DatabaseConnection;
-import com.upb.agripos.exception.ValidationException;
-import java.sql.*;
+import com.upb.agripos.model.Transaction;
+
+import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
 
+/**
+ * Service untuk generate laporan penjualan (FR-4)
+ */
 public class ReportService {
+    private final TransactionService transactionService;
+    private final NumberFormat currencyFormat;
+    private final DateTimeFormatter dateFormatter;
 
-    /**
-     * Ambil total revenue untuk hari tertentu
-     */
-    public double getDailyRevenue(LocalDate date) throws ValidationException {
-        if (date == null) {
-            throw new ValidationException("Date", "Tanggal tidak boleh null");
-        }
-        
-        String sql = "SELECT SUM(total) FROM transactions WHERE DATE(tanggal) = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-            ps.setDate(1, Date.valueOf(date));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                double revenue = rs.getDouble(1);
-                return revenue > 0 ? revenue : 0.0;
-            }
-        } catch (SQLException e) {
-            System.err.println("Error getting daily revenue: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return 0.0;
+    public ReportService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+        this.currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+        this.dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     }
 
     /**
-     * Ambil total revenue untuk range tanggal
+     * Generate laporan penjualan harian
      */
-    public double getRangeRevenue(LocalDate startDate, LocalDate endDate) throws ValidationException {
-        if (startDate == null || endDate == null) {
-            throw new ValidationException("Date Range", "Tanggal awal dan akhir tidak boleh null");
-        }
-        if (startDate.isAfter(endDate)) {
-            throw new ValidationException("Date Range", "Tanggal awal harus sebelum tanggal akhir");
-        }
+    public String generateDailyReport(LocalDate date) throws Exception {
+        List<Transaction> transactions = transactionService.getTransactionsByDate(date);
+        double totalSales = transactionService.getDailySalesTotal(date);
+        int transactionCount = transactionService.getDailyTransactionCount(date);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("====================================\n");
+        sb.append("     LAPORAN PENJUALAN HARIAN\n");
+        sb.append("====================================\n\n");
+        sb.append("Tanggal: ").append(date.format(dateFormatter)).append("\n\n");
         
-        String sql = "SELECT SUM(total) FROM transactions WHERE DATE(tanggal) BETWEEN ? AND ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+        sb.append("RINGKASAN:\n");
+        sb.append("--------------------------------\n");
+        sb.append(String.format("Jumlah Transaksi : %d\n", transactionCount));
+        sb.append(String.format("Total Penjualan  : %s\n", formatCurrency(totalSales)));
+        sb.append("\n");
+
+        if (!transactions.isEmpty()) {
+            sb.append("DETAIL TRANSAKSI:\n");
+            sb.append("--------------------------------\n");
             
-            ps.setDate(1, Date.valueOf(startDate));
-            ps.setDate(2, Date.valueOf(endDate));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                double revenue = rs.getDouble(1);
-                return revenue > 0 ? revenue : 0.0;
+            for (Transaction t : transactions) {
+                sb.append(String.format("[%s] %s - %s (%s)\n",
+                    t.getTransactionCode(),
+                    t.getTransactionDate().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")),
+                    formatCurrency(t.getTotal()),
+                    t.getPaymentMethod()));
             }
-        } catch (SQLException e) {
-            System.err.println("Error getting range revenue: " + e.getMessage());
-            e.printStackTrace();
+        } else {
+            sb.append("Tidak ada transaksi pada tanggal ini.\n");
         }
-        return 0.0;
+
+        sb.append("\n====================================\n");
+        return sb.toString();
     }
 
     /**
-     * Ambil jumlah transaksi untuk hari tertentu
+     * Generate laporan penjualan periodik
      */
-    public int getTotalTransactions(LocalDate date) throws ValidationException {
-        if (date == null) {
-            throw new ValidationException("Date", "Tanggal tidak boleh null");
-        }
+    public String generatePeriodReport(LocalDate startDate, LocalDate endDate) throws Exception {
+        List<Transaction> transactions = transactionService.getTransactionsByDateRange(startDate, endDate);
         
-        String sql = "SELECT COUNT(*) FROM transactions WHERE DATE(tanggal) = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-            ps.setDate(1, Date.valueOf(date));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error getting total transactions: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return 0;
+        double totalSales = transactions.stream()
+            .mapToDouble(Transaction::getTotal)
+            .sum();
+        
+        double totalTax = transactions.stream()
+            .mapToDouble(Transaction::getTax)
+            .sum();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("====================================\n");
+        sb.append("    LAPORAN PENJUALAN PERIODIK\n");
+        sb.append("====================================\n\n");
+        sb.append("Periode: ").append(startDate.format(dateFormatter))
+          .append(" s/d ").append(endDate.format(dateFormatter)).append("\n\n");
+
+        sb.append("RINGKASAN:\n");
+        sb.append("--------------------------------\n");
+        sb.append(String.format("Jumlah Transaksi : %d\n", transactions.size()));
+        sb.append(String.format("Total Pajak      : %s\n", formatCurrency(totalTax)));
+        sb.append(String.format("Total Penjualan  : %s\n", formatCurrency(totalSales)));
+        sb.append("\n");
+
+        // Group by date
+        Map<LocalDate, List<Transaction>> byDate = transactions.stream()
+            .collect(Collectors.groupingBy(t -> t.getTransactionDate().toLocalDate()));
+
+        sb.append("PENJUALAN PER HARI:\n");
+        sb.append("--------------------------------\n");
+        
+        byDate.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .forEach(entry -> {
+                LocalDate date = entry.getKey();
+                List<Transaction> dayTransactions = entry.getValue();
+                double dayTotal = dayTransactions.stream()
+                    .mapToDouble(Transaction::getTotal)
+                    .sum();
+                sb.append(String.format("%s : %d transaksi - %s\n",
+                    date.format(dateFormatter),
+                    dayTransactions.size(),
+                    formatCurrency(dayTotal)));
+            });
+
+        // Group by payment method
+        Map<String, Double> byPaymentMethod = transactions.stream()
+            .collect(Collectors.groupingBy(
+                Transaction::getPaymentMethod,
+                Collectors.summingDouble(Transaction::getTotal)));
+
+        sb.append("\nPENJUALAN PER METODE PEMBAYARAN:\n");
+        sb.append("--------------------------------\n");
+        
+        byPaymentMethod.forEach((method, total) -> {
+            sb.append(String.format("%-15s : %s\n", method, formatCurrency(total)));
+        });
+
+        sb.append("\n====================================\n");
+        return sb.toString();
     }
 
     /**
-     * Ambil jumlah transaksi untuk range tanggal
+     * Generate laporan ringkas untuk dashboard
      */
-    public int getTotalTransactionsRange(LocalDate startDate, LocalDate endDate) throws ValidationException {
-        if (startDate == null || endDate == null) {
-            throw new ValidationException("Date Range", "Tanggal awal dan akhir tidak boleh null");
-        }
-        if (startDate.isAfter(endDate)) {
-            throw new ValidationException("Date Range", "Tanggal awal harus sebelum tanggal akhir");
-        }
-        
-        String sql = "SELECT COUNT(*) FROM transactions WHERE DATE(tanggal) BETWEEN ? AND ?";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-            ps.setDate(1, Date.valueOf(startDate));
-            ps.setDate(2, Date.valueOf(endDate));
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.err.println("Error getting range transactions: " + e.getMessage());
-            e.printStackTrace();
-        }
-        return 0;
+    public DashboardSummary getDashboardSummary(LocalDate date) throws Exception {
+        double todaySales = transactionService.getDailySalesTotal(date);
+        int todayTransactions = transactionService.getDailyTransactionCount(date);
+
+        // Week summary
+        LocalDate weekStart = date.minusDays(6);
+        List<Transaction> weekTransactions = transactionService.getTransactionsByDateRange(weekStart, date);
+        double weekSales = weekTransactions.stream()
+            .mapToDouble(Transaction::getTotal)
+            .sum();
+
+        return new DashboardSummary(todaySales, todayTransactions, weekSales, weekTransactions.size());
+    }
+
+    private String formatCurrency(double value) {
+        return currencyFormat.format(value);
     }
 
     /**
-     * Ambil average transaction untuk hari tertentu
+     * Get total sales by specific date
      */
-    public double getAverageTransaction(LocalDate date) throws ValidationException {
-        if (date == null) {
-            throw new ValidationException("Date", "Tanggal tidak boleh null");
+    public double getSalesByDate(LocalDate date) throws Exception {
+        return transactionService.getDailySalesTotal(date);
+    }
+
+    /**
+     * Get total sales by period
+     */
+    public double getSalesByPeriod(LocalDate startDate, LocalDate endDate) throws Exception {
+        List<Transaction> transactions = transactionService.getTransactionsByDateRange(startDate, endDate);
+        return transactions.stream()
+            .mapToDouble(Transaction::getTotal)
+            .sum();
+    }
+
+    /**
+     * Get transaction count by date
+     */
+    public int getTransactionCountByDate(LocalDate date) throws Exception {
+        return transactionService.getDailyTransactionCount(date);
+    }
+
+    /**
+     * DTO untuk dashboard summary
+     */
+    public static class DashboardSummary {
+        private final double todaySales;
+        private final int todayTransactions;
+        private final double weekSales;
+        private final int weekTransactions;
+
+        public DashboardSummary(double todaySales, int todayTransactions, 
+                               double weekSales, int weekTransactions) {
+            this.todaySales = todaySales;
+            this.todayTransactions = todayTransactions;
+            this.weekSales = weekSales;
+            this.weekTransactions = weekTransactions;
         }
-        
-        int count = getTotalTransactions(date);
-        if (count == 0) return 0.0;
-        
-        double revenue = getDailyRevenue(date);
-        return revenue / count;
+
+        public double getTodaySales() { return todaySales; }
+        public int getTodayTransactions() { return todayTransactions; }
+        public double getWeekSales() { return weekSales; }
+        public int getWeekTransactions() { return weekTransactions; }
     }
 }

@@ -1,131 +1,190 @@
 package com.upb.agripos.service;
 
-import com.upb.agripos.dao.ipml.TransactionDAOImpl;
-import com.upb.agripos.dao.ipml.ProductDAOImpl;
-import com.upb.agripos.dao.interfaces.TransactionDAO;
-import com.upb.agripos.dao.interfaces.ProductDAO;
-import com.upb.agripos.model.Transaction;
-import com.upb.agripos.model.TransactionItem;
-import com.upb.agripos.model.Product;
-import com.upb.agripos.exception.OutOfStockException;
+import com.upb.agripos.dao.TransactionDAO;
+import com.upb.agripos.exception.PaymentException;
 import com.upb.agripos.exception.ValidationException;
-import java.sql.SQLException;
+import com.upb.agripos.model.*;
+import com.upb.agripos.service.payment.PaymentMethod;
+import com.upb.agripos.service.payment.PaymentMethodFactory;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Service layer untuk Transaction (FR-2, FR-3, FR-4)
+ * Mengelola proses checkout, pembayaran, dan transaksi
+ */
 public class TransactionService {
-    private final TransactionDAO transDAO = new TransactionDAOImpl();
-    private final ProductDAO prodDAO = new ProductDAOImpl();
+    private static final double TAX_RATE = 0.10; // 10% pajak
+    private static final AtomicInteger transactionCounter = new AtomicInteger(1);
+    
+    private final TransactionDAO transactionDAO;
     private final ProductService productService;
+    private final CartService cartService;
 
-    public TransactionService() {
-        this.productService = new ProductService();
+    public TransactionService(TransactionDAO transactionDAO, ProductService productService, CartService cartService) {
+        this.transactionDAO = transactionDAO;
+        this.productService = productService;
+        this.cartService = cartService;
     }
 
     /**
-     * Checkout transaksi dengan update stok
-     * @param trans - Objek transaksi dengan items
-     * @throws SQLException - Jika error DB
-     * @throws OutOfStockException - Jika stok tidak cukup
-     * @throws ValidationException - Jika transaksi tidak valid
+     * Proses checkout dengan pembayaran
+     * @param cashierUsername username kasir
+     * @param paymentMethodName nama metode pembayaran
+     * @param amountPaid jumlah yang dibayarkan
+     * @return CheckoutSummary hasil checkout
      */
-    public void checkout(Transaction trans) throws SQLException, OutOfStockException, ValidationException {
-        // Validasi input
-        if (trans == null || trans.getItems() == null || trans.getItems().isEmpty()) {
-            throw new ValidationException("Transaksi", "Transaksi tidak boleh kosong");
+    public CheckoutSummary processCheckout(String cashierUsername, String paymentMethodName, double amountPaid) 
+            throws Exception {
+        
+        // Validasi keranjang
+        if (cartService.isCartEmpty()) {
+            throw new ValidationException("Keranjang kosong, tidak dapat checkout");
         }
 
-        if (trans.getTotal() <= 0) {
-            throw new ValidationException("Total", "Total transaksi harus lebih dari 0");
+        // Ambil metode pembayaran
+        PaymentMethod paymentMethod = PaymentMethodFactory.getPaymentMethod(paymentMethodName);
+        if (paymentMethod == null) {
+            throw new ValidationException("Metode pembayaran tidak valid: " + paymentMethodName);
         }
 
-        // Validasi dan decrease stok untuk semua items
-        // Harus berhasil untuk SEMUA sebelum save
-        for (TransactionItem item : trans.getItems()) {
-            if (item.getProduct() == null || item.getProduct().getKode() == null) {
-                throw new ValidationException("Produk", "Produk dalam item tidak valid");
-            }
-            
-            if (item.getQty() <= 0) {
-                throw new ValidationException("Qty", "Jumlah item harus lebih dari 0");
-            }
-            
-            // Cek stok terlebih dahulu sebelum decrease
-            String kode = item.getProduct().getKode();
-            int qty = item.getQty();
-            Product prod = productService.findByCode(kode);
-            
-            if (prod == null) {
-                throw new ValidationException("Produk", "Produk dengan kode " + kode + " tidak ditemukan");
-            }
-            
-            if (prod.getStok() < qty) {
-                throw new OutOfStockException(
-                    prod.getNama(),
-                    prod.getStok(),
-                    qty
-                );
-            }
+        // Hitung total
+        double subtotal = cartService.getCartTotal();
+        double tax = subtotal * TAX_RATE;
+        double total = subtotal + tax;
+
+        // Proses pembayaran
+        double change = paymentMethod.processPayment(total, amountPaid);
+
+        // Buat transaksi
+        Transaction transaction = createTransaction(cashierUsername, subtotal, tax, total, 
+                                                   paymentMethodName, amountPaid, change);
+
+        // Simpan transaksi ke database
+        transactionDAO.insert(transaction);
+
+        // Kurangi stok produk
+        for (CartItem item : cartService.getCartItems()) {
+            productService.reduceStock(item.getProductCode(), item.getQuantity());
         }
 
-        // Semua validasi berhasil, lakukan stock decrease dan save
-        for (TransactionItem item : trans.getItems()) {
-            String kode = item.getProduct().getKode();
-            int qty = item.getQty();
-            productService.decreaseStock(kode, qty);
+        // Buat summary (discount 0 untuk saat ini)
+        double discount = 0;
+        CheckoutSummary summary = new CheckoutSummary(
+            subtotal, discount, tax, total,
+            cartService.getItemCount(),
+            cartService.getTotalQuantity(),
+            paymentMethodName,
+            amountPaid,
+            change
+        );
+
+        // Kosongkan keranjang
+        cartService.clearCart();
+
+        return summary;
+    }
+
+    /**
+     * Preview checkout tanpa melakukan transaksi
+     */
+    public CheckoutSummary previewCheckout() throws ValidationException {
+        if (cartService.isCartEmpty()) {
+            throw new ValidationException("Keranjang kosong");
         }
 
-        // Set status default jika belum ada
-        if (trans.getStatus() == null || trans.getStatus().isEmpty()) {
-            trans.setStatus("SUCCESS");
+        double subtotal = cartService.getCartTotal();
+        double discount = 0; // Bisa ditambahkan logika diskon di sini
+        double tax = subtotal * TAX_RATE;
+        double total = subtotal - discount + tax;
+
+        return new CheckoutSummary(
+            subtotal, discount, tax, total,
+            cartService.getItemCount(),
+            cartService.getTotalQuantity(),
+            "Preview", 0, 0
+        );
+    }
+
+    /**
+     * Mendapatkan semua transaksi
+     */
+    public List<Transaction> getAllTransactions() throws Exception {
+        return transactionDAO.findAll();
+    }
+
+    /**
+     * Mendapatkan transaksi berdasarkan tanggal
+     */
+    public List<Transaction> getTransactionsByDate(LocalDate date) throws Exception {
+        return transactionDAO.findByDate(date);
+    }
+
+    /**
+     * Mendapatkan transaksi dalam rentang tanggal
+     */
+    public List<Transaction> getTransactionsByDateRange(LocalDate startDate, LocalDate endDate) throws Exception {
+        return transactionDAO.findByDateRange(startDate, endDate);
+    }
+
+    /**
+     * Mendapatkan total penjualan harian
+     */
+    public double getDailySalesTotal(LocalDate date) throws Exception {
+        return transactionDAO.getDailySalesTotal(date);
+    }
+
+    /**
+     * Mendapatkan jumlah transaksi harian
+     */
+    public int getDailyTransactionCount(LocalDate date) throws Exception {
+        return transactionDAO.getDailyTransactionCount(date);
+    }
+
+    /**
+     * Generate kode transaksi unik
+     */
+    private String generateTransactionCode() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        return "TRX" + now.format(formatter) + String.format("%04d", transactionCounter.getAndIncrement());
+    }
+
+    /**
+     * Membuat objek Transaction dari data checkout
+     */
+    private Transaction createTransaction(String cashierUsername, double subtotal, double tax, 
+                                         double total, String paymentMethod, double amountPaid, 
+                                         double change) {
+        Transaction transaction = new Transaction();
+        transaction.setTransactionCode(generateTransactionCode());
+        transaction.setTransactionDate(LocalDateTime.now());
+        transaction.setCashierUsername(cashierUsername);
+        transaction.setSubtotal(subtotal);
+        transaction.setTax(tax);
+        transaction.setTotal(total);
+        transaction.setPaymentMethod(paymentMethod);
+        transaction.setAmountPaid(amountPaid);
+        transaction.setChangeAmount(change);
+        transaction.setStatus(Transaction.TransactionStatus.COMPLETED);
+
+        // Tambah items dari cart
+        for (CartItem cartItem : cartService.getCartItems()) {
+            TransactionItem item = TransactionItem.fromCartItem(cartItem);
+            transaction.addItem(item);
         }
 
-        // Simpan transaksi ke DB
-        transDAO.saveTransaction(trans);
-        System.out.println("✓ Transaction ID " + trans.getId() + " checkout successfully");
+        return transaction;
     }
 
     /**
-     * Get transaction berdasarkan ID
+     * Mendapatkan tax rate yang digunakan
      */
-    public Transaction getTransactionById(int id) {
-        return transDAO.getTransactionById(id);
-    }
-
-    /**
-     * Get semua transactions
-     */
-    public List<Transaction> getAllTransactions() {
-        return transDAO.getAllTransactions();
-    }
-
-    /**
-     * Get transactions berdasarkan status
-     */
-    public List<Transaction> getTransactionsByStatus(String status) {
-        return transDAO.getTransactionsByStatus(status);
-    }
-
-    /**
-     * Update transaction
-     */
-    public void updateTransaction(Transaction trans) throws ValidationException {
-        if (trans == null || trans.getId() <= 0) {
-            throw new ValidationException("Transaksi", "ID transaksi tidak valid");
-        }
-        transDAO.updateTransaction(trans);
-    }
-
-    /**
-     * Delete transaction
-     */
-    public void deleteTransaction(int id) {
-        transDAO.deleteTransaction(id);
-    }
-
-    /**
-     * Get transaction items
-     */
-    public List<TransactionItem> getTransactionItems(int transactionId) {
-        return transDAO.getTransactionItems(transactionId);
+    public double getTaxRate() {
+        return TAX_RATE;
     }
 }

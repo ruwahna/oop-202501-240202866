@@ -1,39 +1,101 @@
 package com.upb.agripos.model;
 
+/**
+ * Model class untuk item dalam transaksi
+ * Menyimpan snapshot data produk saat transaksi
+ */
 public class TransactionItem {
     private int id;
-    private Product product;
-    private int qty;
+    private int transactionId;
+    private String productCode;
+    private String productName;
+    private double unitPrice;
+    private int quantity;
     private double subtotal;
 
-    // Constructor default untuk database
-    public TransactionItem() {
+    public TransactionItem() {}
+
+    public TransactionItem(String productCode, String productName, double unitPrice, int quantity) {
+        this.productCode = productCode;
+        this.productName = productName;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.subtotal = unitPrice * quantity;
     }
 
-    // Constructor dengan product dan qty
-    public TransactionItem(Product product, int qty) {
-        this.product = product;
-        this.qty = qty;
-        this.subtotal = product.getHarga() * qty;
+    /**
+     * Factory method dari CartItem
+     */
+    public static TransactionItem fromCartItem(CartItem cartItem) {
+        return new TransactionItem(
+            cartItem.getProductCode(),
+            cartItem.getProductName(),
+            cartItem.getUnitPrice(),
+            cartItem.getQuantity()
+        );
     }
 
-    // Constructor dengan product, qty, dan subtotal (untuk testing dan DB)
-    public TransactionItem(Product product, int qty, double subtotal) {
-        this.product = product;
-        this.qty = qty;
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(int transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        this.subtotal = unitPrice * quantity;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
-    // Getter dan Setter
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
-
-    public int getQty() { return qty; }
-    public void setQty(int qty) { this.qty = qty; }
-
-    public double getSubtotal() { return subtotal; }
-    public void setSubtotal(double subtotal) { this.subtotal = subtotal; }
+    @Override
+    public String toString() {
+        return String.format("%s (%s) x%d @ Rp %.2f = Rp %.2f", 
+            productName, productCode, quantity, unitPrice, subtotal);
+    }
 }
