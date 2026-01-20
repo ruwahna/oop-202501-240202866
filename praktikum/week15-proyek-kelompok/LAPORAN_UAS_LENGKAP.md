@@ -72,6 +72,7 @@ Mengembangkan aplikasi desktop yang menerapkan konsep OOP mendalam, design patte
 
 #### 2. **Penerapan Design Patterns**
    - ✓ **Singleton Pattern**: Untuk DatabaseConnection (satu instance koneksi database)
+   - ✓ **Singleton Pattern**: Untuk DiscountConfigService (shared discount config Admin-Kasir)
    - ✓ **Strategy Pattern**: Untuk PaymentMethod (Cash, E-Wallet, QRIS sebagai strategy berbeda)
    - ✓ **Factory Pattern**: Untuk PaymentMethodFactory (pembuatan payment method instances)
    - ✓ **DAO Pattern**: Untuk abstraksi akses database
@@ -89,10 +90,12 @@ Mengembangkan aplikasi desktop yang menerapkan konsep OOP mendalam, design patte
    - ✓ Sistem transaksi lengkap dengan cart management
    - ✓ Sistem pembayaran multi-metode
    - ✓ Sistem diskon fleksibel (per-item dan per-transaksi)
+   - ✓ Manajemen diskon oleh Admin dengan sync real-time ke Kasir
    - ✓ Struk penjualan dengan detail lengkap
    - ✓ Riwayat transaksi dengan filter dan cetak ulang
    - ✓ Laporan penjualan untuk analisis bisnis
    - ✓ Dashboard admin dengan statistik real-time
+   - ✓ Responsive design (support mobile dan desktop)
 
 #### 5. **Testing dan Quality Assurance**
    - ✓ Unit testing dengan JUnit 5
@@ -189,24 +192,46 @@ Aplikasi mendukung tiga metode pembayaran dengan validasi otomatis.
 **Implementasi:** Strategy Pattern - setiap metode pembayaran adalah strategy yang berbeda dengan validate() dan pay() method yang berbeda.
 
 #### E. **Sistem Diskon & Promosi**
-Aplikasi menyediakan fleksibilitas untuk memberikan diskon kepada pelanggan.
+Aplikasi menyediakan fleksibilitas untuk memberikan diskon kepada pelanggan dengan manajemen terpusat oleh Admin.
 
 **Jenis Diskon:**
-- **Per-Item Discount**: Diskon spesifik untuk item tertentu (dalam %)
-- **Transaction Discount**: Diskon untuk total transaksi (dalam %)
-- **Kategori-Based Discount**: Diskon untuk produk kategori tertentu (future enhancement)
+- **Persentase**: Diskon berdasarkan persentase (5%, 10%, 15%, dll)
+- **Nominal**: Potongan harga tetap (Rp 50.000, Rp 100.000, dll)
+- **Bulk Discount**: Diskon untuk pembelian quantity tertentu (min 5 item dapat 15%)
+- **Voucher**: Kode promo dengan nilai tetap atau persentase
 
-**Fitur:**
-- Input diskon manual saat transaksi
-- Kalkulasi pajak berdasarkan harga setelah diskon
-- Diskon tercatat dalam database
-- Diskon ditampilkan dalam struk
+**Fitur Kasir:**
+- Pilih diskon dari dropdown (dikelola Admin)
+- Input kode voucher manual
+- Refresh daftar diskon terbaru dari Admin
+- Kalkulasi otomatis pajak setelah diskon
+- Diskon tercatat dalam database dan struk
+
+**Fitur Admin (NEW - Manajemen Diskon):**
+- Tambah diskon baru dengan berbagai tipe
+- Edit konfigurasi diskon yang ada
+- Hapus diskon dari sistem
+- Aktifkan/nonaktifkan diskon
+- Search dan filter diskon
+- Real-time sync dengan tampilan Kasir
 
 **Implementasi:**
-- Model `Discount` untuk struktur data
+- `DiscountConfigService` (Singleton) - Shared service untuk konfigurasi diskon
+- `DiscountManagementView` - UI Admin untuk CRUD diskon
+- `TransactionView` - Integrasi dengan DiscountConfigService
+- Model `DiscountConfig` - Inner class untuk data diskon
 - Method `applyDiscount()` dalam `CartService`
 - Column `discount` dalam `transactions` table
 - Display diskon dalam `ReceiptService`
+
+**Diskon Default:**
+| Kode | Nama | Tipe | Nilai |
+|------|------|------|-------|
+| UMUM5 | Diskon Umum | Persentase | 5% |
+| MEMBER10 | Diskon Member | Persentase | 10% |
+| BULK15 | Diskon Bulk | Persentase | 15% (min 5 item) |
+| WELCOME | Welcome Discount | Persentase | 5% |
+| PROMO50K | Promo 50K | Nominal | Rp 50.000 |
 
 #### F. **Struk Penjualan (Receipt)**
 Sistem otomatis generate struk detail setiap transaksi berhasil.
@@ -360,6 +385,11 @@ Menjadi sistem Point of Sale pilihan untuk sektor pertanian dengan menyediakan t
 - FR-4.2: Kasir dapat aplikasikan diskon per-transaksi (dalam %)
 - FR-4.3: Pajak dikalkulasi berdasarkan harga setelah diskon
 - FR-4.4: Diskon tercatat dalam database dan struk
+- FR-4.5: Admin dapat menambah diskon baru (persentase, nominal, bulk, voucher)
+- FR-4.6: Admin dapat mengubah konfigurasi diskon
+- FR-4.7: Admin dapat menghapus diskon dari sistem
+- FR-4.8: Admin dapat mengaktifkan/menonaktifkan diskon
+- FR-4.9: Diskon yang dikelola Admin otomatis tersinkron ke Kasir (real-time)
 
 #### FR-5: Sistem Pembayaran
 - FR-5.1: Sistem mendukung pembayaran Cash dengan kalkulasi kembalian
@@ -386,6 +416,14 @@ Menjadi sistem Point of Sale pilihan untuk sektor pertanian dengan menyediakan t
 - FR-8.3: Admin dapat generate period sales report
 - FR-8.4: Admin dapat generate product sales report
 - FR-8.5: Admin dapat generate payment method report
+
+#### FR-9: Manajemen Diskon (Admin) - NEW
+- FR-9.1: Admin dapat menambah diskon baru (persentase, nominal, bulk, voucher)
+- FR-9.2: Admin dapat mengubah konfigurasi diskon yang sudah ada
+- FR-9.3: Admin dapat menghapus diskon dari sistem
+- FR-9.4: Admin dapat mengaktifkan/menonaktifkan diskon
+- FR-9.5: Admin dapat mencari diskon berdasarkan nama/kode
+- FR-9.6: Diskon yang dikelola Admin otomatis tersinkron ke Kasir (real-time)
 
 ### Kebutuhan Non-Fungsional (Non-Functional Requirements)
 
@@ -451,6 +489,7 @@ Agri-POS menggunakan **Layered Architecture (N-Tier Architecture)** dengan 5 lay
 │         SERVICE LAYER (Business Logic)                  │
 │  - ProductService, CartService, TransactionService     │
 │  - ReceiptService, ReportService, AuthService          │
+│  - DiscountConfigService (NEW - Singleton Pattern)     │
 │  - Business rules, validasi, kalkulasi                 │
 │  - Orchestrate DAO calls                               │
 └──────────────────┬──────────────────────────────────────┘
@@ -1106,8 +1145,9 @@ public class JdbcTransactionDAO implements TransactionDAO {
 
 ### Pattern 1: Singleton Pattern
 
-**Tujuan:** Memastikan hanya ada satu instance dari class (misal: Database Connection).
+**Tujuan:** Memastikan hanya ada satu instance dari class yang shared di seluruh aplikasi.
 
+**Implementasi 1 - DatabaseConnection:**
 ```java
 // DatabaseConnection.java
 public class DatabaseConnection {
@@ -1155,10 +1195,66 @@ public class ProductDAO {
 }
 ```
 
+**Implementasi 2 - DiscountConfigService (NEW):**
+```java
+// DiscountConfigService.java - Singleton untuk shared discount configuration
+public class DiscountConfigService {
+    private static DiscountConfigService instance;
+    private final ObservableList<DiscountConfig> discountConfigs;
+    
+    private DiscountConfigService() {
+        discountConfigs = FXCollections.observableArrayList();
+        loadDefaultDiscounts();
+    }
+    
+    public static synchronized DiscountConfigService getInstance() {
+        if (instance == null) {
+            instance = new DiscountConfigService();
+        }
+        return instance;
+    }
+    
+    public ObservableList<DiscountConfig> getActiveDiscounts() {
+        return discountConfigs.filtered(DiscountConfig::isActive);
+    }
+    
+    public void addDiscount(DiscountConfig config) {
+        discountConfigs.add(config);
+    }
+    
+    public DiscountConfig findByCode(String code) {
+        return discountConfigs.stream()
+            .filter(d -> d.getCode().equalsIgnoreCase(code))
+            .findFirst()
+            .orElse(null);
+    }
+    
+    // Inner class untuk konfigurasi diskon
+    public static class DiscountConfig {
+        private String name, code, type;
+        private double value, minPurchase;
+        private int minItems;
+        private boolean active;
+        // ... getters and setters
+    }
+}
+
+// Usage di Admin (DiscountManagementView):
+DiscountConfigService service = DiscountConfigService.getInstance();
+service.addDiscount(new DiscountConfig("Promo Lebaran", "LEBARAN25", "Persentase", 25, 0, 0, true));
+
+// Usage di Kasir (TransactionView):
+DiscountConfigService service = DiscountConfigService.getInstance();
+for (DiscountConfig config : service.getActiveDiscounts()) {
+    discountCombo.getItems().add(config.getDisplayName());
+}
+```
+
 **Manfaat:**
-- ✓ Single Responsibility: Satu database connection
-- ✓ Resource Efficiency: Tidak ada memory leak dari multiple connections
+- ✓ Single Responsibility: Satu database connection / satu discount configuration
+- ✓ Resource Efficiency: Tidak ada memory leak dari multiple instances
 - ✓ Thread Safety: Synchronized getInstance() untuk multi-threading
+- ✓ Real-time Sync: Perubahan di Admin langsung terlihat di Kasir (shared instance)
 
 ### Pattern 2: Strategy Pattern
 
@@ -1886,13 +1982,14 @@ Proyek ini berhasil mengintegrasikan semua konsep OOP fundamental:
 - **Abstraction**: DAO pattern untuk abstraksi database access
 
 ### ✓ Design Patterns Diterapkan
-Enam design patterns berhasil diimplementasikan dengan tepat:
-- Singleton (DatabaseConnection)
+Tujuh design patterns berhasil diimplementasikan dengan tepat:
+- Singleton (DatabaseConnection, DiscountConfigService)
 - Strategy (PaymentMethod)
 - Factory (PaymentMethodFactory)
 - DAO (ProductDAO, UserDAO, TransactionDAO)
 - Dependency Injection
 - Template Method (Service layer)
+- Observer (JavaFX ObservableList untuk real-time sync)
 
 ### ✓ Arsitektur Berlapis
 Clean architecture dengan 5 layer jelas memisahkan concerns:
@@ -1903,9 +2000,11 @@ Semua fitur POS modern berhasil diimplementasikan:
 - Manajemen produk komprehensif
 - Sistem transaksi end-to-end
 - Multi-method pembayaran
-- Sistem diskon fleksibel
+- Sistem diskon fleksibel dengan manajemen terpusat (Admin-Kasir sync)
+- Manajemen diskon oleh Admin (CRUD diskon, toggle aktif/nonaktif)
 - Struk dan laporan terstruktur
 - Dashboard admin dengan statistik real-time
+- Responsive design (support mobile dan desktop)
 
 ### ✓ Kualitas Kode
 - Unit testing >70% coverage

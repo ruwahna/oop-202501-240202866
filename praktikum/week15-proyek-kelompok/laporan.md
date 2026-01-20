@@ -66,6 +66,7 @@ Aplikasi Agri-POS mencakup:
 | FR-4 | Multi Payment Methods | High |
 | FR-5 | Struk dan Laporan | High |
 | FR-6 | Login dan Akses Kontrol | High |
+| FR-7 | Manajemen Diskon oleh Admin | High |
 
 
 
@@ -80,8 +81,8 @@ Aplikasi Agri-POS mencakup:
 
 | Actor | Description | Access Level |
 |-------|-------------|--------------|
-| **Kasir** | Operator transaksi penjualan | Login, View Produk (read-only), Transaksi, Keranjang, Checkout, Cetak Struk, Riwayat Transaksi |
-| **Admin** | Administrator sistem | Full Access: Dashboard, CRUD Produk, Laporan Penjualan, Export Report, Low Stock Alert |
+| **Kasir** | Operator transaksi penjualan | Login, View Produk (read-only), Transaksi, Keranjang, Checkout, Apply Diskon/Voucher, Cetak Struk, Riwayat Transaksi |
+| **Admin** | Administrator sistem | Full Access: Dashboard, CRUD Produk, CRUD Diskon, Laporan Penjualan, Export Report, Low Stock Alert |
 
 ### 2.4 Use Case Detail per Actor
 
@@ -99,11 +100,13 @@ Aplikasi Agri-POS mencakup:
 | 9 | Checkout (Cash) | Proses pembayaran tunai | 🛒 Transaksi Baru |
 | 10 | Checkout (E-Wallet) | Proses pembayaran e-wallet (OVO, GoPay, Dana, ShopeePay) | 🛒 Transaksi Baru |
 | 11 | Checkout (QRIS) | Proses pembayaran QRIS | 🛒 Transaksi Baru |
-| 12 | Apply Discount | Menerapkan diskon untuk produk/transaksi | 🛒 Transaksi Baru |
-| 13 | Print Receipt | Mencetak struk pembelian dengan detail diskon | 🛒 Transaksi Baru |
-| 14 | View Product List | Melihat daftar produk (read-only) | 📦 Daftar Produk |
-| 15 | View Transaction History | Melihat riwayat transaksi dengan detail | 📋 Riwayat Transaksi |
-| 16 | View Receipt History | Melihat struk transaksi sebelumnya | 📋 Riwayat Transaksi |
+| 12 | Apply Discount | Menerapkan diskon dari dropdown (dikelola Admin) | 🛒 Transaksi Baru |
+| 13 | Apply Voucher | Memasukkan kode voucher manual | 🛒 Transaksi Baru |
+| 14 | Refresh Discount | Memperbarui daftar diskon terbaru dari Admin | 🛒 Transaksi Baru |
+| 15 | Print Receipt | Mencetak struk pembelian dengan detail diskon | 🛒 Transaksi Baru |
+| 16 | View Product List | Melihat daftar produk (read-only) | 📦 Daftar Produk |
+| 17 | View Transaction History | Melihat riwayat transaksi dengan detail | 📋 Riwayat Transaksi |
+| 18 | View Receipt History | Melihat struk transaksi sebelumnya | 📋 Riwayat Transaksi |
 
 #### 👔 Admin - Use Case List
 | No | Use Case | Deskripsi | Tab Menu |
@@ -119,6 +122,11 @@ Aplikasi Agri-POS mencakup:
 | 9 | Daily Sales Report | Generate laporan penjualan harian | 📈 Laporan Penjualan |
 | 10 | Period Sales Report | Generate laporan penjualan periode tertentu | 📈 Laporan Penjualan |
 | 11 | Export Report | Export laporan ke file | 📈 Laporan Penjualan |
+| 12 | Add Discount | Menambah diskon baru (persentase, nominal, bulk, voucher) | 🎁 Manajemen Diskon |
+| 13 | Edit Discount | Mengubah konfigurasi diskon yang sudah ada | 🎁 Manajemen Diskon |
+| 14 | Delete Discount | Menghapus diskon dari sistem | 🎁 Manajemen Diskon |
+| 15 | Toggle Discount Status | Mengaktifkan/menonaktifkan diskon | 🎁 Manajemen Diskon |
+| 16 | Search Discount | Mencari diskon berdasarkan nama/kode | 🎁 Manajemen Diskon |
 
 ---
 
@@ -132,9 +140,9 @@ Aplikasi Agri-POS mencakup:
 │  ┌───────────────┐ ┌───────────────┐ ┌───────────────┐ ┌───────────────┐   │
 │  │   LoginView   │ │   MainView    │ │TransactionView│ │  ReportView   │   │
 │  └───────────────┘ └───────────────┘ └───────────────┘ └───────────────┘   │
-│  ┌───────────────┐ ┌───────────────┐                                        │
-│  │ DashboardView │ │ProductMgmtView│  (JavaFX GUI Components)              │
-│  └───────────────┘ └───────────────┘                                        │
+│  ┌───────────────┐ ┌───────────────┐ ┌────────────────────┐                 │
+│  │ DashboardView │ │ProductMgmtView│ │DiscountMgmtView    │ (JavaFX GUI)   │
+│  └───────────────┘ └───────────────┘ └────────────────────┘                 │
 └──────────────────────────────────┬──────────────────────────────────────────┘
                                    │ Events & User Actions
                                    ▼
@@ -157,9 +165,10 @@ Aplikasi Agri-POS mencakup:
 │  │ProductService│ │ CartService  │ │TransService  │ │ AuthService  │       │
 │  │ - productDAO │ │ - cart: Cart │ │ - transDAO   │ │ - userDAO    │       │
 │  └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘       │
-│  ┌──────────────┐ ┌──────────────┐                                          │
-│  │ReportService │ │ReceiptService│  (Business Logic & Rules)               │
-│  └──────────────┘ └──────────────┘                                          │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────────┐                     │
+│  │ReportService │ │ReceiptService│ │DiscountConfig    │ (Business Logic)   │
+│  └──────────────┘ └──────────────┘ │Service (Singleton)│                    │
+│                                    └──────────────────┘                     │
 │                                                                             │
 │  ┌─────────────────────── PAYMENT (Strategy Pattern) ─────────────────────┐ │
 │  │    <<interface>>         ┌─────────────┐ ┌─────────────┐ ┌───────────┐ │ │
@@ -224,6 +233,44 @@ Aplikasi Agri-POS mencakup:
 *DAO interface*
 
 
+### 3.3 Sequence Diagrams
+
+#### 3.3.1 Login Sequence
+
+```
+┌─────┐          ┌──────────┐          ┌───────────────┐          ┌───────────┐
+│User │          │LoginView │          │LoginController│          │AuthService│
+└──┬──┘          └────┬─────┘          └───────┬───────┘          └─────┬─────┘
+   │                  │                        │                        │
+   │ 1. Input login   │                        │                        │
+   │─────────────────>│                        │                        │
+   │                  │                        │                        │
+   │ 2. Select role   │                        │                        │
+   │─────────────────>│                        │                        │
+   │                  │                        │                        │
+   │ 3. Click Login   │                        │                        │
+   │─────────────────>│                        │                        │
+   │                  │                        │                        │
+   │                  │ 4. handleLogin()       │                        │
+   │                  │───────────────────────>│                        │
+   │                  │                        │                        │
+   │                  │                        │ 5. authenticate()      │
+   │                  │                        │───────────────────────>│
+   │                  │                        │                        │
+   │                  │                        │ 6. return User/null    │
+   │                  │                        │<───────────────────────│
+   │                  │                        │                        │
+   │                  │ 7. Open MainView       │                        │
+   │                  │<───────────────────────│                        │
+   │                  │                        │                        │
+   │ 8. Show main app │                        │                        │
+   │<─────────────────│                        │                        │
+   │                  │                        │                        │
+```
+
+*Login sequence dengan validasi role (Admin/Kasir)*
+
+
 #### 3.3.2 Checkout Transaction Sequence
 
 ![checkout](/praktikum/week15-proyek-kelompok/screenshots/Checkout%20Transaction%20Sequence-Page-4.drawio.png)
@@ -238,14 +285,97 @@ Aplikasi Agri-POS mencakup:
 *admin sequence*
 
 
+#### 3.3.4 Admin - Discount Management Sequence (NEW)
+
+```
+┌─────┐          ┌────────────────────┐          ┌────────────────────┐
+│Admin│          │DiscountMgmtView    │          │DiscountConfigService│
+└──┬──┘          └─────────┬──────────┘          └──────────┬─────────┘
+   │                       │                                │
+   │  1. Buka Tab Diskon   │                                │
+   │──────────────────────>│                                │
+   │                       │                                │
+   │                       │  2. getInstance()              │
+   │                       │───────────────────────────────>│
+   │                       │                                │
+   │                       │  3. getDiscountConfigs()       │
+   │                       │───────────────────────────────>│
+   │                       │                                │
+   │                       │  4. return ObservableList      │
+   │                       │<───────────────────────────────│
+   │                       │                                │
+   │  5. Display discounts │                                │
+   │<──────────────────────│                                │
+   │                       │                                │
+   │  6. Add new discount  │                                │
+   │──────────────────────>│                                │
+   │                       │                                │
+   │                       │  7. addDiscount(config)        │
+   │                       │───────────────────────────────>│
+   │                       │                                │
+   │                       │  8. Update ObservableList      │
+   │                       │<───────────────────────────────│
+   │                       │                                │
+   │  9. Show success      │                                │
+   │<──────────────────────│                                │
+   │                       │                                │
+```
+
+*Admin mengelola diskon - Diskon otomatis tersinkron ke Kasir via Singleton*
+
+
+#### 3.3.5 Kasir - Apply Discount Sequence (NEW)
+
+```
+┌─────┐          ┌───────────────┐          ┌────────────────────┐          ┌─────────────┐
+│Kasir│          │TransactionView│          │DiscountConfigService│          │PosController│
+└──┬──┘          └───────┬───────┘          └──────────┬─────────┘          └──────┬──────┘
+   │                     │                             │                           │
+   │  1. Click Refresh   │                             │                           │
+   │────────────────────>│                             │                           │
+   │                     │                             │                           │
+   │                     │  2. getActiveDiscounts()    │                           │
+   │                     │────────────────────────────>│                           │
+   │                     │                             │                           │
+   │                     │  3. return filtered list    │                           │
+   │                     │<────────────────────────────│                           │
+   │                     │                             │                           │
+   │  4. Update dropdown │                             │                           │
+   │<────────────────────│                             │                           │
+   │                     │                             │                           │
+   │  5. Select discount │                             │                           │
+   │────────────────────>│                             │                           │
+   │                     │                             │                           │
+   │                     │  6. findByCode(code)        │                           │
+   │                     │────────────────────────────>│                           │
+   │                     │                             │                           │
+   │                     │  7. return DiscountConfig   │                           │
+   │                     │<────────────────────────────│                           │
+   │                     │                             │                           │
+   │                     │  8. applyDiscount(config)   │                           │
+   │                     │────────────────────────────────────────────────────────>│
+   │                     │                             │                           │
+   │                     │  9. updateSummary()         │                           │
+   │                     │<────────────────────────────────────────────────────────│
+   │                     │                             │                           │
+   │  10. Show total     │                             │                           │
+   │<────────────────────│                             │                           │
+   │                     │                             │                           │
+```
+
+*Kasir menggunakan diskon yang dikelola Admin - Real-time sync via Singleton*
+
+
 ### 3.4 Design Patterns
 
 | Pattern | Implementation | Purpose |
 |---------|----------------|---------|
 | **Singleton** | `DatabaseConnection` | Single database connection instance untuk seluruh aplikasi |
+| **Singleton** | `DiscountConfigService` | Shared discount configuration antara Admin dan Kasir (NEW) |
 | **Strategy** | `PaymentMethod`, `CashPayment`, `EWalletPayment`, `QRISPayment` | Metode pembayaran yang dapat di-extend tanpa ubah kode inti |
 | **Factory** | `PaymentMethodFactory` | Membuat instance payment method berdasarkan nama |
 | **DAO** | `ProductDAO`, `UserDAO`, `TransactionDAO` + implementasi JDBC | Abstraksi akses database |
+| **Observer** | JavaFX `ObservableList` di `DiscountConfigService` | Real-time sync discount changes (NEW) |
 
 ### 3.5 Database Schema (ERD)
 
@@ -565,6 +695,7 @@ void shouldThrowExceptionWhenInsufficientStock() {
 - [x] FR-4: Multi Payment Methods (Cash, E-Wallet, QRIS)
 - [x] FR-5: Struk dan Laporan Penjualan
 - [x] FR-6: Login dan Akses Kontrol (Admin & Kasir)
+- [x] FR-7: Manajemen Diskon oleh Admin (NEW)
 
 ### 7.3 Implementasi Diskon (New Feature)
 - [x] Model Transaction dengan field discount
@@ -575,12 +706,59 @@ void shouldThrowExceptionWhenInsufficientStock() {
 - [x] Automatic database migration saat startup
 - [x] Diskon ditampilkan di struk riwayat transaksi
 
-### 7.4 Future Improvements
+### 7.4 Manajemen Diskon Admin-Kasir Sync (NEW Feature)
+Fitur baru yang memungkinkan Admin mengelola diskon dan otomatis tersinkron dengan tampilan Kasir.
+
+#### Komponen Utama:
+- **DiscountConfigService (Singleton)**: Service shared untuk menyimpan konfigurasi diskon
+- **DiscountManagementView**: UI Admin untuk CRUD diskon
+- **TransactionView Integration**: Kasir dapat menggunakan diskon yang dikelola Admin
+
+#### Tipe Diskon yang Didukung:
+| Tipe | Deskripsi | Contoh |
+|------|-----------|--------|
+| Persentase | Diskon berdasarkan persentase | Diskon 5%, 10%, 15% |
+| Nominal | Potongan harga tetap | Rp 50.000, Rp 100.000 |
+| Bulk | Diskon untuk pembelian quantity tertentu | Min 5 item dapat 15% |
+| Voucher | Kode promo dengan nilai tetap | PROMO50K |
+
+#### Alur Kerja:
+1. Admin menambah/edit/hapus diskon di tab "🎁 Manajemen Diskon"
+2. Perubahan langsung tersimpan di `DiscountConfigService` (singleton)
+3. Kasir dapat melihat diskon terbaru dengan klik tombol refresh 🔄
+4. Kasir dapat menggunakan diskon via dropdown atau input kode voucher
+
+#### Class Baru:
+```java
+// DiscountConfigService.java - Singleton untuk shared discount data
+public class DiscountConfigService {
+    private static DiscountConfigService instance;
+    private final ObservableList<DiscountConfig> discountConfigs;
+    
+    public static synchronized DiscountConfigService getInstance();
+    public ObservableList<DiscountConfig> getActiveDiscounts();
+    public void addDiscount(DiscountConfig config);
+    public void updateDiscount(String code, DiscountConfig updated);
+    public void removeDiscount(String code);
+    public DiscountConfig findByCode(String code);
+}
+
+// DiscountManagementView.java - UI untuk Admin mengelola diskon
+public class DiscountManagementView {
+    public VBox createContent();  // Form CRUD + TableView diskon
+}
+```
+
+### 7.5 Future Improvements
 1. Password hashing dengan BCrypt
 2. Connection pooling dengan HikariCP
 3. Export laporan ke PDF/Excel
-4. Advanced discount rules (quantity-based, category-based)
+4. ~~Advanced discount rules (quantity-based, category-based)~~ ✅ DONE
 5. Inventory management dengan low stock alerts
+6. Persist discount config ke database (saat ini hanya di memory)
+7. Multi-store support dengan centralized discount management
+8. Discount scheduling (diskon dengan periode waktu tertentu)
+9. Customer-specific discounts (loyalty program)
 
 ---
 

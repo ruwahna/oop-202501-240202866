@@ -86,7 +86,7 @@ public class AppJavaFx extends Application {
         Scene loginScene = loginView.createScene(primaryStage);
         
         primaryStage.setScene(loginScene);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
         primaryStage.show();
     }

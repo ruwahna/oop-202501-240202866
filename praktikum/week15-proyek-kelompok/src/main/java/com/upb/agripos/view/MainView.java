@@ -2,6 +2,7 @@ package com.upb.agripos.view;
 
 import com.upb.agripos.controller.LoginController;
 import com.upb.agripos.controller.PosController;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,10 +15,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 /**
- * Main View dengan Tab-based interface
+ * Main View dengan Tab-based interface - Responsive Design
  * Menampilkan menu berbeda untuk Admin vs Kasir (FR-5)
  * 
- * Admin: Dashboard, Manajemen Produk, Laporan
+ * Admin: Dashboard, Manajemen Produk, Manajemen Diskon, Laporan
  * Kasir: Transaksi Baru, Daftar Produk, Riwayat Transaksi
  */
 public class MainView {
@@ -29,12 +30,14 @@ public class MainView {
     private TabPane tabPane;
     private Label userInfoLabel;
     private Label dateTimeLabel;
+    private BorderPane root;
 
     // Sub-views
     private DashboardView dashboardView;
     private ProductManagementView productManagementView;
     private TransactionView transactionView;
     private ReportView reportView;
+    private DiscountManagementView discountManagementView;
 
     public MainView(PosController posController, LoginController loginController, 
                    Runnable onLogout, Stage stage) {
@@ -45,7 +48,7 @@ public class MainView {
     }
 
     public Scene createScene() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
         root.setStyle("-fx-background-color: #f5f5f5;");
 
         // Header
@@ -56,7 +59,34 @@ public class MainView {
 
         Scene scene = new Scene(root, 1280, 800);
         stage.setTitle("🌾 Agri-POS - Point of Sale System");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
+        
+        // Responsive listener
+        ChangeListener<Number> responsiveListener = (obs, oldVal, newVal) -> {
+            applyResponsiveStyles(scene.getWidth(), scene.getHeight());
+        };
+        scene.widthProperty().addListener(responsiveListener);
+        scene.heightProperty().addListener(responsiveListener);
+        
         return scene;
+    }
+    
+    /**
+     * Apply responsive styles berdasarkan ukuran window
+     */
+    private void applyResponsiveStyles(double width, double height) {
+        boolean isCompact = width < 1000;
+        boolean isMobile = width < 800;
+        
+        // Adjust tab font size
+        if (isMobile) {
+            tabPane.setStyle("-fx-font-size: 11px; -fx-tab-min-height: 35;");
+        } else if (isCompact) {
+            tabPane.setStyle("-fx-font-size: 12px; -fx-tab-min-height: 38;");
+        } else {
+            tabPane.setStyle("-fx-font-size: 14px; -fx-tab-min-height: 40;");
+        }
     }
 
     private VBox createHeader() {
@@ -185,8 +215,14 @@ public class MainView {
         productManagementView = new ProductManagementView(posController);
         productTab.setContent(productManagementView.createContent());
         tabPane.getTabs().add(productTab);
+        
+        // Tab 3: Manajemen Diskon
+        Tab discountTab = new Tab("  🎁 Manajemen Diskon  ");
+        discountManagementView = new DiscountManagementView(posController);
+        discountTab.setContent(discountManagementView.createContent());
+        tabPane.getTabs().add(discountTab);
 
-        // Tab 3: Laporan
+        // Tab 4: Laporan
         Tab reportTab = new Tab("  📈 Laporan Penjualan  ");
         reportView = new ReportView(posController);
         reportTab.setContent(reportView.createContent());

@@ -4,6 +4,8 @@ import com.upb.agripos.controller.PosController;
 import com.upb.agripos.model.CartItem;
 import com.upb.agripos.model.CheckoutSummary;
 import com.upb.agripos.model.Product;
+import com.upb.agripos.service.DiscountConfigService;
+import com.upb.agripos.service.DiscountConfigService.DiscountConfig;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,14 +16,17 @@ import javafx.scene.layout.*;
 /**
  * View untuk Transaksi/Checkout (FR-2, FR-3, FR-4)
  * Tampilan lengkap untuk Kasir Point of Sale
+ * Diskon diambil dari DiscountConfigService (dikelola oleh Admin)
  */
 public class TransactionView {
     private final PosController controller;
+    private final DiscountConfigService discountService;
 
     private TableView<Product> productTable;
     private ListView<CartItem> cartListView;
     private TextField qtyField, amountPaidField, phoneField, searchField;
     private ComboBox<String> paymentMethodCombo, categoryCombo, providerCombo;
+    private ComboBox<String> discountCombo;
     private Label subtotalLabel, discountLabel, taxLabel, totalLabel, changeLabel;
     private Label discountAppliedLabel;
     private TextArea receiptArea;
@@ -31,6 +36,7 @@ public class TransactionView {
 
     public TransactionView(PosController controller) {
         this.controller = controller;
+        this.discountService = DiscountConfigService.getInstance();
     }
 
     public ScrollPane createContent() {
@@ -420,19 +426,29 @@ public class TransactionView {
         discountTitle.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #E65100;");
         discountHeader.getChildren().addAll(discountIcon, discountTitle);
 
-        // Predefined discounts combo
+        // Predefined discounts combo - Load dari DiscountConfigService (dikelola Admin)
         VBox comboBox = new VBox(5);
         Label comboLabel = new Label("Pilih Diskon Standar:");
         comboLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
-        ComboBox<String> discountCombo = new ComboBox<>();
-        discountCombo.getItems().addAll(
-            "Diskon 5% (Umum)",
-            "Diskon 10% (Member)",
-            "Diskon Bulk (5+ item 15%)"
-        );
+        discountCombo = new ComboBox<>();
+        // Load discounts dari shared service
+        refreshDiscountCombo();
         discountCombo.setPromptText("Pilih diskon...");
         discountCombo.setPrefWidth(Double.MAX_VALUE);
         discountCombo.setStyle("-fx-font-size: 12px;");
+        
+        // Refresh button untuk update diskon terbaru dari Admin
+        Button refreshDiscountBtn = new Button("🔄");
+        refreshDiscountBtn.setStyle("-fx-background-color: #E3F2FD; -fx-padding: 5 10; -fx-background-radius: 5; -fx-cursor: hand;");
+        refreshDiscountBtn.setTooltip(new Tooltip("Refresh daftar diskon dari Admin"));
+        refreshDiscountBtn.setOnAction(e -> {
+            refreshDiscountCombo();
+            showInfo("✅ Daftar diskon diperbarui!");
+        });
+        
+        HBox comboRow = new HBox(5);
+        comboRow.getChildren().addAll(discountCombo, refreshDiscountBtn);
+        HBox.setHgrow(discountCombo, Priority.ALWAYS);
         
         Button applyDiscountBtn = new Button("✅ Terapkan Diskon");
         applyDiscountBtn.setPrefWidth(Double.MAX_VALUE);
@@ -440,7 +456,7 @@ public class TransactionView {
                                  "-fx-font-size: 12px; -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand;");
         applyDiscountBtn.setOnAction(e -> handleApplyDiscount(discountCombo));
         
-        comboBox.getChildren().addAll(comboLabel, discountCombo, applyDiscountBtn);
+        comboBox.getChildren().addAll(comboLabel, comboRow, applyDiscountBtn);
 
         // Voucher code input
         VBox voucherBox = new VBox(5);
@@ -828,21 +844,52 @@ public class TransactionView {
         }
         
         try {
-            if (selected.contains("5%")) {
-                controller.applyPercentageDiscount(5, "Diskon 5% (Umum)");
-                showInfo("✅ Diskon 5% berhasil diterapkan!");
-            } else if (selected.contains("10%")) {
-                controller.applyPercentageDiscount(10, "Diskon 10% (Member)");
-                showInfo("✅ Diskon 10% berhasil diterapkan!");
-            } else if (selected.contains("Bulk")) {
-                controller.applyBulkDiscount(5, 15, "Diskon Bulk (5+ item 15%)");
-                showInfo("✅ Diskon Bulk berhasil diterapkan!");
+            // Parse kode diskon dari selection (format: "KODE - Deskripsi")
+            String code = selected.split(" - ")[0].trim();
+            DiscountConfig config = discountService.findByCode(code);
+            
+            if (config != null) {
+                switch (config.getType()) {
+                    case "Persentase":
+                        controller.applyPercentageDiscount((int) config.getValue(), config.getName());
+                        break;
+                    case "Nominal":
+                        controller.applyFixedDiscount(config.getValue(), config.getName());
+                        break;
+                    case "Bulk":
+                        controller.applyBulkDiscount(config.getMinQty(), (int) config.getValue(), config.getName());
+                        break;
+                    case "Voucher":
+                        controller.applyFixedDiscount(config.getValue(), config.getName());
+                        break;
+                }
+                showInfo("✅ Diskon '" + config.getName() + "' berhasil diterapkan!");
+            } else {
+                showError("Diskon tidak ditemukan!");
             }
             
             discountCombo.getSelectionModel().clearSelection();
             updateSummary();
         } catch (Exception e) {
             showError("Gagal terapkan diskon: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Refresh daftar diskon dari DiscountConfigService (dikelola Admin)
+     */
+    private void refreshDiscountCombo() {
+        discountCombo.getItems().clear();
+        for (DiscountConfig config : discountService.getActiveDiscounts()) {
+            String displayText = config.getCode() + " - " + config.getName();
+            if (config.getType().equals("Persentase")) {
+                displayText += " (" + (int) config.getValue() + "%)";
+            } else if (config.getType().equals("Nominal")) {
+                displayText += " (Rp " + String.format("%,.0f", config.getValue()) + ")";
+            } else if (config.getType().equals("Bulk")) {
+                displayText += " (Min " + config.getMinQty() + " item, " + (int) config.getValue() + "%)";
+            }
+            discountCombo.getItems().add(displayText);
         }
     }
 
@@ -859,10 +906,33 @@ public class TransactionView {
         }
         
         try {
-            controller.applyVoucherDiscount(code);
-            showInfo("✅ Voucher " + code + " berhasil diterapkan!");
-            voucherField.clear();
-            updateSummary();
+            // Cari voucher dari DiscountConfigService
+            DiscountConfig config = discountService.findByCode(code);
+            
+            if (config != null) {
+                // Terapkan diskon berdasarkan tipe
+                switch (config.getType()) {
+                    case "Persentase":
+                        controller.applyPercentageDiscount((int) config.getValue(), config.getName());
+                        break;
+                    case "Nominal":
+                    case "Voucher":
+                        controller.applyFixedDiscount(config.getValue(), config.getName());
+                        break;
+                    case "Bulk":
+                        controller.applyBulkDiscount(config.getMinQty(), (int) config.getValue(), config.getName());
+                        break;
+                }
+                showInfo("✅ Voucher " + code + " (" + config.getName() + ") berhasil diterapkan!");
+                voucherField.clear();
+                updateSummary();
+            } else {
+                // Fallback ke controller (untuk voucher lama yang masih hardcoded)
+                controller.applyVoucherDiscount(code);
+                showInfo("✅ Voucher " + code + " berhasil diterapkan!");
+                voucherField.clear();
+                updateSummary();
+            }
         } catch (Exception e) {
             showError("❌ " + e.getMessage());
         }

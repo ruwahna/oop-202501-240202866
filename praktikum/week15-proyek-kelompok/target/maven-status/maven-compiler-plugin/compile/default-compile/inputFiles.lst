@@ -38,7 +38,9 @@ D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\a
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\dao\JdbcUserDAO.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\controller\PosController.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\CartService.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\DiscountConfigService.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\dao\JdbcTransactionDAO.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\view\DiscountManagementView.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\PercentageDiscount.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\util\DatabaseMigration.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\controller\LoginController.java
