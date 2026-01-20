@@ -2,10 +2,15 @@
 ## Agri-POS - Sistem Point of Sale Pertanian
 
 ### Informasi Praktikan
-- **Nama+Nim**: [1. Indah Ruwahna Anugraheni (240202866)] 
-                [2. Lia Lusianti (2402028)]
-                [3. Fikianto (2402028)]
-                [4. Rizal(240202866)]
+- **Nama+Nim**: 
+                
+                [1. Indah Ruwahna Anugraheni (240202866)] 
+
+                [2. Lia Lusianti (240202869)]
+
+                [3. Fikianto (240202899)]
+
+                [4. Rizal Ramadhani (240202883)]
 
 - **Kelas**: [3IKRB]
 - **Tanggal**: [18 Januari 2026]
