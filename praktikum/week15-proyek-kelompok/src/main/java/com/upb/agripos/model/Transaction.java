@@ -15,6 +15,7 @@ public class Transaction {
     private String cashierUsername;
     private List<TransactionItem> items;
     private double subtotal;
+    private double discount;
     private double tax;
     private double total;
     private String paymentMethod;
@@ -104,6 +105,14 @@ public class Transaction {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public double getTax() {

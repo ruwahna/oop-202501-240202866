@@ -8,8 +8,11 @@ D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\a
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\view\ReportView.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\view\TransactionView.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\dao\JdbcProductDAO.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\FixedDiscount.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\model\Cart.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\ReportService.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\VoucherDiscount.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\BulkDiscount.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\dao\ProductDAO.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\model\User.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\payment\EWalletPayment.java
@@ -24,6 +27,7 @@ D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\a
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\view\LoginView.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\view\DashboardView.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\AuthService.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\DiscountStrategy.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\ProductService.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\exception\ValidationException.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\payment\QRISPayment.java
@@ -35,5 +39,7 @@ D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\a
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\controller\PosController.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\CartService.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\dao\JdbcTransactionDAO.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\service\discount\PercentageDiscount.java
+D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\util\DatabaseMigration.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\controller\LoginController.java
 D:\oop-202501-240202866\praktikum\week15-proyek-kelompok\src\main\java\com\upb\agripos\model\Product.java

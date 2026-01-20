@@ -6,6 +6,7 @@ import com.upb.agripos.dao.*;
 import com.upb.agripos.service.*;
 import com.upb.agripos.service.payment.*;
 import com.upb.agripos.util.DatabaseConnection;
+import com.upb.agripos.util.DatabaseMigration;
 import com.upb.agripos.view.LoginView;
 import com.upb.agripos.view.MainView;
 import javafx.application.Application;
@@ -30,6 +31,9 @@ public class AppJavaFx extends Application {
         primaryStage.setTitle("Agri-POS - Sistem Point of Sale Pertanian");
 
         try {
+            // Jalankan database migration terlebih dahulu
+            DatabaseMigration.runMigrations();
+            
             initializeApplication();
             showLoginScreen();
         } catch (Exception e) {

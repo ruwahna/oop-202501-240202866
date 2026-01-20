@@ -23,6 +23,7 @@ public class TransactionView {
     private TextField qtyField, amountPaidField, phoneField, searchField;
     private ComboBox<String> paymentMethodCombo, categoryCombo, providerCombo;
     private Label subtotalLabel, discountLabel, taxLabel, totalLabel, changeLabel;
+    private Label discountAppliedLabel;
     private TextArea receiptArea;
     private RadioButton cashRadio, ewalletRadio, qrisRadio;
     private ToggleGroup paymentToggle;
@@ -403,11 +404,97 @@ public class TransactionView {
         panel.setPadding(new Insets(15));
         panel.setPrefWidth(340);
 
+        // ========== DISCOUNT SECTION ==========
+        VBox discountSection = new VBox(10);
+        discountSection.setPadding(new Insets(15));
+        discountSection.setStyle("-fx-background-color: #FFF3E0; -fx-background-radius: 15; " +
+                                "-fx-border-color: #FF9800; -fx-border-width: 2; -fx-border-radius: 15; " +
+                                "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);");
+
+        // Header
+        HBox discountHeader = new HBox(10);
+        discountHeader.setAlignment(Pos.CENTER);
+        Label discountIcon = new Label("🎁");
+        discountIcon.setStyle("-fx-font-size: 28px;");
+        Label discountTitle = new Label("DISKON & PROMO");
+        discountTitle.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #E65100;");
+        discountHeader.getChildren().addAll(discountIcon, discountTitle);
+
+        // Predefined discounts combo
+        VBox comboBox = new VBox(5);
+        Label comboLabel = new Label("Pilih Diskon Standar:");
+        comboLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+        ComboBox<String> discountCombo = new ComboBox<>();
+        discountCombo.getItems().addAll(
+            "Diskon 5% (Umum)",
+            "Diskon 10% (Member)",
+            "Diskon Bulk (5+ item 15%)"
+        );
+        discountCombo.setPromptText("Pilih diskon...");
+        discountCombo.setPrefWidth(Double.MAX_VALUE);
+        discountCombo.setStyle("-fx-font-size: 12px;");
+        
+        Button applyDiscountBtn = new Button("✅ Terapkan Diskon");
+        applyDiscountBtn.setPrefWidth(Double.MAX_VALUE);
+        applyDiscountBtn.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; " +
+                                 "-fx-font-size: 12px; -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand;");
+        applyDiscountBtn.setOnAction(e -> handleApplyDiscount(discountCombo));
+        
+        comboBox.getChildren().addAll(comboLabel, discountCombo, applyDiscountBtn);
+
+        // Voucher code input
+        VBox voucherBox = new VBox(5);
+        Label voucherLabel = new Label("Atau Masukkan Kode Voucher:");
+        voucherLabel.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+        TextField voucherField = new TextField();
+        voucherField.setPromptText("Contoh: WELCOME, MEMBER10, PROMO50K, BULKDISKON");
+        voucherField.setPrefWidth(Double.MAX_VALUE);
+        voucherField.setStyle("-fx-font-size: 11px;");
+        
+        Button applyVoucherBtn = new Button("🎟️ Terapkan Voucher");
+        applyVoucherBtn.setPrefWidth(Double.MAX_VALUE);
+        applyVoucherBtn.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; " +
+                                "-fx-font-size: 12px; -fx-padding: 10; -fx-background-radius: 8; -fx-cursor: hand;");
+        applyVoucherBtn.setOnAction(e -> handleApplyVoucher(voucherField));
+        
+        voucherBox.getChildren().addAll(voucherLabel, voucherField, applyVoucherBtn);
+
+        // Applied discount summary
+        Label appliedLabel = new Label("Diskon Terapan: Tidak ada");
+        appliedLabel.setStyle("-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #2E7D32; " +
+                             "-fx-wrap-text: true;");
+        appliedLabel.setId("appliedDiscountLabel");
+        
+        // Clear discount button
+        Button clearDiscountBtn = new Button("❌ Hapus Semua Diskon");
+        clearDiscountBtn.setPrefWidth(Double.MAX_VALUE);
+        clearDiscountBtn.setStyle("-fx-background-color: #FFCDD2; -fx-text-fill: #C62828; -fx-font-size: 11px; " +
+                                "-fx-padding: 8; -fx-background-radius: 8; -fx-cursor: hand;");
+        clearDiscountBtn.setOnAction(e -> {
+            controller.clearAllDiscounts();
+            discountCombo.getSelectionModel().clearSelection();
+            voucherField.clear();
+            appliedLabel.setText("Diskon Terapan: Tidak ada");
+            updateSummary();
+        });
+
+        discountSection.getChildren().addAll(
+            discountHeader,
+            comboBox,
+            new Separator(),
+            voucherBox,
+            appliedLabel,
+            clearDiscountBtn
+        );
+
+        // Store reference untuk update dari tempat lain
+        this.discountAppliedLabel = appliedLabel;
+
         // ========== PAYMENT SECTION ==========
-        VBox paymentSection = new VBox(15);
-        paymentSection.setPadding(new Insets(20));
-        paymentSection.setStyle("-fx-background-color: white; -fx-background-radius: 15; " +
-                               "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 3);");
+        VBox paymentSection = new VBox(12);
+        paymentSection.setPadding(new Insets(15));
+        paymentSection.setStyle("-fx-background-color: white; -fx-background-radius: 12; " +
+                               "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 2);");
 
         // Header dengan icon besar
         HBox paymentHeader = new HBox(10);
@@ -684,7 +771,7 @@ public class TransactionView {
         receiptSection.getChildren().addAll(receiptTitle, receiptArea, receiptButtons);
 
         VBox.setVgrow(receiptSection, Priority.ALWAYS);
-        panel.getChildren().addAll(paymentSection, receiptSection);
+        panel.getChildren().addAll(discountSection, paymentSection, receiptSection);
         return panel;
     }
 
@@ -725,6 +812,59 @@ public class TransactionView {
             receiptArea.setText(receipt);
         } catch (Exception e) {
             showError("Gagal preview: " + e.getMessage());
+        }
+    }
+
+    private void handleApplyDiscount(ComboBox<String> discountCombo) {
+        if (controller.isCartEmpty()) {
+            showError("Keranjang kosong, tambahkan produk terlebih dahulu!");
+            return;
+        }
+        
+        String selected = discountCombo.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("Pilih diskon terlebih dahulu!");
+            return;
+        }
+        
+        try {
+            if (selected.contains("5%")) {
+                controller.applyPercentageDiscount(5, "Diskon 5% (Umum)");
+                showInfo("✅ Diskon 5% berhasil diterapkan!");
+            } else if (selected.contains("10%")) {
+                controller.applyPercentageDiscount(10, "Diskon 10% (Member)");
+                showInfo("✅ Diskon 10% berhasil diterapkan!");
+            } else if (selected.contains("Bulk")) {
+                controller.applyBulkDiscount(5, 15, "Diskon Bulk (5+ item 15%)");
+                showInfo("✅ Diskon Bulk berhasil diterapkan!");
+            }
+            
+            discountCombo.getSelectionModel().clearSelection();
+            updateSummary();
+        } catch (Exception e) {
+            showError("Gagal terapkan diskon: " + e.getMessage());
+        }
+    }
+
+    private void handleApplyVoucher(TextField voucherField) {
+        if (controller.isCartEmpty()) {
+            showError("Keranjang kosong, tambahkan produk terlebih dahulu!");
+            return;
+        }
+        
+        String code = voucherField.getText().trim().toUpperCase();
+        if (code.isEmpty()) {
+            showError("Masukkan kode voucher!");
+            return;
+        }
+        
+        try {
+            controller.applyVoucherDiscount(code);
+            showInfo("✅ Voucher " + code + " berhasil diterapkan!");
+            voucherField.clear();
+            updateSummary();
+        } catch (Exception e) {
+            showError("❌ " + e.getMessage());
         }
     }
 
@@ -795,12 +935,25 @@ public class TransactionView {
                 discountLabel.setText("Diskon: Rp 0");
                 taxLabel.setText("Pajak (10%): Rp 0");
                 totalLabel.setText("TOTAL: Rp 0");
+                if (discountAppliedLabel != null) {
+                    discountAppliedLabel.setText("Diskon Terapan: Tidak ada");
+                }
             } else {
                 CheckoutSummary preview = controller.previewCheckout();
                 subtotalLabel.setText("Subtotal: " + controller.formatCurrency(preview.getSubtotal()));
                 discountLabel.setText("Diskon: " + controller.formatCurrency(preview.getDiscount()));
                 taxLabel.setText("Pajak (10%): " + controller.formatCurrency(preview.getTax()));
                 totalLabel.setText("TOTAL: " + controller.formatCurrency(preview.getTotal()));
+                
+                // Update discount applied label
+                if (discountAppliedLabel != null) {
+                    String summary = controller.getDiscountSummary();
+                    if (summary == null || summary.isEmpty()) {
+                        discountAppliedLabel.setText("Diskon Terapan: Tidak ada");
+                    } else {
+                        discountAppliedLabel.setText("Diskon Terapan: " + summary);
+                    }
+                }
             }
         } catch (Exception e) {
             // Ignore preview errors
@@ -836,6 +989,9 @@ public class TransactionView {
         
         sb.append("--------------------------------\n");
         sb.append(String.format("%-15s %15s\n", "Subtotal:", controller.formatCurrency(summary.getSubtotal())));
+        if (summary.getDiscount() > 0) {
+            sb.append(String.format("%-15s %15s\n", "Diskon:", "-" + controller.formatCurrency(summary.getDiscount())));
+        }
         sb.append(String.format("%-15s %15s\n", "Pajak (10%):", controller.formatCurrency(summary.getTax())));
         sb.append("================================\n");
         sb.append(String.format("%-15s %15s\n", "TOTAL:", controller.formatCurrency(summary.getTotal())));

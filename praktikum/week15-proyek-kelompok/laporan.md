@@ -39,15 +39,18 @@ Praktikum Week 15 merupakan proyek kelompok yang mengintegrasikan semua konsep O
 3. Menerapkan prinsip SOLID dan Dependency Inversion Principle
 4. Mengembangkan aplikasi desktop berbasis JavaFX
 5. Melakukan testing dengan JUnit 5 dan Mockito
+6. Mengimplementasikan sistem diskon dan promosi
 
 ### 1.3 Ruang Lingkup
 Aplikasi Agri-POS mencakup:
 - Manajemen produk pertanian (CRUD)
 - Transaksi penjualan dengan keranjang belanja
-- Multi metode pembayaran (Cash, E-Wallet)
-- Pencetakan struk pembelian
+- Sistem diskon dan promosi untuk produk
+- Multi metode pembayaran (Cash, E-Wallet, QRIS)
+- Pencetakan struk pembelian dengan detail diskon
 - Laporan penjualan (harian dan periodik)
-- Autentikasi dan otorisasi berbasis role
+- Riwayat transaksi dengan tampilan detail
+- Autentikasi dan otorisasi berbasis role (Admin & Kasir)
 
 ---
 
@@ -59,9 +62,10 @@ Aplikasi Agri-POS mencakup:
 |----|-------------|----------|
 | FR-1 | Manajemen Produk (CRUD) | High |
 | FR-2 | Transaksi Penjualan | High |
-| FR-3 | Multi Payment Methods | High |
-| FR-4 | Struk dan Laporan | High |
-| FR-5 | Login dan Akses Kontrol | High |
+| FR-3 | Sistem Diskon & Promosi | High |
+| FR-4 | Multi Payment Methods | High |
+| FR-5 | Struk dan Laporan | High |
+| FR-6 | Login dan Akses Kontrol | High |
 
 
 
@@ -95,9 +99,11 @@ Aplikasi Agri-POS mencakup:
 | 9 | Checkout (Cash) | Proses pembayaran tunai | 🛒 Transaksi Baru |
 | 10 | Checkout (E-Wallet) | Proses pembayaran e-wallet (OVO, GoPay, Dana, ShopeePay) | 🛒 Transaksi Baru |
 | 11 | Checkout (QRIS) | Proses pembayaran QRIS | 🛒 Transaksi Baru |
-| 12 | Print Receipt | Mencetak struk pembelian | 🛒 Transaksi Baru |
-| 13 | View Product List | Melihat daftar produk (read-only) | 📦 Daftar Produk |
-| 14 | Transaction History | Melihat riwayat transaksi | 📋 Riwayat Transaksi |
+| 12 | Apply Discount | Menerapkan diskon untuk produk/transaksi | 🛒 Transaksi Baru |
+| 13 | Print Receipt | Mencetak struk pembelian dengan detail diskon | 🛒 Transaksi Baru |
+| 14 | View Product List | Melihat daftar produk (read-only) | 📦 Daftar Produk |
+| 15 | View Transaction History | Melihat riwayat transaksi dengan detail | 📋 Riwayat Transaksi |
+| 16 | View Receipt History | Melihat struk transaksi sebelumnya | 📋 Riwayat Transaksi |
 
 #### 👔 Admin - Use Case List
 | No | Use Case | Deskripsi | Tab Menu |
@@ -170,11 +176,11 @@ Aplikasi Agri-POS mencakup:
 │   <<interface>>            <<interface>>            <<interface>>           │
 │  ┌──────────────┐         ┌──────────────┐         ┌──────────────┐        │
 │  │  ProductDAO  │         │   UserDAO    │         │TransactionDAO│        │
-│  │ + insert()   │         │ + findBy...()│         │ + insert()   │        │
-│  │ + update()   │         │ + insert()   │         │ + findBy...()│        │
-│  │ + delete()   │         │ + existsBy() │         │ + findByDate│        │
-│  │ + findAll()  │         └──────┬───────┘         └──────┬───────┘        │
-│  │ + findBy..() │                │                        │                │
+│  │ + insert()   │         │ + insert()   │         │ + findById()  │        │
+│  │ + update()   │         │ + existsBy() │         │ + findByDate  │        │
+│  │ + delete()   │         └──────┬───────┘         │ + findByCode  │        │
+│  │ + findAll()  │                │                 │ + findAll()   │        │
+│  │ + findBy..() │                │                 └──────┬───────┘        │
 │  └──────┬───────┘                │                        │                │
 │         │                        │                        │                │
 │         ▼                        ▼                        ▼                │
@@ -277,6 +283,7 @@ Aplikasi Agri-POS mencakup:
 │  │   cashier_username: VARCHAR  │                       │                     │
 │  │   user_id: INTEGER (FK)──────┼───────────────────────┘                     │
 │  │   subtotal: DECIMAL(15,2)    │                                             │
+│  │   discount: DECIMAL(12,2)    │ ← NEW: Kolom untuk diskon                   │
 │  │   tax: DECIMAL(15,2)         │                                             │
 │  │   total: DECIMAL(15,2)       │                                             │
 │  │   payment_method: VARCHAR(50)│                                             │
@@ -554,15 +561,26 @@ void shouldThrowExceptionWhenInsufficientStock() {
 ### 7.2 Fitur yang Diimplementasi
 - [x] FR-1: Manajemen Produk (CRUD)
 - [x] FR-2: Transaksi Penjualan
-- [x] FR-3: Multi Payment Methods (Strategy Pattern)
-- [x] FR-4: Struk dan Laporan
-- [x] FR-5: Login dan Akses Kontrol
+- [x] FR-3: Sistem Diskon & Promosi
+- [x] FR-4: Multi Payment Methods (Cash, E-Wallet, QRIS)
+- [x] FR-5: Struk dan Laporan Penjualan
+- [x] FR-6: Login dan Akses Kontrol (Admin & Kasir)
 
-### 7.3 Future Improvements
+### 7.3 Implementasi Diskon (New Feature)
+- [x] Model Transaction dengan field discount
+- [x] Service layer yang menghitung dan mempropagasi diskon
+- [x] DAO layer yang menyimpan/mengambil diskon dari database
+- [x] Database schema update dengan kolom discount
+- [x] Receipt service yang menampilkan diskon di struk
+- [x] Automatic database migration saat startup
+- [x] Diskon ditampilkan di struk riwayat transaksi
+
+### 7.4 Future Improvements
 1. Password hashing dengan BCrypt
 2. Connection pooling dengan HikariCP
 3. Export laporan ke PDF/Excel
-4. Tambahan metode pembayaran (QRIS)
+4. Advanced discount rules (quantity-based, category-based)
+5. Inventory management dengan low stock alerts
 
 ---
 
@@ -571,39 +589,231 @@ void shouldThrowExceptionWhenInsufficientStock() {
 ### A. Cara Menjalankan
 
 ```bash
-# Setup database
-psql -d agripos -f docs/schema.sql
-psql -d agripos -f docs/seed.sql
+# Setup database (first time only)
+psql -h localhost -U postgres -d agripos -f sql/schema.sql
+psql -h localhost -U postgres -d agripos -f sql/seed.sql
 
-# Build & Run
+# Build project
 mvn clean compile
+
+# Run aplikasi
 mvn javafx:run
 
 # Run tests
 mvn test
+
+# Database migration akan otomatis berjalan saat aplikasi startup
+# (Jika kolom discount belum ada di tabel transactions)
 ```
 
 ### B. Demo Credentials
-- **Admin**: username=`admin`, password=`admin123`
-- **Kasir**: username=`kasir1`, password=`kasir123`
+**Admin Dashboard:**
+- Username: `admin`
+- Password: `admin123`
+- Akses: Manajemen produk, dashboard, laporan penjualan
 
-### C. Dokumentasi Lengkap
-Lihat folder `docs/` untuk dokumentasi teknis lengkap.
+**Kasir:**
+- Username: `kasir1`
+- Password: `kasir123`
+- Akses: Transaksi penjualan, riwayat transaksi, daftar produk (read-only)
+
+### C. Struktur Folder Project
+
+```
+week15-proyek-kelompok/
+├── src/main/java/com/upb/agripos/
+│   ├── AppJavaFx.java              (Main entry point)
+│   ├── controller/                 (Controller layer)
+│   │   ├── LoginController.java
+│   │   └── PosController.java
+│   ├── service/                    (Business logic layer)
+│   │   ├── ProductService.java
+│   │   ├── CartService.java
+│   │   ├── TransactionService.java
+│   │   ├── AuthService.java
+│   │   ├── ReceiptService.java
+│   │   ├── ReportService.java
+│   │   └── payment/
+│   │       ├── PaymentMethod.java (interface)
+│   │       ├── CashPayment.java
+│   │       ├── EWalletPayment.java
+│   │       ├── QRISPayment.java
+│   │       └── PaymentMethodFactory.java
+│   ├── dao/                        (Data access layer)
+│   │   ├── ProductDAO.java
+│   │   ├── UserDAO.java
+│   │   ├── TransactionDAO.java
+│   │   ├── JdbcProductDAO.java
+│   │   ├── JdbcUserDAO.java
+│   │   └── JdbcTransactionDAO.java
+│   ├── model/                      (Data model)
+│   │   ├── Product.java
+│   │   ├── User.java
+│   │   ├── Transaction.java
+│   │   ├── TransactionItem.java
+│   │   ├── Cart.java
+│   │   ├── CartItem.java
+│   │   ├── CheckoutSummary.java
+│   │   └── Discount.java
+│   ├── util/
+│   │   ├── DatabaseConnection.java (Singleton)
+│   │   └── DatabaseMigration.java  (Auto migration)
+│   └── view/                       (JavaFX UI)
+│       ├── LoginView.java
+│       ├── MainView.java
+│       └── ...
+├── sql/                            (Database scripts)
+│   ├── schema.sql
+│   ├── seed.sql
+│   ├── update_transactions.sql
+│   └── migration_add_discount_column.sql
+├── pom.xml
+├── laporan.md                      (This report)
+└── screenshots/
+```
+
+### D. Dokumentasi Tambahan
+
+Lihat file-file berikut untuk dokumentasi lengkap:
+- `FIX_DISCOUNT_HISTORY_RECEIPT.md` - Detail implementasi fitur diskon
+- `docs/` folder - Dokumentasi teknis lengkap
 
 ---
 
-## Kode Program
-(Tuliskan kode utama yang dibuat, contoh:  
+## Kode Program Utama
+
+### A. Implementasi Diskon (Model)
 
 ```java
-// Contoh
-Produk p1 = new Produk("BNH-001", "Benih Padi", 25000, 100);
-System.out.println(p1.getNama());
+// Transaction.java - Menambahkan field discount
+public class Transaction {
+    private double subtotal;
+    private double discount;      // ← NEW: Menyimpan jumlah diskon
+    private double tax;
+    private double total;
+    
+    public double getDiscount() {
+        return discount;
+    }
+    
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+}
 ```
+
+### B. Kalkulasi Diskon (Service)
+
+```java
+// TransactionService.java - Menghitung dan mempropagasi diskon
+public CheckoutSummary checkout(String cashierUsername, String paymentMethodName,
+                                double amountPaid) throws Exception {
+    double subtotal = cartService.getCartTotal();
+    double discount = cartService.calculateTotalDiscount();  // ← Hitung diskon
+    double tax = (subtotal - discount) * TAX_RATE;          // ← Tax dari (subtotal - discount)
+    double total = subtotal - discount + tax;
+    
+    // Pass diskon ke transaction
+    Transaction transaction = createTransaction(cashierUsername, subtotal, discount, 
+                                               tax, total, paymentMethodName, 
+                                               amountPaid, change);
+    
+    // Simpan transaksi ke database
+    transactionDAO.insert(transaction);
+    
+    // Return summary untuk UI
+    return new CheckoutSummary(subtotal, discount, tax, total, ...);
+}
+```
+
+### C. Tampilan Diskon di Struk
+
+```java
+// ReceiptService.java - Menampilkan diskon di struk
+public String generateReceipt(Transaction transaction) {
+    StringBuilder sb = new StringBuilder();
+    
+    // ... header dan items ...
+    
+    // Summary dengan diskon
+    sb.append(String.format("%-15s %15s\n", "Subtotal:", formatCurrency(transaction.getSubtotal())));
+    if (transaction.getDiscount() > 0) {
+        sb.append(String.format("%-15s %15s\n", "Diskon:", "-" + formatCurrency(transaction.getDiscount())));
+    }
+    sb.append(String.format("%-15s %15s\n", "Pajak (10%):", formatCurrency(transaction.getTax())));
+    sb.append("================================\n");
+    sb.append(String.format("%-15s %15s\n", "TOTAL:", formatCurrency(transaction.getTotal())));
+    
+    return sb.toString();
+}
+```
+
+### D. Penyimpanan Diskon (DAO)
+
+```java
+// JdbcTransactionDAO.java - INSERT dengan diskon
+public void insert(Transaction transaction) throws Exception {
+    String sql = """
+        INSERT INTO transactions (transaction_code, transaction_date, cashier_username,
+        subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """;
+    
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, transaction.getTransactionCode());
+        stmt.setTimestamp(2, Timestamp.valueOf(transaction.getTransactionDate()));
+        stmt.setString(3, transaction.getCashierUsername());
+        stmt.setDouble(4, transaction.getSubtotal());
+        stmt.setDouble(5, transaction.getDiscount());      // ← Simpan diskon
+        stmt.setDouble(6, transaction.getTax());
+        // ... parameter lainnya ...
+        
+        stmt.executeUpdate();
+    }
+}
+```
+
+### E. Database Migration Otomatis
+
+```java
+// DatabaseMigration.java - Jalankan saat startup
+public static void runMigrations() {
+    try {
+        Connection conn = DatabaseConnection.getInstance().getConnection();
+        
+        // Cek apakah kolom discount sudah ada
+        if (!columnExists(conn, "transactions", "discount")) {
+            // Tambahkan kolom jika belum ada
+            String sql = "ALTER TABLE transactions ADD COLUMN discount DECIMAL(12,2) NOT NULL DEFAULT 0";
+            try (Statement stmt = conn.createStatement()) {
+                stmt.execute(sql);
+                LOGGER.info("✓ Kolom discount berhasil ditambahkan");
+            }
+        } else {
+            LOGGER.info("✓ Kolom discount sudah ada");
+        }
+        
+        conn.close();
+    } catch (Exception e) {
+        LOGGER.log(Level.SEVERE, "Gagal menjalankan migrasi", e);
+        throw new RuntimeException("Database migration failed", e);
+    }
+}
+```
+
 ---
 
 ## Kesimpulan
-(Tuliskan kesimpulan dari praktikum minggu ini.  
-Contoh: *Dengan menggunakan class dan object, program menjadi lebih terstruktur dan mudah dikembangkan.*)
+
+Dengan mengimplementasikan sistem diskon yang terintegrasi di seluruh layer aplikasi (Model → Service → DAO → Database → Presentation), aplikasi Agri-POS menjadi lebih lengkap dan siap untuk use case bisnis yang lebih kompleks. 
+
+**Key Learning Points:**
+1. **Layered Architecture** memudahkan maintenance dan testing
+2. **Design Patterns** (Singleton, Strategy, DAO) membuat kode lebih flexible
+3. **Automatic Database Migration** memastikan consistency antara code dan database
+4. **Unit Testing** sangat penting untuk validasi business logic
+5. **JavaFX GUI** memberikan user experience yang baik untuk desktop application
+
+Aplikasi ini dapat di-scale lebih lanjut dengan menambahkan fitur-fitur seperti advanced discount rules, inventory management, dan reporting yang lebih kompleks.
 
 

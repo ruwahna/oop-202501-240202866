@@ -52,6 +52,7 @@ CREATE TABLE transactions (
     transaction_code VARCHAR(50) NOT NULL UNIQUE,
     user_id INT NOT NULL,
     subtotal DECIMAL(12, 2) NOT NULL,
+    discount DECIMAL(12, 2) NOT NULL DEFAULT 0,
     tax DECIMAL(12, 2) NOT NULL,
     total DECIMAL(12, 2) NOT NULL,
     payment_method VARCHAR(30) NOT NULL,

@@ -11,6 +11,7 @@ CREATE TABLE transactions (
     cashier_username VARCHAR(50),
     user_id INTEGER,
     subtotal DECIMAL(15,2) NOT NULL DEFAULT 0,
+    discount DECIMAL(15,2) NOT NULL DEFAULT 0,
     tax DECIMAL(15,2) NOT NULL DEFAULT 0,
     total DECIMAL(15,2) NOT NULL,
     payment_method VARCHAR(50) NOT NULL,

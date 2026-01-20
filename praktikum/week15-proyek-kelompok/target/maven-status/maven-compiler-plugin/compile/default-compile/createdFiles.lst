@@ -1,11 +1,13 @@
 com\upb\agripos\view\MainView$4.class
 com\upb\agripos\view\ProductManagementView$1.class
 com\upb\agripos\exception\OutOfStockException.class
+com\upb\agripos\service\discount\FixedDiscount.class
 com\upb\agripos\view\DashboardView.class
 com\upb\agripos\view\MainView$7.class
 com\upb\agripos\service\payment\EWalletPayment.class
 com\upb\agripos\dao\UserDAO.class
 com\upb\agripos\view\MainView$11.class
+com\upb\agripos\util\DatabaseMigration.class
 com\upb\agripos\model\CartItem.class
 com\upb\agripos\view\MainView$10.class
 com\upb\agripos\service\payment\CashPayment.class
@@ -15,6 +17,7 @@ com\upb\agripos\view\MainView.class
 com\upb\agripos\view\ProductManagementView.class
 com\upb\agripos\controller\LoginController.class
 com\upb\agripos\exception\PaymentException.class
+com\upb\agripos\service\discount\BulkDiscount.class
 com\upb\agripos\view\MainView$3.class
 com\upb\agripos\exception\DataNotFoundException.class
 com\upb\agripos\model\User$Role.class
@@ -38,6 +41,7 @@ com\upb\agripos\view\DashboardView$2.class
 com\upb\agripos\view\MainView$5.class
 com\upb\agripos\view\ReportView.class
 com\upb\agripos\service\AuthService.class
+com\upb\agripos\service\discount\VoucherDiscount.class
 com\upb\agripos\model\TransactionItem.class
 com\upb\agripos\view\TransactionView$1.class
 com\upb\agripos\AppJavaFx.class
@@ -46,6 +50,7 @@ com\upb\agripos\service\payment\QRISPayment.class
 com\upb\agripos\service\TransactionService.class
 com\upb\agripos\model\Product.class
 com\upb\agripos\model\Transaction$TransactionStatus.class
+com\upb\agripos\service\discount\DiscountStrategy.class
 com\upb\agripos\view\MainView$8.class
 com\upb\agripos\view\TransactionView.class
 com\upb\agripos\controller\PosController.class
@@ -55,6 +60,7 @@ com\upb\agripos\model\User.class
 com\upb\agripos\view\LoginView.class
 com\upb\agripos\util\DatabaseConnection.class
 com\upb\agripos\exception\ValidationException.class
+com\upb\agripos\service\discount\PercentageDiscount.class
 com\upb\agripos\service\ReportService$DashboardSummary.class
 com\upb\agripos\dao\JdbcTransactionDAO.class
 com\upb\agripos\service\payment\PaymentMethod.class

@@ -32,8 +32,8 @@ public class JdbcTransactionDAO implements TransactionDAO {
             // Insert transaction header
             String sqlHeader = """
                 INSERT INTO transactions (transaction_code, transaction_date, cashier_username, 
-                subtotal, tax, total, payment_method, amount_paid, change_amount, status) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
             int transactionId;
@@ -42,12 +42,13 @@ public class JdbcTransactionDAO implements TransactionDAO {
                 stmt.setTimestamp(2, Timestamp.valueOf(transaction.getTransactionDate()));
                 stmt.setString(3, transaction.getCashierUsername());
                 stmt.setDouble(4, transaction.getSubtotal());
-                stmt.setDouble(5, transaction.getTax());
-                stmt.setDouble(6, transaction.getTotal());
-                stmt.setString(7, transaction.getPaymentMethod());
-                stmt.setDouble(8, transaction.getAmountPaid());
-                stmt.setDouble(9, transaction.getChangeAmount());
-                stmt.setString(10, transaction.getStatus().name());
+                stmt.setDouble(5, transaction.getDiscount());
+                stmt.setDouble(6, transaction.getTax());
+                stmt.setDouble(7, transaction.getTotal());
+                stmt.setString(8, transaction.getPaymentMethod());
+                stmt.setDouble(9, transaction.getAmountPaid());
+                stmt.setDouble(10, transaction.getChangeAmount());
+                stmt.setString(11, transaction.getStatus().name());
 
                 int rows = stmt.executeUpdate();
                 if (rows == 0) {
@@ -113,7 +114,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
     public Transaction findById(int id) throws Exception {
         String sql = """
             SELECT id, transaction_code, transaction_date, cashier_username, 
-            subtotal, tax, total, payment_method, amount_paid, change_amount, status 
+            subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status 
             FROM transactions WHERE id=?
             """;
 
@@ -143,7 +144,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
 
         String sql = """
             SELECT id, transaction_code, transaction_date, cashier_username, 
-            subtotal, tax, total, payment_method, amount_paid, change_amount, status 
+            subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status 
             FROM transactions WHERE transaction_code=?
             """;
 
@@ -169,7 +170,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
     public List<Transaction> findAll() throws Exception {
         String sql = """
             SELECT id, transaction_code, transaction_date, cashier_username, 
-            subtotal, tax, total, payment_method, amount_paid, change_amount, status 
+            subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status 
             FROM transactions ORDER BY transaction_date DESC
             """;
 
@@ -199,7 +200,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
 
         String sql = """
             SELECT id, transaction_code, transaction_date, cashier_username, 
-            subtotal, tax, total, payment_method, amount_paid, change_amount, status 
+            subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status 
             FROM transactions WHERE DATE(transaction_date)=? ORDER BY transaction_date DESC
             """;
 
@@ -231,7 +232,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
 
         String sql = """
             SELECT id, transaction_code, transaction_date, cashier_username, 
-            subtotal, tax, total, payment_method, amount_paid, change_amount, status 
+            subtotal, discount, tax, total, payment_method, amount_paid, change_amount, status 
             FROM transactions WHERE DATE(transaction_date) BETWEEN ? AND ? 
             ORDER BY transaction_date DESC
             """;
@@ -312,6 +313,7 @@ public class JdbcTransactionDAO implements TransactionDAO {
         transaction.setTransactionDate(rs.getTimestamp("transaction_date").toLocalDateTime());
         transaction.setCashierUsername(rs.getString("cashier_username"));
         transaction.setSubtotal(rs.getDouble("subtotal"));
+        transaction.setDiscount(rs.getDouble("discount"));
         transaction.setTax(rs.getDouble("tax"));
         transaction.setTotal(rs.getDouble("total"));
         transaction.setPaymentMethod(rs.getString("payment_method"));

@@ -5,6 +5,7 @@ import com.upb.agripos.model.CheckoutSummary;
 import com.upb.agripos.model.Product;
 import com.upb.agripos.model.Transaction;
 import com.upb.agripos.service.*;
+import com.upb.agripos.service.discount.*;
 import com.upb.agripos.service.payment.PaymentMethodFactory;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -129,6 +130,74 @@ public class PosController {
 
     public boolean isCartEmpty() {
         return cartService.isCartEmpty();
+    }
+
+    // === Discount Management (FR-2 OFR-2) ===
+
+    public void applyPercentageDiscount(double percentage, String name) throws Exception {
+        if (isCartEmpty()) {
+            throw new Exception("Keranjang kosong");
+        }
+        PercentageDiscount discount = new PercentageDiscount(percentage, name);
+        cartService.applyDiscount(discount);
+    }
+
+    public void applyFixedDiscount(double amount, String name) throws Exception {
+        if (isCartEmpty()) {
+            throw new Exception("Keranjang kosong");
+        }
+        FixedDiscount discount = new FixedDiscount(amount, name);
+        cartService.applyDiscount(discount);
+    }
+
+    public void applyBulkDiscount(int minQuantity, double percentage, String name) throws Exception {
+        if (isCartEmpty()) {
+            throw new Exception("Keranjang kosong");
+        }
+        BulkDiscount discount = new BulkDiscount(minQuantity, percentage, name);
+        cartService.applyDiscount(discount);
+    }
+
+    public void applyVoucherDiscount(String code) throws Exception {
+        if (isCartEmpty()) {
+            throw new Exception("Keranjang kosong");
+        }
+        
+        VoucherDiscount voucher = null;
+        switch (code.toUpperCase()) {
+            case "WELCOME":
+                voucher = new VoucherDiscount("WELCOME", new PercentageDiscount(5, "Diskon 5%"), 999);
+                break;
+            case "MEMBER10":
+                voucher = new VoucherDiscount("MEMBER10", new PercentageDiscount(10, "Diskon 10%"), 999);
+                break;
+            case "PROMO50K":
+                voucher = new VoucherDiscount("PROMO50K", new FixedDiscount(50000, "Rp 50.000"), 100);
+                break;
+            case "BULKDISKON":
+                voucher = new VoucherDiscount("BULKDISKON", new BulkDiscount(5, 15, "Bulk 15%"), 999);
+                break;
+            default:
+                throw new Exception("Kode voucher tidak valid: " + code);
+        }
+        
+        if (voucher != null && !voucher.use()) {
+            throw new Exception("Voucher sudah exceed max usage");
+        }
+        
+        cartService.applyDiscount(voucher);
+    }
+
+    public void clearAllDiscounts() {
+        cartService.clearAllDiscounts();
+    }
+
+    public String getDiscountSummary() {
+        return cartService.getDiscountSummary();
+    }
+
+    public double getTotalDiscount() {
+        return cartService.calculateTotalDiscount();
     }
 
     private void refreshCartItems() {

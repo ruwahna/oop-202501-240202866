@@ -62,6 +62,9 @@ public class ReceiptService {
 
         // Summary
         sb.append(String.format("%-15s %15s\n", "Subtotal:", formatCurrency(summary.getSubtotal())));
+        if (summary.getDiscount() > 0) {
+            sb.append(String.format("%-15s %15s\n", "Diskon:", "-" + formatCurrency(summary.getDiscount())));
+        }
         sb.append(String.format("%-15s %15s\n", "Pajak (10%):", formatCurrency(summary.getTax())));
         sb.append("================================\n");
         sb.append(String.format("%-15s %15s\n", "TOTAL:", formatCurrency(summary.getTotal())));
@@ -116,6 +119,9 @@ public class ReceiptService {
 
         // Summary
         sb.append(String.format("%-15s %15s\n", "Subtotal:", formatCurrency(transaction.getSubtotal())));
+        if (transaction.getDiscount() > 0) {
+            sb.append(String.format("%-15s %15s\n", "Diskon:", "-" + formatCurrency(transaction.getDiscount())));
+        }
         sb.append(String.format("%-15s %15s\n", "Pajak (10%):", formatCurrency(transaction.getTax())));
         sb.append("================================\n");
         sb.append(String.format("%-15s %15s\n", "TOTAL:", formatCurrency(transaction.getTotal())));

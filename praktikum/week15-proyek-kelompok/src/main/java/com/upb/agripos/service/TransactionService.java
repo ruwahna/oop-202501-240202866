@@ -54,14 +54,15 @@ public class TransactionService {
 
         // Hitung total
         double subtotal = cartService.getCartTotal();
-        double tax = subtotal * TAX_RATE;
-        double total = subtotal + tax;
+        double discount = cartService.calculateTotalDiscount();
+        double tax = (subtotal - discount) * TAX_RATE;
+        double total = subtotal - discount + tax;
 
         // Proses pembayaran
         double change = paymentMethod.processPayment(total, amountPaid);
 
         // Buat transaksi
-        Transaction transaction = createTransaction(cashierUsername, subtotal, tax, total, 
+        Transaction transaction = createTransaction(cashierUsername, subtotal, discount, tax, total, 
                                                    paymentMethodName, amountPaid, change);
 
         // Simpan transaksi ke database
@@ -72,8 +73,7 @@ public class TransactionService {
             productService.reduceStock(item.getProductCode(), item.getQuantity());
         }
 
-        // Buat summary (discount 0 untuk saat ini)
-        double discount = 0;
+        // Buat summary dengan discount
         CheckoutSummary summary = new CheckoutSummary(
             subtotal, discount, tax, total,
             cartService.getItemCount(),
@@ -98,8 +98,8 @@ public class TransactionService {
         }
 
         double subtotal = cartService.getCartTotal();
-        double discount = 0; // Bisa ditambahkan logika diskon di sini
-        double tax = subtotal * TAX_RATE;
+        double discount = cartService.calculateTotalDiscount();
+        double tax = (subtotal - discount) * TAX_RATE;
         double total = subtotal - discount + tax;
 
         return new CheckoutSummary(
@@ -157,7 +157,7 @@ public class TransactionService {
     /**
      * Membuat objek Transaction dari data checkout
      */
-    private Transaction createTransaction(String cashierUsername, double subtotal, double tax, 
+    private Transaction createTransaction(String cashierUsername, double subtotal, double discount, double tax, 
                                          double total, String paymentMethod, double amountPaid, 
                                          double change) {
         Transaction transaction = new Transaction();
@@ -165,6 +165,7 @@ public class TransactionService {
         transaction.setTransactionDate(LocalDateTime.now());
         transaction.setCashierUsername(cashierUsername);
         transaction.setSubtotal(subtotal);
+        transaction.setDiscount(discount);
         transaction.setTax(tax);
         transaction.setTotal(total);
         transaction.setPaymentMethod(paymentMethod);
