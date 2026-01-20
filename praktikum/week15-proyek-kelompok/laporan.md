@@ -58,75 +58,89 @@ Aplikasi Agri-POS mencakup:
 
 ### 2.1 Functional Requirements
 
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| FR-1 | Manajemen Produk (CRUD) | High |
-| FR-2 | Transaksi Penjualan | High |
-| FR-3 | Sistem Diskon & Promosi | High |
-| FR-4 | Multi Payment Methods | High |
-| FR-5 | Struk dan Laporan | High |
-| FR-6 | Login dan Akses Kontrol | High |
-| FR-7 | Manajemen Diskon oleh Admin | High |
+| ID | Requirement | Deskripsi | Priority |
+|----|-------------|-----------|----------|
+| FR-1 | Manajemen Produk | Admin dapat CRUD produk pertanian | High |
+| FR-2 | Transaksi Penjualan | Kasir dapat melakukan transaksi penjualan | High |
+| FR-3 | Sistem Diskon | Kasir dapat menerapkan diskon pada transaksi | High |
+| FR-4 | Multi Payment | Mendukung Cash, E-Wallet, QRIS | High |
+| FR-5 | Struk & Laporan | Generate struk dan laporan penjualan | High |
+| FR-6 | Login & Akses Kontrol | Autentikasi berbasis role (Admin/Kasir) | High |
+| FR-7 | Manajemen Diskon | Admin dapat CRUD diskon, sync ke Kasir | High |
+| FR-8 | Responsive UI | UI menyesuaikan ukuran layar (mobile/desktop) | Medium |
+
+
+### 2.3 Non-Functional Requirements
+
+| ID | Requirement | Deskripsi |
+|----|-------------|-----------|
+| NFR-1 | Performance | Response time < 2 detik |
+| NFR-2 | Usability | Interface intuitif dan mudah dipelajari |
+| NFR-3 | Security | SQL Injection prevention, password validation |
+| NFR-4 | Maintainability | Clean code, dokumentasi lengkap |
+| NFR-5 | Scalability | Arsitektur berlapis untuk kemudahan extend |
 
 
 
-### 2.2 Use Case Diagram
+### 2.3 Use Case Diagram
 
 
-![UseCase](/praktikum/week15-proyek-kelompok/screenshots/usecase%20agripos.jpg)
+![UseCase](/praktikum/week15-proyek-kelompok/screenshots/USEEECASEEE-agripost.drawio.png)
 
 
 
-### 2.3 Actor Description
+### 2.4 Actor Description
 
 | Actor | Description | Access Level |
 |-------|-------------|--------------|
 | **Kasir** | Operator transaksi penjualan | Login, View Produk (read-only), Transaksi, Keranjang, Checkout, Apply Diskon/Voucher, Cetak Struk, Riwayat Transaksi |
 | **Admin** | Administrator sistem | Full Access: Dashboard, CRUD Produk, CRUD Diskon, Laporan Penjualan, Export Report, Low Stock Alert |
 
-### 2.4 Use Case Detail per Actor
+### 2.5 Use Case Detail per Actor
 
 #### 🏪 Kasir - Use Case List
 | No | Use Case | Deskripsi | Tab Menu |
 |----|----------|-----------|----------|
-| 1 | Login | Autentikasi masuk sistem | LoginView |
+| 1 | Login | Autentikasi masuk sistem dengan pilih role | LoginView |
 | 2 | Logout | Keluar dari sistem | Header |
 | 3 | New Transaction | Membuat transaksi penjualan baru | 🛒 Transaksi Baru |
 | 4 | Search Product | Mencari produk berdasarkan nama/kode | 🛒 Transaksi Baru |
-| 5 | Add to Cart | Menambahkan produk ke keranjang | 🛒 Transaksi Baru |
-| 6 | Update Cart Qty | Mengubah jumlah item di keranjang | 🛒 Transaksi Baru |
-| 7 | Remove from Cart | Menghapus item dari keranjang | 🛒 Transaksi Baru |
-| 8 | Clear Cart | Mengosongkan seluruh keranjang | 🛒 Transaksi Baru |
-| 9 | Checkout (Cash) | Proses pembayaran tunai | 🛒 Transaksi Baru |
-| 10 | Checkout (E-Wallet) | Proses pembayaran e-wallet (OVO, GoPay, Dana, ShopeePay) | 🛒 Transaksi Baru |
-| 11 | Checkout (QRIS) | Proses pembayaran QRIS | 🛒 Transaksi Baru |
-| 12 | Apply Discount | Menerapkan diskon dari dropdown (dikelola Admin) | 🛒 Transaksi Baru |
-| 13 | Apply Voucher | Memasukkan kode voucher manual | 🛒 Transaksi Baru |
-| 14 | Refresh Discount | Memperbarui daftar diskon terbaru dari Admin | 🛒 Transaksi Baru |
-| 15 | Print Receipt | Mencetak struk pembelian dengan detail diskon | 🛒 Transaksi Baru |
-| 16 | View Product List | Melihat daftar produk (read-only) | 📦 Daftar Produk |
-| 17 | View Transaction History | Melihat riwayat transaksi dengan detail | 📋 Riwayat Transaksi |
-| 18 | View Receipt History | Melihat struk transaksi sebelumnya | 📋 Riwayat Transaksi |
+| 5 | Filter Category | Filter produk berdasarkan kategori | 🛒 Transaksi Baru |
+| 6 | Add to Cart | Menambahkan produk ke keranjang | 🛒 Transaksi Baru |
+| 7 | Update Cart Qty | Mengubah jumlah item di keranjang | 🛒 Transaksi Baru |
+| 8 | Remove from Cart | Menghapus item dari keranjang | 🛒 Transaksi Baru |
+| 9 | Clear Cart | Mengosongkan seluruh keranjang | 🛒 Transaksi Baru |
+| 10 | Checkout (Cash) | Proses pembayaran tunai | 🛒 Transaksi Baru |
+| 11 | Checkout (E-Wallet) | Proses pembayaran e-wallet | 🛒 Transaksi Baru |
+| 12 | Checkout (QRIS) | Proses pembayaran QRIS | 🛒 Transaksi Baru |
+| 13 | Apply Discount | Menerapkan diskon dari dropdown | 🛒 Transaksi Baru |
+| 14 | Apply Voucher | Memasukkan kode voucher manual | 🛒 Transaksi Baru |
+| 15 | Refresh Discount | Memperbarui daftar diskon dari Admin | 🛒 Transaksi Baru |
+| 16 | Print Receipt | Mencetak struk pembelian | 🛒 Transaksi Baru |
+| 17 | View Transaction History | Melihat riwayat transaksi | 📋 Riwayat Transaksi |
+| 18 | Reprint Receipt | Cetak ulang struk transaksi lama | 📋 Riwayat Transaksi |
 
 #### 👔 Admin - Use Case List
+
 | No | Use Case | Deskripsi | Tab Menu |
 |----|----------|-----------|----------|
-| 1 | Login | Autentikasi masuk sistem | LoginView |
+| 1 | Login | Autentikasi masuk sistem dengan pilih role | LoginView |
 | 2 | Logout | Keluar dari sistem | Header |
-| 3 | View Dashboard | Melihat ringkasan statistik (penjualan, produk, grafik) | 📊 Dashboard |
-| 4 | Add Product | Menambah produk baru (kode, nama, kategori, harga, stok) | 📦 Manajemen Produk |
-| 5 | Edit Product | Mengubah data produk yang sudah ada | 📦 Manajemen Produk |
-| 6 | Delete Product | Menghapus produk dari sistem | 📦 Manajemen Produk |
-| 7 | Search Product | Mencari produk untuk di-edit/hapus | 📦 Manajemen Produk |
-| 8 | View Low Stock Alert | Melihat produk dengan stok di bawah batas minimum | 📊 Dashboard |
-| 9 | Daily Sales Report | Generate laporan penjualan harian | 📈 Laporan Penjualan |
-| 10 | Period Sales Report | Generate laporan penjualan periode tertentu | 📈 Laporan Penjualan |
+| 3 | View Dashboard | Melihat statistik penjualan dan grafik | 📊 Dashboard |
+| 4 | View Low Stock Alert | Melihat produk dengan stok rendah | 📊 Dashboard |
+| 5 | Add Product | Menambah produk baru | 📦 Manajemen Produk |
+| 6 | Edit Product | Mengubah data produk | 📦 Manajemen Produk |
+| 7 | Delete Product | Menghapus produk dari sistem | 📦 Manajemen Produk |
+| 8 | Search Product | Mencari produk | 📦 Manajemen Produk |
+| 9 | Daily Sales Report | Generate laporan harian | 📈 Laporan Penjualan |
+| 10 | Period Sales Report | Generate laporan periode | 📈 Laporan Penjualan |
 | 11 | Export Report | Export laporan ke file | 📈 Laporan Penjualan |
-| 12 | Add Discount | Menambah diskon baru (persentase, nominal, bulk, voucher) | 🎁 Manajemen Diskon |
-| 13 | Edit Discount | Mengubah konfigurasi diskon yang sudah ada | 🎁 Manajemen Diskon |
-| 14 | Delete Discount | Menghapus diskon dari sistem | 🎁 Manajemen Diskon |
-| 15 | Toggle Discount Status | Mengaktifkan/menonaktifkan diskon | 🎁 Manajemen Diskon |
-| 16 | Search Discount | Mencari diskon berdasarkan nama/kode | 🎁 Manajemen Diskon |
+| 12 | Add Discount | Menambah diskon baru | 🎁 Manajemen Diskon |
+| 13 | Edit Discount | Mengubah konfigurasi diskon | 🎁 Manajemen Diskon |
+| 14 | Delete Discount | Menghapus diskon | 🎁 Manajemen Diskon |
+| 15 | Toggle Discount Status | Aktifkan/nonaktifkan diskon | 🎁 Manajemen Diskon |
+| 16 | Search Discount | Mencari diskon | 🎁 Manajemen Diskon |
+
 
 ---
 
@@ -219,328 +233,129 @@ Aplikasi Agri-POS mencakup:
 
 ### 3.2 Class Diagram
 
+**model classes**
 
-![Model classes](/praktikum/week15-proyek-kelompok/screenshots/class%20diagram-model%20classes.drawio.png)
+![Model classes](/praktikum/week15-proyek-kelompok/screenshots/Model%20classes.png)
 
-*model classes*
+**Strategy Pattern(payment)**
 
-![strategi pattern-paymentment-menthod](/praktikum/week15-proyek-kelompok/screenshots/strategy%20pattern-paymentmethod.drawio.png)
+![strategi pattern-paymentment-menthod](/praktikum/week15-proyek-kelompok/screenshots/strategi%20pattern-paymentment-menthod.drawio.png)
 
-*strategi pattern-paymentment-menthod*
+**DAO Pattern**
 
-![DAO interface](/praktikum/week15-proyek-kelompok/screenshots/DAO%20interface.drawio.png)
+![DAO interface](/praktikum/week15-proyek-kelompok/screenshots/DAO%20interface.drawio%20(1).png)
 
-*DAO interface*
 
 
 ### 3.3 Sequence Diagrams
 
 #### 3.3.1 Login Sequence
 
-```
-┌─────┐          ┌──────────┐          ┌───────────────┐          ┌───────────┐
-│User │          │LoginView │          │LoginController│          │AuthService│
-└──┬──┘          └────┬─────┘          └───────┬───────┘          └─────┬─────┘
-   │                  │                        │                        │
-   │ 1. Input login   │                        │                        │
-   │─────────────────>│                        │                        │
-   │                  │                        │                        │
-   │ 2. Select role   │                        │                        │
-   │─────────────────>│                        │                        │
-   │                  │                        │                        │
-   │ 3. Click Login   │                        │                        │
-   │─────────────────>│                        │                        │
-   │                  │                        │                        │
-   │                  │ 4. handleLogin()       │                        │
-   │                  │───────────────────────>│                        │
-   │                  │                        │                        │
-   │                  │                        │ 5. authenticate()      │
-   │                  │                        │───────────────────────>│
-   │                  │                        │                        │
-   │                  │                        │ 6. return User/null    │
-   │                  │                        │<───────────────────────│
-   │                  │                        │                        │
-   │                  │ 7. Open MainView       │                        │
-   │                  │<───────────────────────│                        │
-   │                  │                        │                        │
-   │ 8. Show main app │                        │                        │
-   │<─────────────────│                        │                        │
-   │                  │                        │                        │
-```
-
-*Login sequence dengan validasi role (Admin/Kasir)*
+![Login Sequence](/praktikum/week15-proyek-kelompok/screenshots/Login%20Sequence.png)
 
 
-#### 3.3.2 Checkout Transaction Sequence
+#### 3.3.2 Checkout Transaction
 
-![checkout](/praktikum/week15-proyek-kelompok/screenshots/Checkout%20Transaction%20Sequence-Page-4.drawio.png)
-
-*checkout transaktion*
+![Checkout Transaction](/praktikum/week15-proyek-kelompok/screenshots/Checkout%20Transaction.drawio.png)
 
 
-#### 3.3.3 Admin - Add Product Sequence
+#### 3.3.3 Admin Discount Management 
 
-![admin sequence](/praktikum/week15-proyek-kelompok/screenshots/Admin%20-%20Add%20Product%20Sequence-Page-5.drawio.png)
-
-*admin sequence*
+![ Admin Discount Management ](/praktikum/week15-proyek-kelompok/screenshots/Admin%20Discount%20Management%20.drawio.png)
 
 
-#### 3.3.4 Admin - Discount Management Sequence (NEW)
+#### 3.3.4 Kasir Apply Discount 
 
-```
-┌─────┐          ┌────────────────────┐          ┌────────────────────┐
-│Admin│          │DiscountMgmtView    │          │DiscountConfigService│
-└──┬──┘          └─────────┬──────────┘          └──────────┬─────────┘
-   │                       │                                │
-   │  1. Buka Tab Diskon   │                                │
-   │──────────────────────>│                                │
-   │                       │                                │
-   │                       │  2. getInstance()              │
-   │                       │───────────────────────────────>│
-   │                       │                                │
-   │                       │  3. getDiscountConfigs()       │
-   │                       │───────────────────────────────>│
-   │                       │                                │
-   │                       │  4. return ObservableList      │
-   │                       │<───────────────────────────────│
-   │                       │                                │
-   │  5. Display discounts │                                │
-   │<──────────────────────│                                │
-   │                       │                                │
-   │  6. Add new discount  │                                │
-   │──────────────────────>│                                │
-   │                       │                                │
-   │                       │  7. addDiscount(config)        │
-   │                       │───────────────────────────────>│
-   │                       │                                │
-   │                       │  8. Update ObservableList      │
-   │                       │<───────────────────────────────│
-   │                       │                                │
-   │  9. Show success      │                                │
-   │<──────────────────────│                                │
-   │                       │                                │
-```
-
-*Admin mengelola diskon - Diskon otomatis tersinkron ke Kasir via Singleton*
+![Kasir Apply Discount ](/praktikum/week15-proyek-kelompok/screenshots/Kasir%20Apply%20Discount%20.drawio.png)
 
 
-#### 3.3.5 Kasir - Apply Discount Sequence (NEW)
+ 
+### 3.4 Design Patterns summary
 
-```
-┌─────┐          ┌───────────────┐          ┌────────────────────┐          ┌─────────────┐
-│Kasir│          │TransactionView│          │DiscountConfigService│          │PosController│
-└──┬──┘          └───────┬───────┘          └──────────┬─────────┘          └──────┬──────┘
-   │                     │                             │                           │
-   │  1. Click Refresh   │                             │                           │
-   │────────────────────>│                             │                           │
-   │                     │                             │                           │
-   │                     │  2. getActiveDiscounts()    │                           │
-   │                     │────────────────────────────>│                           │
-   │                     │                             │                           │
-   │                     │  3. return filtered list    │                           │
-   │                     │<────────────────────────────│                           │
-   │                     │                             │                           │
-   │  4. Update dropdown │                             │                           │
-   │<────────────────────│                             │                           │
-   │                     │                             │                           │
-   │  5. Select discount │                             │                           │
-   │────────────────────>│                             │                           │
-   │                     │                             │                           │
-   │                     │  6. findByCode(code)        │                           │
-   │                     │────────────────────────────>│                           │
-   │                     │                             │                           │
-   │                     │  7. return DiscountConfig   │                           │
-   │                     │<────────────────────────────│                           │
-   │                     │                             │                           │
-   │                     │  8. applyDiscount(config)   │                           │
-   │                     │────────────────────────────────────────────────────────>│
-   │                     │                             │                           │
-   │                     │  9. updateSummary()         │                           │
-   │                     │<────────────────────────────────────────────────────────│
-   │                     │                             │                           │
-   │  10. Show total     │                             │                           │
-   │<────────────────────│                             │                           │
-   │                     │                             │                           │
-```
+| Pattern | Class/Interface | Tujuan |
+|---------|-----------------|--------|
+| **Singleton** | `DatabaseConnection` | Single database connection instance |
+| **Singleton** | `DiscountConfigService` | Shared discount config Admin-Kasir |
+| **Strategy** | `PaymentMethod`, `CashPayment`, `EWalletPayment`, `QRISPayment` | Metode pembayaran yang dapat di-extend |
+| **Strategy** | `DiscountStrategy`, `PercentageDiscount`, `FixedDiscount`, `BulkDiscount` | Tipe diskon yang fleksibel |
+| **Factory** | `PaymentMethodFactory` | Membuat instance payment method |
+| **DAO** | `ProductDAO`, `UserDAO`, `TransactionDAO` | Abstraksi akses database |
+| **Observer** | JavaFX `ObservableList` | Real-time sync discount changes |
+| **MVC** | View, Controller, Model | Separation of concerns |
 
-*Kasir menggunakan diskon yang dikelola Admin - Real-time sync via Singleton*
-
-
-### 3.4 Design Patterns
-
-| Pattern | Implementation | Purpose |
-|---------|----------------|---------|
-| **Singleton** | `DatabaseConnection` | Single database connection instance untuk seluruh aplikasi |
-| **Singleton** | `DiscountConfigService` | Shared discount configuration antara Admin dan Kasir (NEW) |
-| **Strategy** | `PaymentMethod`, `CashPayment`, `EWalletPayment`, `QRISPayment` | Metode pembayaran yang dapat di-extend tanpa ubah kode inti |
-| **Factory** | `PaymentMethodFactory` | Membuat instance payment method berdasarkan nama |
-| **DAO** | `ProductDAO`, `UserDAO`, `TransactionDAO` + implementasi JDBC | Abstraksi akses database |
-| **Observer** | JavaFX `ObservableList` di `DiscountConfigService` | Real-time sync discount changes (NEW) |
 
 ### 3.5 Database Schema (ERD)
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                            DATABASE: agripos                                    │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│                                                                                 │
-│  ┌──────────────────────────────┐         ┌──────────────────────────────┐     │
-│  │           users              │         │          products            │     │
-│  ├──────────────────────────────┤         ├──────────────────────────────┤     │
-│  │ * id: SERIAL (PK)            │         │ * id: SERIAL (PK)            │     │
-│  │   username: VARCHAR(50) [UQ] │         │   code: VARCHAR(20) [UQ]     │     │
-│  │   password: VARCHAR(255)     │         │   name: VARCHAR(100)         │     │
-│  │   full_name: VARCHAR(100)    │         │   category: VARCHAR(50)      │     │
-│  │   role: VARCHAR(20)          │         │   price: DECIMAL(12,2)       │     │
-│  │   active: BOOLEAN            │         │   stock: INTEGER             │     │
-│  │   created_at: TIMESTAMP      │         │   unit: VARCHAR(20)          │     │
-│  │   updated_at: TIMESTAMP      │         │   description: TEXT          │     │
-│  └──────────────┬───────────────┘         │   active: BOOLEAN            │     │
-│                 │                         │   created_at: TIMESTAMP      │     │
-│                 │ 1                       │   updated_at: TIMESTAMP      │     │
-│                 │                         └──────────────┬───────────────┘     │
-│                 │                                        │                     │
-│                 │                                        │ 1                   │
-│                 │                                        │                     │
-│                 ▼ *                                      │                     │
-│  ┌──────────────────────────────┐                       │                     │
-│  │        transactions          │                       │                     │
-│  ├──────────────────────────────┤                       │                     │
-│  │ * id: SERIAL (PK)            │                       │                     │
-│  │   transaction_code: VARCHAR  │                       │                     │
-│  │       (30) [UQ]              │                       │                     │
-│  │   transaction_date: TIMESTAMP│                       │                     │
-│  │   cashier_username: VARCHAR  │                       │                     │
-│  │   user_id: INTEGER (FK)──────┼───────────────────────┘                     │
-│  │   subtotal: DECIMAL(15,2)    │                                             │
-│  │   discount: DECIMAL(12,2)    │ ← NEW: Kolom untuk diskon                   │
-│  │   tax: DECIMAL(15,2)         │                                             │
-│  │   total: DECIMAL(15,2)       │                                             │
-│  │   payment_method: VARCHAR(50)│                                             │
-│  │   amount_paid: DECIMAL(15,2) │                                             │
-│  │   change_amount: DECIMAL     │                                             │
-│  │   status: VARCHAR(20)        │                                             │
-│  │   notes: TEXT                │                                             │
-│  └──────────────┬───────────────┘                                             │
-│                 │ 1                                                            │
-│                 │                                                              │
-│                 ▼ *                                                            │
-│  ┌──────────────────────────────┐         ┌──────────────────────────────┐    │
-│  │     transaction_items        │         │                              │    │
-│  ├──────────────────────────────┤    *    │                              │    │
-│  │ * id: SERIAL (PK)            │◄────────┤        (FK to products)      │    │
-│  │   transaction_id: INT (FK)───┼─────────┤                              │    │
-│  │   product_id: INTEGER (FK)   │         │                              │    │
-│  │   product_code: VARCHAR(20)  │         └──────────────────────────────┘    │
-│  │   product_name: VARCHAR(100) │                                             │
-│  │   quantity: INTEGER          │                                             │
-│  │   unit_price: DECIMAL(12,2)  │                                             │
-│  │   subtotal: DECIMAL(15,2)    │                                             │
-│  └──────────────────────────────┘                                             │
-│                                                                                 │
-└─────────────────────────────────────────────────────────────────────────────────┘
+
+![Database schema(erd)](/praktikum/week15-proyek-kelompok/screenshots/database%20schema%20(ERD).png)
+
+
 
 RELASI:
 ═══════
 • users (1) ──────< (*) transactions     : Satu user bisa punya banyak transaksi
 • transactions (1) ──────< (*) transaction_items : Satu transaksi punya banyak item
 • products (1) ──────< (*) transaction_items     : Satu produk bisa ada di banyak item
-```
 
-### 3.6 SQL DDL (Data Definition Language)
 
-```sql
--- ============================================
--- Tabel Users (untuk autentikasi)
--- ============================================
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    full_name VARCHAR(100) NOT NULL,
-    role VARCHAR(20) NOT NULL DEFAULT 'KASIR',  -- KASIR, ADMIN
-    active BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
--- ============================================
--- Tabel Products (produk pertanian)
--- ============================================
-CREATE TABLE products (
-    id SERIAL PRIMARY KEY,
-    code VARCHAR(20) UNIQUE NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    price DECIMAL(12,2) NOT NULL,
-    stock INTEGER NOT NULL DEFAULT 0,
-    unit VARCHAR(20) NOT NULL DEFAULT 'kg',
-    description TEXT,
-    active BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- ============================================
--- Tabel Transactions (transaksi penjualan)
--- ============================================
-CREATE TABLE transactions (
-    id SERIAL PRIMARY KEY,
-    transaction_code VARCHAR(30) UNIQUE NOT NULL,
-    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    cashier_username VARCHAR(50),
-    user_id INTEGER REFERENCES users(id),
-    subtotal DECIMAL(15,2) NOT NULL DEFAULT 0,
-    tax DECIMAL(15,2) NOT NULL DEFAULT 0,
-    total DECIMAL(15,2) NOT NULL,
-    payment_method VARCHAR(50) NOT NULL,        -- Tunai, E-Wallet, QRIS
-    amount_paid DECIMAL(15,2) NOT NULL,
-    change_amount DECIMAL(15,2) NOT NULL DEFAULT 0,
-    status VARCHAR(20) DEFAULT 'COMPLETED',     -- PENDING, COMPLETED, CANCELLED
-    notes TEXT
-);
-
--- ============================================
--- Tabel Transaction Items (detail transaksi)
--- ============================================
-CREATE TABLE transaction_items (
-    id SERIAL PRIMARY KEY,
-    transaction_id INTEGER REFERENCES transactions(id) ON DELETE CASCADE,
-    product_id INTEGER REFERENCES products(id),
-    product_code VARCHAR(20) NOT NULL,
-    product_name VARCHAR(100) NOT NULL,
-    quantity INTEGER NOT NULL,
-    unit_price DECIMAL(12,2) NOT NULL,
-    subtotal DECIMAL(15,2) NOT NULL
-);
-
--- ============================================
--- Indexes untuk performa query
--- ============================================
-CREATE INDEX idx_products_code ON products(code);
-CREATE INDEX idx_products_category ON products(category);
-CREATE INDEX idx_transactions_code ON transactions(transaction_code);
-CREATE INDEX idx_transactions_date ON transactions(transaction_date);
-CREATE INDEX idx_transactions_user ON transactions(user_id);
-```
-
----
 
 ## 4. Implementasi
 
 ### 4.1 Package Structure
 
 ```
-com.upb.agripos/
-├── AppJavaFx.java              # Entry point & DI setup
-├── model/                      # 7 classes
-├── dao/                        # 6 classes (3 interfaces + 3 implementations)
-├── service/                    # 6 classes
-├── payment/                    # 4 classes (Strategy pattern)
-├── controller/                 # 2 classes
-├── view/                       # 5 classes
-├── exception/                  # 5 classes
-└── util/                       # 1 class
+src/main/java/com/upb/agripos/
+├── AppJavaFx.java                 # Main entry point
+├── controller/
+│   ├── LoginController.java       # Handle login
+│   └── PosController.java         # Handle business logic
+├── dao/
+│   ├── ProductDAO.java            # Interface
+│   ├── UserDAO.java               # Interface
+│   ├── TransactionDAO.java        # Interface
+│   └── impl/
+│       ├── JdbcProductDAO.java
+│       ├── JdbcUserDAO.java
+│       └── JdbcTransactionDAO.java
+├── model/
+│   ├── Product.java
+│   ├── User.java
+│   ├── Transaction.java
+│   ├── CartItem.java
+│   └── CheckoutSummary.java
+├── service/
+│   ├── ProductService.java
+│   ├── CartService.java
+│   ├── TransactionService.java
+│   ├── AuthService.java
+│   ├── ReportService.java
+│   ├── ReceiptService.java
+│   └── DiscountConfigService.java    # NEW: Singleton
+├── strategy/
+│   ├── payment/
+│   │   ├── PaymentMethod.java        # Interface
+│   │   ├── CashPayment.java
+│   │   ├── EWalletPayment.java
+│   │   ├── QRISPayment.java
+│   │   └── PaymentMethodFactory.java
+│   └── discount/
+│       ├── DiscountStrategy.java     # Interface
+│       ├── PercentageDiscount.java
+│       ├── FixedDiscount.java
+│       ├── BulkDiscount.java
+│       └── VoucherDiscount.java
+├── util/
+│   └── DatabaseConnection.java       # Singleton
+└── view/
+    ├── LoginView.java
+    ├── MainView.java
+    ├── TransactionView.java
+    ├── DashboardView.java
+    ├── ProductManagementView.java
+    ├── ReportView.java
+    ├── HistoryView.java
+    └── DiscountManagementView.java   # NEW
 ```
 
 ### 4.2 SOLID Principles Implementation
