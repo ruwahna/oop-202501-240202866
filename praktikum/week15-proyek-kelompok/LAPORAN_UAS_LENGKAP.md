@@ -189,7 +189,7 @@ Aplikasi mendukung tiga metode pembayaran dengan validasi otomatis.
 - Konfirmasi pembayaran melalui app
 - Sistem validasi pembayaran sesuai total
 
-**Implementasi:** Strategy Pattern - setiap metode pembayaran adalah strategy yang berbeda dengan validate() dan pay() method yang berbeda.
+**Implementasi:** Strategy Pattern - setiap metode pembayaran adalah strategy yang berbeda dengan `validatePayment()` dan `processPayment()` method yang berbeda.
 
 #### E. **Sistem Diskon & Promosi**
 Aplikasi menyediakan fleksibilitas untuk memberikan diskon kepada pelanggan dengan manajemen terpusat oleh Admin.
@@ -696,9 +696,10 @@ Agri-POS menggunakan **Layered Architecture (N-Tier Architecture)** dengan 5 lay
 ┌────────────────────────────┐
 │    PaymentMethod (I)      │ ◄─── Interface
 ├────────────────────────────┤
-│ + validate(): boolean      │
-│ + pay(amount): boolean     │
+│ + validatePayment(): bool  │
+│ + processPayment(): double │
 │ + getMethodName(): String  │
+│ + getReceiptDescription()  │
 └────────────────────────────┘
     ▲        ▲        ▲
     │        │        │
@@ -928,70 +929,90 @@ public class Product {
 ```java
 // PaymentMethod Interface - Contract untuk semua payment methods
 public interface PaymentMethod {
+    /**
+     * Mendapatkan nama metode pembayaran
+     */
     String getMethodName();
-    boolean validate();
-    boolean pay(double amount);
-    String getDescription();
+
+    /**
+     * Memproses pembayaran
+     * @param total jumlah yang harus dibayar
+     * @param amountPaid jumlah yang dibayarkan
+     * @return kembalian (jika ada)
+     * @throws PaymentException jika pembayaran gagal
+     */
+    double processPayment(double total, double amountPaid) throws PaymentException;
+
+    /**
+     * Validasi apakah pembayaran dapat dilakukan
+     */
+    boolean validatePayment(double total, double amountPaid);
+
+    /**
+     * Mendapatkan deskripsi metode pembayaran untuk struk
+     */
+    String getReceiptDescription(double amountPaid, double change);
 }
 
 // CashPayment - Strategy untuk pembayaran tunai
 public class CashPayment implements PaymentMethod {
-    private double amountPaid;
-    private double totalAmount;
-    
-    public CashPayment(double amountPaid, double totalAmount) {
-        this.amountPaid = amountPaid;
-        this.totalAmount = totalAmount;
-    }
+    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
     
     @Override
     public String getMethodName() {
-        return "Cash";
+        return "Tunai";
     }
     
     @Override
-    public boolean validate() {
-        return amountPaid >= totalAmount;
-    }
-    
-    @Override
-    public boolean pay(double amount) {
-        if (!validate()) {
-            System.out.println("Pembayaran cash kurang!");
-            return false;
+    public double processPayment(double total, double amountPaid) throws PaymentException {
+        if (!validatePayment(total, amountPaid)) {
+            throw new PaymentException(String.format(
+                "Pembayaran tunai tidak valid. Total: %s, Dibayar: %s",
+                currencyFormat.format(total), currencyFormat.format(amountPaid)));
         }
-        double change = amountPaid - totalAmount;
-        System.out.println("Kembalian: Rp " + change);
-        return true;
+        return amountPaid - total; // Kembalian
+    }
+    
+    @Override
+    public boolean validatePayment(double total, double amountPaid) {
+        return amountPaid >= total && total > 0;
+    }
+    
+    @Override
+    public String getReceiptDescription(double amountPaid, double change) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Metode: TUNAI\n");
+        sb.append("Dibayar: ").append(currencyFormat.format(amountPaid)).append("\n");
+        sb.append("Kembalian: ").append(currencyFormat.format(change));
+        return sb.toString();
     }
 }
 
 // EWalletPayment - Strategy untuk e-wallet
 public class EWalletPayment implements PaymentMethod {
-    private String walletType; // OVO, GoPay, DANA, ShopeePay
-    private double amountPaid;
-    private double totalAmount;
+    private final String provider; // OVO, GoPay, DANA, ShopeePay
     
-    public EWalletPayment(String walletType, double amountPaid, double totalAmount) {
-        this.walletType = walletType;
-        this.amountPaid = amountPaid;
-        this.totalAmount = totalAmount;
+    public EWalletPayment(String provider) {
+        this.provider = provider;
     }
     
     @Override
-    public boolean validate() {
-        return amountPaid == totalAmount;  // Harus sama persis
+    public String getMethodName() {
+        return "E-Wallet (" + provider + ")";
     }
     
     @Override
-    public boolean pay(double amount) {
-        if (!validate()) {
-            System.out.println("Pembayaran " + walletType + " harus sama dengan total!");
-            return false;
+    public boolean validatePayment(double total, double amountPaid) {
+        return amountPaid == total && total > 0;  // Harus sama persis
+    }
+    
+    @Override
+    public double processPayment(double total, double amountPaid) throws PaymentException {
+        if (!validatePayment(total, amountPaid)) {
+            throw new PaymentException("Pembayaran " + provider + " harus sama dengan total!");
         }
-        System.out.println("Pembayaran " + walletType + " diproses...");
-        // Simulasi proses e-wallet
-        return true;
+        System.out.println("Pembayaran " + provider + " diproses...");
+        return 0; // Tidak ada kembalian untuk e-wallet
     }
 }
 ```
@@ -1014,21 +1035,22 @@ public class TransactionService {
     public CheckoutSummary checkout(
         String cashierUsername, 
         PaymentMethod paymentMethod,  // Interface reference
+        double total,
         double amountPaid
-    ) {
+    ) throws PaymentException {
         // Logic yang sama untuk semua payment methods
-        // Tetapi method validate() dan pay() dipanggil sesuai implementation
+        // Tetapi method validatePayment() dan processPayment() dipanggil sesuai implementation
         
         PaymentMethod actualPayment = paymentMethod;  // Bisa CashPayment, EWalletPayment, QrisPayment
         
-        if (!actualPayment.validate()) {
+        if (!actualPayment.validatePayment(total, amountPaid)) {
             System.out.println("Validasi pembayaran gagal untuk " + 
                 actualPayment.getMethodName());
             return null;
         }
         
         // Polymorphic call - method yang dipanggil sesuai actual class
-        actualPayment.pay(amountPaid);
+        double change = actualPayment.processPayment(total, amountPaid);
         
         // Lanjut proses transaksi...
     }
@@ -1041,20 +1063,18 @@ public class PosController {
         double amountPaid = 160000;
         
         // User pilih metode pembayaran
-        String selectedMethod = getUserSelection(); // "Cash" / "OVO" / "QRIS"
+        String selectedMethod = getUserSelection(); // "Tunai" / "OVO" / "QRIS"
         
-        PaymentMethod paymentMethod;
+        // Menggunakan PaymentMethodFactory untuk mendapatkan payment method
+        PaymentMethod paymentMethod = PaymentMethodFactory.getPaymentMethod(selectedMethod);
         
-        if ("Cash".equals(selectedMethod)) {
-            paymentMethod = new CashPayment(amountPaid, total);
-        } else if ("OVO".equals(selectedMethod)) {
-            paymentMethod = new EWalletPayment("OVO", amountPaid, total);
-        } else if ("QRIS".equals(selectedMethod)) {
-            paymentMethod = new QrisPayment(amountPaid, total);
+        if (paymentMethod == null) {
+            System.out.println("Metode pembayaran tidak tersedia!");
+            return;
         }
         
         // Polymorphic method call - compile time tidak tahu class mana yg sebenarnya
-        transactionService.checkout(currentUser, paymentMethod, amountPaid);
+        transactionService.checkout(currentUser, paymentMethod, total, amountPaid);
     }
 }
 ```
@@ -1151,12 +1171,20 @@ public class JdbcTransactionDAO implements TransactionDAO {
 ```java
 // DatabaseConnection.java
 public class DatabaseConnection {
+    private static final String URL = "jdbc:postgresql://localhost:5432/agripos";
+    private static final String USER = "postgres";
+    private static final String PASS = "1234";
+
     private static DatabaseConnection instance;
-    private Connection connection;
     
     // Private constructor - tidak bisa di-instantiate dari luar
     private DatabaseConnection() {
-        this.connection = createConnection();
+        try {
+            // Memastikan driver PostgreSQL dimuat
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
+        }
     }
     
     // Static method untuk get instance
@@ -1167,30 +1195,30 @@ public class DatabaseConnection {
         return instance;
     }
     
-    private Connection createConnection() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            return DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/agripos",
-                "postgres",
-                "password"
-            );
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Database connection failed: " + e.getMessage());
-            return null;
-        }
+    // Mendapatkan koneksi database baru setiap kali dipanggil
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASS);
     }
     
-    public Connection getConnection() {
-        return connection;
+    // Test koneksi database
+    public boolean testConnection() {
+        try (Connection conn = getConnection()) {
+            return conn != null && !conn.isClosed();
+        } catch (SQLException e) {
+            System.err.println("Database connection test failed: " + e.getMessage());
+            return false;
+        }
     }
 }
 
-// Usage:
+// Usage dengan try-with-resources:
 public class ProductDAO {
-    public List<Product> getAll() {
-        Connection conn = DatabaseConnection.getInstance().getConnection();
-        // Hanya ada satu connection object yang digunakan di seluruh aplikasi
+    public List<Product> getAll() throws Exception {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM products");
+             ResultSet rs = stmt.executeQuery()) {
+            // Process results
+        }
     }
 }
 ```
@@ -1263,32 +1291,35 @@ for (DiscountConfig config : service.getActiveDiscounts()) {
 ```java
 // Strategy interface
 public interface PaymentMethod {
-    boolean validate();
-    boolean pay(double amount);
     String getMethodName();
+    double processPayment(double total, double amountPaid) throws PaymentException;
+    boolean validatePayment(double total, double amountPaid);
+    String getReceiptDescription(double amountPaid, double change);
 }
 
 // Concrete strategies
 public class CashPayment implements PaymentMethod {
-    // ...
+    // Implementasi untuk pembayaran tunai
 }
 
 public class EWalletPayment implements PaymentMethod {
-    // ...
+    // Implementasi untuk pembayaran e-wallet (OVO, GoPay, DANA, ShopeePay)
 }
 
-public class QrisPayment implements PaymentMethod {
-    // ...
+public class QRISPayment implements PaymentMethod {
+    // Implementasi untuk pembayaran QRIS
 }
 
 // Client yang menggunakan strategy
 public class TransactionService {
-    public void processPayment(PaymentMethod strategy, double amount) {
-        if (strategy.validate()) {
-            strategy.pay(amount);
+    public void processPayment(PaymentMethod strategy, double total, double amountPaid) 
+        throws PaymentException {
+        if (strategy.validatePayment(total, amountPaid)) {
+            double change = strategy.processPayment(total, amountPaid);
+            System.out.println(strategy.getReceiptDescription(amountPaid, change));
             // Success
         } else {
-            // Handle failure
+            throw new PaymentException("Validasi pembayaran gagal");
         }
     }
 }
@@ -1296,12 +1327,12 @@ public class TransactionService {
 // Penggunaan:
 TransactionService service = new TransactionService();
 
-// Bisa ganti strategy tanpa ubah service code
-PaymentMethod cashPayment = new CashPayment(160000, 154550);
-service.processPayment(cashPayment, 160000);
+// Bisa ganti strategy tanpa ubah service code - menggunakan Factory
+PaymentMethod cashPayment = PaymentMethodFactory.getPaymentMethod("Tunai");
+service.processPayment(cashPayment, 154550, 160000);
 
-PaymentMethod ewalletPayment = new EWalletPayment("OVO", 154550, 154550);
-service.processPayment(ewalletPayment, 154550);
+PaymentMethod ewalletPayment = PaymentMethodFactory.getPaymentMethod("E-Wallet (OVO)");
+service.processPayment(ewalletPayment, 154550, 154550);
 ```
 
 **Manfaat:**
@@ -1309,45 +1340,54 @@ service.processPayment(ewalletPayment, 154550);
 - ✓ Extensibility: Tambah payment method tanpa ubah service
 - ✓ Testability: Mudah test berbagai payment scenarios dengan mock
 
-### Pattern 3: Factory Pattern
+### Pattern 3: Factory Pattern (Registry Pattern)
 
-**Tujuan:** Create object tanpa specify exact class.
+**Tujuan:** Create object tanpa specify exact class, dengan registry untuk menyimpan instances.
 
 ```java
-// Factory class
+// Factory/Registry class
 public class PaymentMethodFactory {
-    public static PaymentMethod createPaymentMethod(
-        String type, 
-        double amountPaid, 
-        double totalAmount
-    ) {
-        switch (type.toUpperCase()) {
-            case "CASH":
-                return new CashPayment(amountPaid, totalAmount);
-            case "EWALLET":
-                return new EWalletPayment("GENERIC", amountPaid, totalAmount);
-            case "OVO":
-                return new EWalletPayment("OVO", amountPaid, totalAmount);
-            case "GOPAY":
-                return new EWalletPayment("GoPay", amountPaid, totalAmount);
-            case "QRIS":
-                return new QrisPayment(amountPaid, totalAmount);
-            default:
-                throw new IllegalArgumentException("Unknown payment method: " + type);
-        }
+    private static final Map<String, PaymentMethod> paymentMethods = new HashMap<>();
+
+    static {
+        // Register default payment methods
+        registerPaymentMethod(new CashPayment());
+        registerPaymentMethod(new EWalletPayment("OVO"));
+        registerPaymentMethod(new EWalletPayment("GoPay"));
+        registerPaymentMethod(new EWalletPayment("DANA"));
+        registerPaymentMethod(new EWalletPayment("ShopeePay"));
+        registerPaymentMethod(new EWalletPayment("LinkAja"));
+        registerPaymentMethod(new QRISPayment());
+    }
+
+    public static void registerPaymentMethod(PaymentMethod paymentMethod) {
+        paymentMethods.put(paymentMethod.getMethodName(), paymentMethod);
+    }
+
+    public static PaymentMethod getPaymentMethod(String methodName) {
+        return paymentMethods.get(methodName);
+    }
+
+    public static Set<String> getAvailableMethods() {
+        return paymentMethods.keySet();
+    }
+
+    public static boolean isMethodAvailable(String methodName) {
+        return paymentMethods.containsKey(methodName);
     }
 }
 
 // Usage:
 public class PosController {
     public void handleCheckout(String paymentType) {
-        PaymentMethod payment = PaymentMethodFactory.createPaymentMethod(
-            paymentType, 
-            amountPaid, 
-            totalAmount
-        );
+        PaymentMethod payment = PaymentMethodFactory.getPaymentMethod(paymentType);
         
-        transactionService.checkout(payment);
+        if (payment == null) {
+            System.out.println("Metode pembayaran tidak tersedia!");
+            return;
+        }
+        
+        transactionService.checkout(payment, total, amountPaid);
     }
 }
 ```
@@ -1364,29 +1404,52 @@ public class PosController {
 ```java
 // DAO Interface - Contract
 public interface ProductDAO {
-    void insert(Product product) throws SQLException;
-    void update(Product product) throws SQLException;
-    void delete(long id) throws SQLException;
-    Product findById(long id) throws SQLException;
-    List<Product> findAll() throws SQLException;
+    void insert(Product product) throws Exception;
+    void update(Product product) throws Exception;
+    void delete(String code) throws Exception;
+    Product findByCode(String code) throws Exception;
+    List<Product> findAll() throws Exception;
+    List<Product> findByCategory(String category) throws Exception;
+    void updateStock(String code, int newStock) throws Exception;
 }
 
 // Concrete DAO Implementation
 public class JdbcProductDAO implements ProductDAO {
+    private static final Logger LOGGER = Logger.getLogger(JdbcProductDAO.class.getName());
     
     @Override
-    public void insert(Product product) throws SQLException {
-        String sql = "INSERT INTO products (code, name, price, stock) VALUES (?, ?, ?, ?)";
+    public void insert(Product product) throws Exception {
+        String sql = "INSERT INTO products (code, name, category, price, stock) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, product.getCode());
             stmt.setString(2, product.getName());
-            stmt.setDouble(3, product.getPrice());
-            stmt.setInt(4, product.getStock());
+            stmt.setString(3, product.getCategory());
+            stmt.setDouble(4, product.getPrice());
+            stmt.setInt(5, product.getStock());
             
-            stmt.executeUpdate();
+            int rows = stmt.executeUpdate();
+            if (rows == 0) {
+                throw new SQLException("Insert gagal untuk produk: " + product.getCode());
+            }
+            LOGGER.info("Produk berhasil ditambahkan: " + product.getCode());
         }
+    }
+    
+    @Override
+    public List<Product> findAll() throws Exception {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT code, name, category, price, stock FROM products";
+        
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(mapResultSetToProduct(rs));
+            }
+        }
+        return products;
     }
     
     // Methods lainnya...
@@ -1404,7 +1467,7 @@ public class ProductService {
         try {
             productDAO.insert(product);
             System.out.println("Product added successfully");
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Error adding product: " + e.getMessage());
         }
     }
@@ -1599,11 +1662,12 @@ public class TransactionService {
     private CartService cartService;
     
     public Transaction checkout(String cashierUsername, PaymentMethod paymentMethod, 
-                                double amountPaid) throws SQLException {
+                                double amountPaid) throws Exception {
         
         // Validate payment
-        if (!paymentMethod.validate()) {
-            throw new IllegalArgumentException("Pembayaran tidak valid");
+        double total = calculateTotal();
+        if (!paymentMethod.validatePayment(total, amountPaid)) {
+            throw new PaymentException("Pembayaran tidak valid");
         }
         
         // Calculate amounts
@@ -2091,9 +2155,9 @@ mvn javafx:run
 
 | Role | Username | Password |
 |------|----------|----------|
-| Admin | admin123 | admin123 |
-| Kasir | kasir001 | kasir001 |
-| Kasir | kasir002 | kasir002 |
+| Admin | admin | admin123 |
+| Kasir | kasir1 | kasir123 |
+| Kasir | kasir2 | kasir123 |
 
 ## C. Sample Seed Data
 

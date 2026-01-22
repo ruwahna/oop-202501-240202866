@@ -4,11 +4,9 @@
 ### Informasi Praktikan
 - **Nama+Nim**: 
                 
-                [1. Indah Ruwahna Anugraheni (240202866)] 
-
-                [2. Lia Lusianti (240202869)]
-
-
+     [1. Indah Ruwahna       Anugraheni (240202866)] 
+     
+     [2. Lia Lusianti (240202869)]
 
 - **Kelas**: [3IKRB]
 - **Tanggal**: [18 Januari 2026]
@@ -221,14 +219,21 @@ src/main/java/com/upb/agripos/
 │   ├── ProductDAO.java            # Interface
 │   ├── UserDAO.java               # Interface
 │   ├── TransactionDAO.java        # Interface
-│   └── impl/
-│       ├── JdbcProductDAO.java
-│       ├── JdbcUserDAO.java
-│       └── JdbcTransactionDAO.java
+│   ├── JdbcProductDAO.java        # Implementation
+│   ├── JdbcUserDAO.java           # Implementation
+│   └── JdbcTransactionDAO.java    # Implementation
+├── exception/
+│   ├── AuthenticationException.java
+│   ├── DataNotFoundException.java
+│   ├── OutOfStockException.java
+│   ├── PaymentException.java
+│   └── ValidationException.java
 ├── model/
 │   ├── Product.java
 │   ├── User.java
 │   ├── Transaction.java
+│   ├── TransactionItem.java
+│   ├── Cart.java
 │   ├── CartItem.java
 │   └── CheckoutSummary.java
 ├── service/
@@ -238,8 +243,7 @@ src/main/java/com/upb/agripos/
 │   ├── AuthService.java
 │   ├── ReportService.java
 │   ├── ReceiptService.java
-│   └── DiscountConfigService.java    # NEW: Singleton
-├── strategy/
+│   ├── DiscountConfigService.java    # Singleton
 │   ├── payment/
 │   │   ├── PaymentMethod.java        # Interface
 │   │   ├── CashPayment.java
@@ -253,7 +257,8 @@ src/main/java/com/upb/agripos/
 │       ├── BulkDiscount.java
 │       └── VoucherDiscount.java
 ├── util/
-│   └── DatabaseConnection.java       # Singleton
+│   ├── DatabaseConnection.java       # Singleton
+│   └── DatabaseMigration.java        # Auto migration
 └── view/
     ├── LoginView.java
     ├── MainView.java
@@ -261,8 +266,7 @@ src/main/java/com/upb/agripos/
     ├── DashboardView.java
     ├── ProductManagementView.java
     ├── ReportView.java
-    ├── HistoryView.java
-    └── DiscountManagementView.java   # NEW
+    └── DiscountManagementView.java
 ```
 
 ### 4.2 SOLID Principles Implementation
@@ -279,31 +283,39 @@ src/main/java/com/upb/agripos/
 
 ```java
 public class DatabaseConnection {
+    private static final String URL = "jdbc:postgresql://localhost:5432/agripos";
+    private static final String USER = "postgres";
+    private static final String PASS = "1234";
+
     private static DatabaseConnection instance;
-    private Connection connection;
-    
+
     private DatabaseConnection() {
         try {
+            // Memastikan driver PostgreSQL dimuat
             Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection(
-                "jdbc:postgresql://localhost:5432/agripos",
-                "postgres", 
-                "password"
-            );
-        } catch (Exception e) {
-            System.err.println("Database connection failed: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
         }
     }
-    
+
     public static synchronized DatabaseConnection getInstance() {
         if (instance == null) {
             instance = new DatabaseConnection();
         }
         return instance;
     }
-    
-    public Connection getConnection() {
-        return connection;
+
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASS);
+    }
+
+    public boolean testConnection() {
+        try (Connection conn = getConnection()) {
+            return conn != null && !conn.isClosed();
+        } catch (SQLException e) {
+            System.err.println("Database connection test failed: " + e.getMessage());
+            return false;
+        }
     }
 }
 ```
@@ -368,59 +380,72 @@ public class DiscountConfigService {
 ```java
 // Interface
 public interface PaymentMethod {
-    boolean validate();
-    boolean pay(double amount);
+    /**
+     * Mendapatkan nama metode pembayaran
+     */
     String getMethodName();
-    String getDetails();
+
+    /**
+     * Memproses pembayaran
+     * @param total jumlah yang harus dibayar
+     * @param amountPaid jumlah yang dibayarkan
+     * @return kembalian (jika ada)
+     * @throws PaymentException jika pembayaran gagal
+     */
+    double processPayment(double total, double amountPaid) throws PaymentException;
+
+    /**
+     * Validasi apakah pembayaran dapat dilakukan
+     */
+    boolean validatePayment(double total, double amountPaid);
+
+    /**
+     * Mendapatkan deskripsi metode pembayaran untuk struk
+     */
+    String getReceiptDescription(double amountPaid, double change);
 }
 
 // Concrete Strategy - Cash
 public class CashPayment implements PaymentMethod {
-    private double amountPaid;
-    private double totalAmount;
-    private double change;
-    
-    public CashPayment(double amountPaid, double totalAmount) {
-        this.amountPaid = amountPaid;
-        this.totalAmount = totalAmount;
-        this.change = amountPaid - totalAmount;
-    }
-    
-    @Override
-    public boolean validate() {
-        return amountPaid >= totalAmount;
-    }
-    
-    @Override
-    public boolean pay(double amount) {
-        if (validate()) {
-            this.change = amountPaid - amount;
-            return true;
-        }
-        return false;
-    }
-    
+    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
+
     @Override
     public String getMethodName() {
         return "Tunai";
     }
-    
+
     @Override
-    public String getDetails() {
-        return String.format("Dibayar: Rp %,.0f | Kembalian: Rp %,.0f", 
-            amountPaid, change);
+    public double processPayment(double total, double amountPaid) throws PaymentException {
+        if (!validatePayment(total, amountPaid)) {
+            throw new PaymentException(String.format(
+                "Pembayaran tunai tidak valid. Total: %s, Dibayar: %s",
+                currencyFormat.format(total), currencyFormat.format(amountPaid)));
+        }
+        return amountPaid - total;
     }
-    
-    public double getChange() {
-        return change;
+
+    @Override
+    public boolean validatePayment(double total, double amountPaid) {
+        return amountPaid >= total && total > 0;
+    }
+
+    @Override
+    public String getReceiptDescription(double amountPaid, double change) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Metode: TUNAI\n");
+        sb.append("Dibayar: ").append(currencyFormat.format(amountPaid)).append("\n");
+        sb.append("Kembalian: ").append(currencyFormat.format(change));
+        return sb.toString();
     }
 }
 
 // Concrete Strategy - E-Wallet
 public class EWalletPayment implements PaymentMethod {
-    private String provider;
-    private String phoneNumber;
-    private double amount;
+    private final String provider;
+    
+    public EWalletPayment(String provider) {
+        this.provider = provider;
+    }
     
     @Override
     public String getMethodName() {
@@ -429,20 +454,31 @@ public class EWalletPayment implements PaymentMethod {
     // ... implementation
 }
 
-// Factory
+// Factory/Registry
 public class PaymentMethodFactory {
-    public static PaymentMethod createPayment(String type, Object... params) {
-        switch (type.toLowerCase()) {
-            case "tunai":
-            case "cash":
-                return new CashPayment((Double) params[0], (Double) params[1]);
-            case "e-wallet":
-                return new EWalletPayment((String) params[0], (String) params[1], (Double) params[2]);
-            case "qris":
-                return new QRISPayment((Double) params[0]);
-            default:
-                throw new IllegalArgumentException("Unknown payment type: " + type);
-        }
+    private static final Map<String, PaymentMethod> paymentMethods = new HashMap<>();
+
+    static {
+        // Register default payment methods
+        registerPaymentMethod(new CashPayment());
+        registerPaymentMethod(new EWalletPayment("OVO"));
+        registerPaymentMethod(new EWalletPayment("GoPay"));
+        registerPaymentMethod(new EWalletPayment("DANA"));
+        registerPaymentMethod(new EWalletPayment("ShopeePay"));
+        registerPaymentMethod(new EWalletPayment("LinkAja"));
+        registerPaymentMethod(new QRISPayment());
+    }
+
+    public static void registerPaymentMethod(PaymentMethod paymentMethod) {
+        paymentMethods.put(paymentMethod.getMethodName(), paymentMethod);
+    }
+
+    public static PaymentMethod getPaymentMethod(String methodName) {
+        return paymentMethods.get(methodName);
+    }
+
+    public static Set<String> getAvailableMethods() {
+        return paymentMethods.keySet();
     }
 }
 ```
@@ -451,117 +487,184 @@ public class PaymentMethodFactory {
 ```java
 // Interface
 public interface DiscountStrategy {
-    double calculate(double subtotal, int itemCount);
+    /**
+     * Hitung besarnya diskon
+     * @param subtotal harga sebelum diskon
+     * @param itemCount jumlah item di keranjang
+     * @return besarnya diskon dalam Rp
+     */
+    double calculateDiscount(double subtotal, int itemCount);
+    
+    /**
+     * Cek apakah diskon bisa diterapkan
+     */
+    boolean isApplicable(double subtotal, int itemCount);
+    
+    /**
+     * Deskripsi diskon untuk ditampilkan ke user
+     */
     String getDescription();
 }
 
 // Percentage Discount
 public class PercentageDiscount implements DiscountStrategy {
-    private double percentage;
-    private String name;
+    private final double percentage;
+    private final double minPurchase;
+    private final String name;
     
     public PercentageDiscount(double percentage, String name) {
+        this(percentage, 0, name);
+    }
+    
+    public PercentageDiscount(double percentage, double minPurchase, String name) {
+        if (percentage <= 0 || percentage > 100) {
+            throw new IllegalArgumentException("Persentase harus antara 0-100");
+        }
         this.percentage = percentage;
+        this.minPurchase = minPurchase;
         this.name = name;
     }
     
     @Override
-    public double calculate(double subtotal, int itemCount) {
-        return subtotal * (percentage / 100);
+    public double calculateDiscount(double subtotal, int itemCount) {
+        if (isApplicable(subtotal, itemCount)) {
+            return subtotal * percentage / 100;
+        }
+        return 0;
+    }
+    
+    @Override
+    public boolean isApplicable(double subtotal, int itemCount) {
+        return subtotal >= minPurchase;
     }
     
     @Override
     public String getDescription() {
-        return name + " (" + (int)percentage + "%)";
+        if (minPurchase > 0) {
+            return name + " (" + percentage + "% min Rp " + String.format("%.0f", minPurchase) + ")";
+        }
+        return name + " (" + percentage + "%)";
     }
 }
 
 // Fixed Discount
 public class FixedDiscount implements DiscountStrategy {
-    private double amount;
-    private String name;
+    private final double amount;
+    private final double minPurchase;
+    private final String name;
+    
+    public FixedDiscount(double amount, double minPurchase, String name) {
+        this.amount = amount;
+        this.minPurchase = minPurchase;
+        this.name = name;
+    }
     
     @Override
-    public double calculate(double subtotal, int itemCount) {
-        return Math.min(amount, subtotal);
+    public double calculateDiscount(double subtotal, int itemCount) {
+        if (isApplicable(subtotal, itemCount)) {
+            return Math.min(amount, subtotal);
+        }
+        return 0;
+    }
+    
+    @Override
+    public boolean isApplicable(double subtotal, int itemCount) {
+        return subtotal >= minPurchase;
+    }
+    
+    @Override
+    public String getDescription() {
+        return name + " (Rp " + String.format("%.0f", amount) + ")";
     }
 }
 
 // Bulk Discount
 public class BulkDiscount implements DiscountStrategy {
-    private int minQuantity;
-    private double percentage;
+    private final int minQuantity;
+    private final double percentage;
+    private final String name;
+    
+    public BulkDiscount(int minQuantity, double percentage, String name) {
+        this.minQuantity = minQuantity;
+        this.percentage = percentage;
+        this.name = name;
+    }
     
     @Override
-    public double calculate(double subtotal, int itemCount) {
-        if (itemCount >= minQuantity) {
-            return subtotal * (percentage / 100);
+    public double calculateDiscount(double subtotal, int itemCount) {
+        if (isApplicable(subtotal, itemCount)) {
+            return subtotal * percentage / 100;
         }
         return 0;
     }
+    
+    @Override
+    public boolean isApplicable(double subtotal, int itemCount) {
+        return itemCount >= minQuantity;
+    }
+    
+    @Override
+    public String getDescription() {
+        return name + " (" + percentage + "% untuk >= " + minQuantity + " items)";
+    }
 }
-
 ```
 ### 4.7 Implementasi DAO Pattern
 
 ```java
 // Interface
 public interface ProductDAO {
-    List<Product> findAll();
-    Optional<Product> findByCode(String code);
-    List<Product> findByCategory(String category);
-    void insert(Product product);
-    void update(Product product);
-    void delete(String code);
-    void updateStock(String code, int quantity);
+    void insert(Product product) throws Exception;
+    void update(Product product) throws Exception;
+    void delete(String code) throws Exception;
+    Product findByCode(String code) throws Exception;
+    List<Product> findAll() throws Exception;
+    List<Product> findByCategory(String category) throws Exception;
+    void updateStock(String code, int newStock) throws Exception;
 }
 
 // JDBC Implementation
 public class JdbcProductDAO implements ProductDAO {
-    private final Connection connection;
-    
-    public JdbcProductDAO() {
-        this.connection = DatabaseConnection.getInstance().getConnection();
-    }
+    private static final Logger LOGGER = Logger.getLogger(JdbcProductDAO.class.getName());
     
     @Override
-    public List<Product> findAll() {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM products WHERE active = true ORDER BY name";
+    public void insert(Product product) throws Exception {
+        validateProduct(product);
+        String sql = "INSERT INTO products (code, name, category, price, stock) VALUES (?, ?, ?, ?, ?)";
         
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                products.add(mapResultSetToProduct(rs));
-            }
-        } catch (SQLException e) {
-            System.err.println("Error fetching products: " + e.getMessage());
-        }
-        return products;
-    }
-    
-    @Override
-    public void insert(Product product) {
-        String sql = "INSERT INTO products (code, name, category, price, stock, unit, description) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, product.getCode());
             stmt.setString(2, product.getName());
             stmt.setString(3, product.getCategory());
             stmt.setDouble(4, product.getPrice());
             stmt.setInt(5, product.getStock());
-            stmt.setString(6, product.getUnit());
-            stmt.setString(7, product.getDescription());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Error inserting product: " + e.getMessage());
+            
+            int rows = stmt.executeUpdate();
+            if (rows == 0) {
+                throw new SQLException("Insert gagal untuk produk: " + product.getCode());
+            }
+            LOGGER.info("Produk berhasil ditambahkan: " + product.getCode());
         }
+    }
+    
+    @Override
+    public List<Product> findAll() throws Exception {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT code, name, category, price, stock FROM products";
+        
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                products.add(mapResultSetToProduct(rs));
+            }
+        }
+        return products;
     }
     
     // ... other implementations
 }
-
 ```
 
 ### 4.8 Implementasi Login dengan Role Selection (NEW)
@@ -694,7 +797,7 @@ class ProductServiceTest {
         DiscountStrategy discount = new PercentageDiscount(10, "Member");
         
         // When
-        double result = discount.calculate(100000, 5);
+        double result = discount.calculateDiscount(100000, 5);
         
         // Then
         assertEquals(10000, result, 0.01);
@@ -704,11 +807,12 @@ class ProductServiceTest {
     @DisplayName("Should validate cash payment")
     void testCashPaymentValidation() {
         // Given
-        PaymentMethod payment = new CashPayment(150000, 125000);
+        CashPayment payment = new CashPayment();
         
         // When & Then
-        assertTrue(payment.validate());
-        assertEquals(25000, ((CashPayment) payment).getChange(), 0.01);
+        assertTrue(payment.validatePayment(125000, 150000));
+        double change = payment.processPayment(125000, 150000);
+        assertEquals(25000, change, 0.01);
     }
 }
 
@@ -719,7 +823,8 @@ class ProductServiceTest {
 |---------|---------------|-----------------|---------------|
 | model | 100% | 95% | 92% |
 | service | 100% | 88% | 85% |
-| strategy | 100% | 90% | 88% |
+| service.payment | 100% | 90% | 88% |
+| service.discount | 100% | 90% | 88% |
 | dao | 80% | 75% | 70% |
 | **Total** | **95%** | **87%** | **84%** |
 
