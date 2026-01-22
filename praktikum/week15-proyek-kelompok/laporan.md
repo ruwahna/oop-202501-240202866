@@ -8,23 +8,11 @@
 
                 [2. Lia Lusianti (240202869)]
 
-                [3. Fikianto (240202899)]
 
-                [4. Rizal Ramadhani (240202883)]
 
 - **Kelas**: [3IKRB]
 - **Tanggal**: [18 Januari 2026]
 
----
-
-## Daftar Isi
-1. [Pendahuluan](#1-pendahuluan)
-2. [Analisis Kebutuhan](#2-analisis-kebutuhan)
-3. [Desain Sistem](#3-desain-sistem)
-4. [Implementasi](#4-implementasi)
-5. [Testing](#5-testing)
-6. [Screenshot](#6-screenshot)
-7. [Kesimpulan](#7-kesimpulan)
 
 ---
 
