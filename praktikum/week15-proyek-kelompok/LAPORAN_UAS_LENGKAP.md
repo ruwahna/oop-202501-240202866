@@ -1,4 +1,4 @@
-# LAPORAN PROYEK AKHIR SEMESTER
+﻿# LAPORAN PROYEK AKHIR SEMESTER
 ## APLIKASI AGRI-POS: SISTEM POINT OF SALE UNTUK PERTANIAN
 ### Mata Kuliah: Pemrograman Berorientasi Objek (OOP)
 ### Universitas Negeri Semarang | Semester Ganjil 2025/2026
@@ -15,7 +15,7 @@
 | **Kelas** | 3IKRB |
 | **Semester** | Ganjil 2025/2026 |
 | **Tanggal Penyerahan** | 18 Januari 2026 |
-| **Status Proyek** | Selesai ✓ |
+| **Status Proyek** | Selesai âœ“ |
 
 ---
 
@@ -65,56 +65,56 @@ Mengembangkan aplikasi desktop yang menerapkan konsep OOP mendalam, design patte
 ### Tujuan Spesifik Pembelajaran
 
 #### 1. **Penguasaan Konsep OOP**
-   - ✓ Mengintegrasikan encapsulation, inheritance, polymorphism, dan abstraction dalam desain kelas-kelas aplikasi
-   - ✓ Membuat class hierarchy yang logis dengan method dan atribut yang terorganisir
-   - ✓ Menggunakan access modifiers (public, private, protected) dengan tepat
-   - ✓ Mengimplementasikan interface dan abstract class untuk kontrak kode
+   - âœ“ Mengintegrasikan encapsulation, inheritance, polymorphism, dan abstraction dalam desain kelas-kelas aplikasi
+   - âœ“ Membuat class hierarchy yang logis dengan method dan atribut yang terorganisir
+   - âœ“ Menggunakan access modifiers (public, private, protected) dengan tepat
+   - âœ“ Mengimplementasikan interface dan abstract class untuk kontrak kode
 
 #### 2. **Penerapan Design Patterns**
-   - ✓ **Singleton Pattern**: Untuk DatabaseConnection (satu instance koneksi database)
-   - ✓ **Singleton Pattern**: Untuk DiscountConfigService (shared discount config Admin-Kasir)
-   - ✓ **Strategy Pattern**: Untuk PaymentMethod (Cash, E-Wallet, QRIS sebagai strategy berbeda)
-   - ✓ **Factory Pattern**: Untuk PaymentMethodFactory (pembuatan payment method instances)
-   - ✓ **DAO Pattern**: Untuk abstraksi akses database
-   - ✓ **Repository Pattern**: Untuk data persistence abstraction
+   - âœ“ **Singleton Pattern**: Untuk DatabaseConnection (satu instance koneksi database)
+   - âœ“ **Singleton Pattern**: Untuk DiscountConfigService (shared discount config Admin-Kasir)
+   - âœ“ **Strategy Pattern**: Untuk PaymentMethod (Cash, E-Wallet, QRIS sebagai strategy berbeda)
+   - âœ“ **Factory Pattern**: Untuk PaymentMethodFactory (pembuatan payment method instances)
+   - âœ“ **DAO Pattern**: Untuk abstraksi akses database
+   - âœ“ **Repository Pattern**: Untuk data persistence abstraction
 
 #### 3. **Arsitektur Berlapis (Layered Architecture)**
-   - ✓ **Presentation Layer**: JavaFX GUI dengan FXML dan controllers
-   - ✓ **Controller Layer**: Event handling dan orchestration
-   - ✓ **Service Layer**: Business logic dan validasi
-   - ✓ **DAO Layer**: Data access abstraction
-   - ✓ **Database Layer**: PostgreSQL dengan JDBC
+   - âœ“ **Presentation Layer**: JavaFX GUI dengan FXML dan controllers
+   - âœ“ **Controller Layer**: Event handling dan orchestration
+   - âœ“ **Service Layer**: Business logic dan validasi
+   - âœ“ **DAO Layer**: Data access abstraction
+   - âœ“ **Database Layer**: PostgreSQL dengan JDBC
 
 #### 4. **Fitur Aplikasi yang Komprehensif**
-   - ✓ Manajemen produk (CRUD), pencarian, filter kategori
-   - ✓ Sistem transaksi lengkap dengan cart management
-   - ✓ Sistem pembayaran multi-metode
-   - ✓ Sistem diskon fleksibel (per-item dan per-transaksi)
-   - ✓ Manajemen diskon oleh Admin dengan sync real-time ke Kasir
-   - ✓ Struk penjualan dengan detail lengkap
-   - ✓ Riwayat transaksi dengan filter dan cetak ulang
-   - ✓ Laporan penjualan untuk analisis bisnis
-   - ✓ Dashboard admin dengan statistik real-time
-   - ✓ Responsive design (support mobile dan desktop)
+   - âœ“ Manajemen produk (CRUD), pencarian, filter kategori
+   - âœ“ Sistem transaksi lengkap dengan cart management
+   - âœ“ Sistem pembayaran multi-metode
+   - âœ“ Sistem diskon fleksibel (per-item dan per-transaksi)
+   - âœ“ Manajemen diskon oleh Admin dengan sync real-time ke Kasir
+   - âœ“ Struk penjualan dengan detail lengkap
+   - âœ“ Riwayat transaksi dengan filter dan cetak ulang
+   - âœ“ Laporan penjualan untuk analisis bisnis
+   - âœ“ Dashboard admin dengan statistik real-time
+   - âœ“ Responsive design (support mobile dan desktop)
 
 #### 5. **Testing dan Quality Assurance**
-   - ✓ Unit testing dengan JUnit 5
-   - ✓ Mocking dengan Mockito
-   - ✓ Test coverage >70% untuk critical path
-   - ✓ Bug detection dan fixing
+   - âœ“ Unit testing dengan JUnit 5
+   - âœ“ Mocking dengan Mockito
+   - âœ“ Test coverage >70% untuk critical path
+   - âœ“ Bug detection dan fixing
 
 #### 6. **Database Integration**
-   - ✓ Normalisasi database (3NF)
-   - ✓ Relasi antar tabel dengan foreign keys
-   - ✓ Prepared statements untuk keamanan SQL Injection
-   - ✓ Transaction management
+   - âœ“ Normalisasi database (3NF)
+   - âœ“ Relasi antar tabel dengan foreign keys
+   - âœ“ Prepared statements untuk keamanan SQL Injection
+   - âœ“ Transaction management
 
 #### 7. **Documentation**
-   - ✓ Code documentation dengan JavaDoc
-   - ✓ Architecture documentation
-   - ✓ User manual dan panduan penggunaan
-   - ✓ Team roles dan contribution tracking
-   - ✓ API documentation
+   - âœ“ Code documentation dengan JavaDoc
+   - âœ“ Architecture documentation
+   - âœ“ User manual dan panduan penggunaan
+   - âœ“ Team roles dan contribution tracking
+   - âœ“ API documentation
 
 ## 1.3 Ruang Lingkup Proyek
 
@@ -160,10 +160,10 @@ Kasir dapat membuat transaksi penjualan lengkap dari pencarian produk hingga che
 
 **Kalkulasi:**
 ```
-Subtotal = Σ(Harga per unit × Jumlah)
-Diskon Per Item = Jumlah × Harga satuan × Persentase diskon
+Subtotal = Î£(Harga per unit Ã— Jumlah)
+Diskon Per Item = Jumlah Ã— Harga satuan Ã— Persentase diskon
 Subtotal Setelah Diskon = Subtotal - Total Diskon Per Item - Diskon Transaksi
-Pajak = Subtotal Setelah Diskon × 10%
+Pajak = Subtotal Setelah Diskon Ã— 10%
 Total Akhir = Subtotal Setelah Diskon + Pajak
 Kembalian = Jumlah Bayar - Total Akhir
 ```
@@ -174,7 +174,7 @@ Aplikasi mendukung tiga metode pembayaran dengan validasi otomatis.
 **Metode 1 - Cash Payment:**
 - Input nominal pembayaran tunai
 - Sistem hitung kembalian
-- Validasi pembayaran ≥ total
+- Validasi pembayaran â‰¥ total
 - Catatan: Kembalian tidak dapat digunakan untuk transaksi berikutnya
 
 **Metode 2 - E-Wallet Payment:**
@@ -238,36 +238,36 @@ Sistem otomatis generate struk detail setiap transaksi berhasil.
 
 **Isi Struk:**
 ```
-═══════════════════════════════════
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         TOKO PERTANIAN "AGRI"
            Struk Penjualan
-═══════════════════════════════════
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 No. Transaksi: TRX001
 Tanggal/Waktu : 18-01-2026 14:30:45
 Kasir        : Ahmad (ID: 1)
-───────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 PRODUK                  HARGA    QTY   TOTAL
-───────────────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 Beras Premium        50.000      2    100.000
 Pupuk Urea          12.500      3     37.500
 Bibit Padi           8.000      1      8.000
-───────────────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 SUBTOTAL                              145.500
 Diskon                                 (5.000)
-───────────────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 Subtotal Setelah Diskon                140.500
 Pajak (10%)                             14.050
-───────────────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 TOTAL                                 154.550
 Pembayaran (Cash)                     160.000
 Kembalian                               5.450
-───────────────────────────────────────────
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
    Terima kasih telah berbelanja!
    Silakan datang kembali :)
 
-═══════════════════════════════════
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 ```
 
 #### G. **Riwayat Transaksi**
@@ -340,20 +340,9 @@ Admin dapat generate laporan terstruktur untuk analisis bisnis.
 
 ---
 
-# BAGIAN II: ANALISIS SISTEM DAN FITUR
+# BAGIAN II: DESKRIPSI SISTEM DAN FITUR
 
-## 2.1 Visi dan Misi Produk
-
-### Visi
-Menjadi sistem Point of Sale pilihan untuk sektor pertanian dengan menyediakan teknologi yang user-friendly, reliable, dan mendukung pertumbuhan bisnis.
-
-### Misi
-- Mengotomatisasi proses transaksi penjualan untuk meningkatkan efisiensi
-- Menyediakan visibility data penjualan untuk decision making
-- Mendukung berbagai metode pembayaran modern
-- Memastikan akurasi data dan integritas transaksi
-
-## 2.2 Analisis Kebutuhan
+## 2.1 Analisis Kebutuhan
 
 ### Kebutuhan Fungsional (Functional Requirements)
 
@@ -472,49 +461,49 @@ Menjadi sistem Point of Sale pilihan untuk sektor pertanian dengan menyediakan t
 
 ### 2.5 Use Case Detail per Actor
 
-#### 🏪 Kasir - Use Case List
+#### ðŸª Kasir - Use Case List
 
 | No | Use Case | Deskripsi | Tab Menu |
 |----|----------|-----------|----------|
 | 1 | Login | Autentikasi masuk sistem dengan pilih role | LoginView |
 | 2 | Logout | Keluar dari sistem | Header |
-| 3 | New Transaction | Membuat transaksi penjualan baru | 🛒 Transaksi Baru |
-| 4 | Search Product | Mencari produk berdasarkan nama/kode | 🛒 Transaksi Baru |
-| 5 | Filter Category | Filter produk berdasarkan kategori | 🛒 Transaksi Baru |
-| 6 | Add to Cart | Menambahkan produk ke keranjang | 🛒 Transaksi Baru |
-| 7 | Update Cart Qty | Mengubah jumlah item di keranjang | 🛒 Transaksi Baru |
-| 8 | Remove from Cart | Menghapus item dari keranjang | 🛒 Transaksi Baru |
-| 9 | Clear Cart | Mengosongkan seluruh keranjang | 🛒 Transaksi Baru |
-| 10 | Checkout (Cash) | Proses pembayaran tunai | 🛒 Transaksi Baru |
-| 11 | Checkout (E-Wallet) | Proses pembayaran e-wallet | 🛒 Transaksi Baru |
-| 12 | Checkout (QRIS) | Proses pembayaran QRIS | 🛒 Transaksi Baru |
-| 13 | Apply Discount | Menerapkan diskon dari dropdown | 🛒 Transaksi Baru |
-| 14 | Apply Voucher | Memasukkan kode voucher manual | 🛒 Transaksi Baru |
-| 15 | Refresh Discount | Memperbarui daftar diskon dari Admin | 🛒 Transaksi Baru |
-| 16 | Print Receipt | Mencetak struk pembelian | 🛒 Transaksi Baru |
-| 17 | View Transaction History | Melihat riwayat transaksi | 📋 Riwayat Transaksi |
-| 18 | Reprint Receipt | Cetak ulang struk transaksi lama | 📋 Riwayat Transaksi |
+| 3 | New Transaction | Membuat transaksi penjualan baru | ðŸ›’ Transaksi Baru |
+| 4 | Search Product | Mencari produk berdasarkan nama/kode | ðŸ›’ Transaksi Baru |
+| 5 | Filter Category | Filter produk berdasarkan kategori | ðŸ›’ Transaksi Baru |
+| 6 | Add to Cart | Menambahkan produk ke keranjang | ðŸ›’ Transaksi Baru |
+| 7 | Update Cart Qty | Mengubah jumlah item di keranjang | ðŸ›’ Transaksi Baru |
+| 8 | Remove from Cart | Menghapus item dari keranjang | ðŸ›’ Transaksi Baru |
+| 9 | Clear Cart | Mengosongkan seluruh keranjang | ðŸ›’ Transaksi Baru |
+| 10 | Checkout (Cash) | Proses pembayaran tunai | ðŸ›’ Transaksi Baru |
+| 11 | Checkout (E-Wallet) | Proses pembayaran e-wallet | ðŸ›’ Transaksi Baru |
+| 12 | Checkout (QRIS) | Proses pembayaran QRIS | ðŸ›’ Transaksi Baru |
+| 13 | Apply Discount | Menerapkan diskon dari dropdown | ðŸ›’ Transaksi Baru |
+| 14 | Apply Voucher | Memasukkan kode voucher manual | ðŸ›’ Transaksi Baru |
+| 15 | Refresh Discount | Memperbarui daftar diskon dari Admin | ðŸ›’ Transaksi Baru |
+| 16 | Print Receipt | Mencetak struk pembelian | ðŸ›’ Transaksi Baru |
+| 17 | View Transaction History | Melihat riwayat transaksi | ðŸ“‹ Riwayat Transaksi |
+| 18 | Reprint Receipt | Cetak ulang struk transaksi lama | ðŸ“‹ Riwayat Transaksi |
 
-#### 👔 Admin - Use Case List
+#### ðŸ‘” Admin - Use Case List
 
 | No | Use Case | Deskripsi | Tab Menu |
 |----|----------|-----------|----------|
 | 1 | Login | Autentikasi masuk sistem dengan pilih role | LoginView |
 | 2 | Logout | Keluar dari sistem | Header |
-| 3 | View Dashboard | Melihat statistik penjualan dan grafik | 📊 Dashboard |
-| 4 | View Low Stock Alert | Melihat produk dengan stok rendah | 📊 Dashboard |
-| 5 | Add Product | Menambah produk baru | 📦 Manajemen Produk |
-| 6 | Edit Product | Mengubah data produk | 📦 Manajemen Produk |
-| 7 | Delete Product | Menghapus produk dari sistem | 📦 Manajemen Produk |
-| 8 | Search Product | Mencari produk | 📦 Manajemen Produk |
-| 9 | Daily Sales Report | Generate laporan harian | 📈 Laporan Penjualan |
-| 10 | Period Sales Report | Generate laporan periode | 📈 Laporan Penjualan |
-| 11 | Export Report | Export laporan ke file | 📈 Laporan Penjualan |
-| 12 | Add Discount | Menambah diskon baru | 🎁 Manajemen Diskon |
-| 13 | Edit Discount | Mengubah konfigurasi diskon | 🎁 Manajemen Diskon |
-| 14 | Delete Discount | Menghapus diskon | 🎁 Manajemen Diskon |
-| 15 | Toggle Discount Status | Aktifkan/nonaktifkan diskon | 🎁 Manajemen Diskon |
-| 16 | Search Discount | Mencari diskon | 🎁 Manajemen Diskon |
+| 3 | View Dashboard | Melihat statistik penjualan dan grafik | ðŸ“Š Dashboard |
+| 4 | View Low Stock Alert | Melihat produk dengan stok rendah | ðŸ“Š Dashboard |
+| 5 | Add Product | Menambah produk baru | ðŸ“¦ Manajemen Produk |
+| 6 | Edit Product | Mengubah data produk | ðŸ“¦ Manajemen Produk |
+| 7 | Delete Product | Menghapus produk dari sistem | ðŸ“¦ Manajemen Produk |
+| 8 | Search Product | Mencari produk | ðŸ“¦ Manajemen Produk |
+| 9 | Daily Sales Report | Generate laporan harian | ðŸ“ˆ Laporan Penjualan |
+| 10 | Period Sales Report | Generate laporan periode | ðŸ“ˆ Laporan Penjualan |
+| 11 | Export Report | Export laporan ke file | ðŸ“ˆ Laporan Penjualan |
+| 12 | Add Discount | Menambah diskon baru | ðŸŽ Manajemen Diskon |
+| 13 | Edit Discount | Mengubah konfigurasi diskon | ðŸŽ Manajemen Diskon |
+| 14 | Delete Discount | Menghapus diskon | ðŸŽ Manajemen Diskon |
+| 15 | Toggle Discount Status | Aktifkan/nonaktifkan diskon | ðŸŽ Manajemen Diskon |
+| 16 | Search Discount | Mencari diskon | ðŸŽ Manajemen Diskon |
 
 ---
 
@@ -527,44 +516,44 @@ Menjadi sistem Point of Sale pilihan untuk sektor pertanian dengan menyediakan t
 Agri-POS menggunakan **Layered Architecture (N-Tier Architecture)** dengan 5 layer utama:
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│           PRESENTATION LAYER (View)                     │
-│  - JavaFX GUI (FXML)                                   │
-│  - LoginView, MainView (Transactions, Products, etc)   │
-│  - Event handlers dan user interaction                 │
-└──────────────────┬──────────────────────────────────────┘
-                   │ (User Actions / Display Updates)
-┌──────────────────▼──────────────────────────────────────┐
-│         CONTROLLER LAYER                                │
-│  - LoginController, PosController                       │
-│  - Handle events dari View                              │
-│  - Call Service untuk business logic                    │
-│  - Update View dengan hasil                             │
-└──────────────────┬──────────────────────────────────────┘
-                   │ (Business Logic Request)
-┌──────────────────▼──────────────────────────────────────┐
-│         SERVICE LAYER (Business Logic)                  │
-│  - ProductService, CartService, TransactionService     │
-│  - ReceiptService, ReportService, AuthService          │
-│  - DiscountConfigService (NEW - Singleton Pattern)     │
-│  - Business rules, validasi, kalkulasi                 │
-│  - Orchestrate DAO calls                               │
-└──────────────────┬──────────────────────────────────────┘
-                   │ (DAO Calls)
-┌──────────────────▼──────────────────────────────────────┐
-│         DAO LAYER (Data Access)                         │
-│  - ProductDAO, UserDAO, TransactionDAO (Interface)     │
-│  - JdbcProductDAO, JdbcUserDAO, JdbcTransactionDAO     │
-│  - CRUD operations, Query building                      │
-│  - Abstraction dari database detail                     │
-└──────────────────┬──────────────────────────────────────┘
-                   │ (SQL Queries via JDBC)
-┌──────────────────▼──────────────────────────────────────┐
-│         DATABASE LAYER                                  │
-│  - PostgreSQL 13+                                       │
-│  - Tables: products, users, transactions, etc          │
-│  - Foreign keys, constraints, indexes                  │
-└─────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚           PRESENTATION LAYER (View)                     â”‚
+â”‚  - JavaFX GUI (FXML)                                   â”‚
+â”‚  - LoginView, MainView (Transactions, Products, etc)   â”‚
+â”‚  - Event handlers dan user interaction                 â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                   â”‚ (User Actions / Display Updates)
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         CONTROLLER LAYER                                â”‚
+â”‚  - LoginController, PosController                       â”‚
+â”‚  - Handle events dari View                              â”‚
+â”‚  - Call Service untuk business logic                    â”‚
+â”‚  - Update View dengan hasil                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                   â”‚ (Business Logic Request)
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         SERVICE LAYER (Business Logic)                  â”‚
+â”‚  - ProductService, CartService, TransactionService     â”‚
+â”‚  - ReceiptService, ReportService, AuthService          â”‚
+â”‚  - DiscountConfigService (NEW - Singleton Pattern)     â”‚
+â”‚  - Business rules, validasi, kalkulasi                 â”‚
+â”‚  - Orchestrate DAO calls                               â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                   â”‚ (DAO Calls)
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         DAO LAYER (Data Access)                         â”‚
+â”‚  - ProductDAO, UserDAO, TransactionDAO (Interface)     â”‚
+â”‚  - JdbcProductDAO, JdbcUserDAO, JdbcTransactionDAO     â”‚
+â”‚  - CRUD operations, Query building                      â”‚
+â”‚  - Abstraction dari database detail                     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                   â”‚ (SQL Queries via JDBC)
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         DATABASE LAYER                                  â”‚
+â”‚  - PostgreSQL 13+                                       â”‚
+â”‚  - Tables: products, users, transactions, etc          â”‚
+â”‚  - Foreign keys, constraints, indexes                  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ### Manfaat Layered Architecture
@@ -576,7 +565,7 @@ Agri-POS menggunakan **Layered Architecture (N-Tier Architecture)** dengan 5 lay
 | **Testability** | Mudah mock dependencies, unit test independen |
 | **Maintainability** | Change di satu layer tidak berdampak layer lain |
 | **Scalability** | Mudah tambah fitur baru tanpa ubah layer lain |
-| **Flexibility** | Database bisa switch (PostgreSQL → MySQL) tanpa ubah service |
+| **Flexibility** | Database bisa switch (PostgreSQL â†’ MySQL) tanpa ubah service |
 | **Security** | Business logic terpusat di service layer |
 
 ### Penjelasan Konseptual: Mengapa Layered Architecture?
@@ -595,15 +584,15 @@ Dalam pengembangan aplikasi enterprise seperti POS, kompleksitas akan terus bert
 
 ```
 ANALOGI: Seperti struktur organisasi perusahaan
-═══════════════════════════════════════════════
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
-Direktur (Controller)     → Menerima permintaan, mendelegasikan tugas
-         │
-Manager (Service)         → Menjalankan business logic, koordinasi tim
-         │
-Staff Database (DAO)      → Eksekusi query, tidak peduli business logic
-         │
-Database (PostgreSQL)     → Tempat penyimpanan data
+Direktur (Controller)     â†’ Menerima permintaan, mendelegasikan tugas
+         â”‚
+Manager (Service)         â†’ Menjalankan business logic, koordinasi tim
+         â”‚
+Staff Database (DAO)      â†’ Eksekusi query, tidak peduli business logic
+         â”‚
+Database (PostgreSQL)     â†’ Tempat penyimpanan data
 ```
 
 Dengan struktur ini:
@@ -620,62 +609,62 @@ Dengan struktur ini:
 
 ```
 src/main/java/com/upb/agripos/
-├── AppJavaFx.java                 # Main entry point
-├── controller/
-│   ├── LoginController.java       # Handle login
-│   └── PosController.java         # Handle business logic
-├── dao/
-│   ├── ProductDAO.java            # Interface
-│   ├── UserDAO.java               # Interface
-│   ├── TransactionDAO.java        # Interface
-│   ├── JdbcProductDAO.java        # Implementation
-│   ├── JdbcUserDAO.java           # Implementation
-│   └── JdbcTransactionDAO.java    # Implementation
-├── exception/
-│   ├── AuthenticationException.java
-│   ├── DataNotFoundException.java
-│   ├── OutOfStockException.java
-│   ├── PaymentException.java
-│   └── ValidationException.java
-├── model/
-│   ├── Product.java
-│   ├── User.java
-│   ├── Transaction.java
-│   ├── TransactionItem.java
-│   ├── Cart.java
-│   ├── CartItem.java
-│   └── CheckoutSummary.java
-├── service/
-│   ├── ProductService.java
-│   ├── CartService.java
-│   ├── TransactionService.java
-│   ├── AuthService.java
-│   ├── ReportService.java
-│   ├── ReceiptService.java
-│   ├── DiscountConfigService.java    # Singleton
-│   ├── payment/
-│   │   ├── PaymentMethod.java        # Interface
-│   │   ├── CashPayment.java
-│   │   ├── EWalletPayment.java
-│   │   ├── QRISPayment.java
-│   │   └── PaymentMethodFactory.java
-│   └── discount/
-│       ├── DiscountStrategy.java     # Interface
-│       ├── PercentageDiscount.java
-│       ├── FixedDiscount.java
-│       ├── BulkDiscount.java
-│       └── VoucherDiscount.java
-├── util/
-│   ├── DatabaseConnection.java       # Singleton
-│   └── DatabaseMigration.java        # Auto migration
-└── view/
-    ├── LoginView.java
-    ├── MainView.java
-    ├── TransactionView.java
-    ├── DashboardView.java
-    ├── ProductManagementView.java
-    ├── ReportView.java
-    └── DiscountManagementView.java
+â”œâ”€â”€ AppJavaFx.java                 # Main entry point
+â”œâ”€â”€ controller/
+â”‚   â”œâ”€â”€ LoginController.java       # Handle login
+â”‚   â””â”€â”€ PosController.java         # Handle business logic
+â”œâ”€â”€ dao/
+â”‚   â”œâ”€â”€ ProductDAO.java            # Interface
+â”‚   â”œâ”€â”€ UserDAO.java               # Interface
+â”‚   â”œâ”€â”€ TransactionDAO.java        # Interface
+â”‚   â”œâ”€â”€ JdbcProductDAO.java        # Implementation
+â”‚   â”œâ”€â”€ JdbcUserDAO.java           # Implementation
+â”‚   â””â”€â”€ JdbcTransactionDAO.java    # Implementation
+â”œâ”€â”€ exception/
+â”‚   â”œâ”€â”€ AuthenticationException.java
+â”‚   â”œâ”€â”€ DataNotFoundException.java
+â”‚   â”œâ”€â”€ OutOfStockException.java
+â”‚   â”œâ”€â”€ PaymentException.java
+â”‚   â””â”€â”€ ValidationException.java
+â”œâ”€â”€ model/
+â”‚   â”œâ”€â”€ Product.java
+â”‚   â”œâ”€â”€ User.java
+â”‚   â”œâ”€â”€ Transaction.java
+â”‚   â”œâ”€â”€ TransactionItem.java
+â”‚   â”œâ”€â”€ Cart.java
+â”‚   â”œâ”€â”€ CartItem.java
+â”‚   â””â”€â”€ CheckoutSummary.java
+â”œâ”€â”€ service/
+â”‚   â”œâ”€â”€ ProductService.java
+â”‚   â”œâ”€â”€ CartService.java
+â”‚   â”œâ”€â”€ TransactionService.java
+â”‚   â”œâ”€â”€ AuthService.java
+â”‚   â”œâ”€â”€ ReportService.java
+â”‚   â”œâ”€â”€ ReceiptService.java
+â”‚   â”œâ”€â”€ DiscountConfigService.java    # Singleton
+â”‚   â”œâ”€â”€ payment/
+â”‚   â”‚   â”œâ”€â”€ PaymentMethod.java        # Interface
+â”‚   â”‚   â”œâ”€â”€ CashPayment.java
+â”‚   â”‚   â”œâ”€â”€ EWalletPayment.java
+â”‚   â”‚   â”œâ”€â”€ QRISPayment.java
+â”‚   â”‚   â””â”€â”€ PaymentMethodFactory.java
+â”‚   â””â”€â”€ discount/
+â”‚       â”œâ”€â”€ DiscountStrategy.java     # Interface
+â”‚       â”œâ”€â”€ PercentageDiscount.java
+â”‚       â”œâ”€â”€ FixedDiscount.java
+â”‚       â”œâ”€â”€ BulkDiscount.java
+â”‚       â””â”€â”€ VoucherDiscount.java
+â”œâ”€â”€ util/
+â”‚   â”œâ”€â”€ DatabaseConnection.java       # Singleton
+â”‚   â””â”€â”€ DatabaseMigration.java        # Auto migration
+â””â”€â”€ view/
+    â”œâ”€â”€ LoginView.java
+    â”œâ”€â”€ MainView.java
+    â”œâ”€â”€ TransactionView.java
+    â”œâ”€â”€ DashboardView.java
+    â”œâ”€â”€ ProductManagementView.java
+    â”œâ”€â”€ ReportView.java
+    â””â”€â”€ DiscountManagementView.java
 ```
 
 ## 3.3 SOLID Principles Implementation
@@ -688,93 +677,7 @@ src/main/java/com/upb/agripos/
 | **I** - Interface Segregation | DAO interfaces terpisah per entity |
 | **D** - Dependency Inversion | Services depend on DAO interfaces |
 
-## 3.4 Component Diagram
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Agri-POS Application                    │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │              PRESENTATION LAYER (JavaFX)                │  │
-│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │  │
-│  │  │ LoginView    │  │ Transaction  │  │ Admin View   │  │  │
-│  │  │              │  │ Management   │  │              │  │  │
-│  │  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  │  │
-│  └─────────┼──────────────────┼──────────────────┼─────────┘  │
-│            │ (Event Handling) │                  │             │
-│  ┌─────────▼──────────────────▼──────────────────▼─────────┐  │
-│  │          CONTROLLER LAYER                               │  │
-│  │  ┌────────────────────┐ ┌────────────────────────────┐ │  │
-│  │  │ LoginController    │ │ PosController            │ │  │
-│  │  │ - handleLogin()    │ │ - handleTransaction()    │ │  │
-│  │  │ - validateInput()  │ │ - handleCheckout()       │ │  │
-│  │  └────────────────────┘ │ - generateReport()       │ │  │
-│  │                         └────────────────────────────┘ │  │
-│  └────────────┬──────────────────────────────────────────┘  │
-│               │ (Service Calls)                             │
-│  ┌────────────▼──────────────────────────────────────────┐  │
-│  │            SERVICE LAYER (Business Logic)             │  │
-│  │  ┌──────────────────────────────────────────────────┐ │  │
-│  │  │ • ProductService       • ReportService          │ │  │
-│  │  │ • CartService          • AuthService            │ │  │
-│  │  │ • TransactionService   • ReceiptService         │ │  │
-│  │  │                                                  │ │  │
-│  │  │ Tanggung Jawab:                                 │ │  │
-│  │  │ - Validasi data input                           │ │  │
-│  │  │ - Eksekusi business rules                       │ │  │
-│  │  │ - Koordinasi multiple DAO calls                 │ │  │
-│  │  │ - Kalkulasi dan transformasi data               │ │  │
-│  │  └──────────────────────────────────────────────────┘ │  │
-│  └───────────┬────────────────────────────────────────────┘  │
-│              │ (DAO Calls)                                    │
-│  ┌───────────▼────────────────────────────────────────────┐  │
-│  │             DAO LAYER (Data Persistence)              │  │
-│  │                                                        │  │
-│  │  Interfaces:                                          │  │
-│  │  ┌─────────────┐ ┌──────────────┐ ┌────────────────┐ │  │
-│  │  │ ProductDAO  │ │ UserDAO      │ │TransactionDAO │ │  │
-│  │  └─────────────┘ └──────────────┘ └────────────────┘ │  │
-│  │                                                        │  │
-│  │  Implementations (JDBC):                              │  │
-│  │  ┌─────────────────┐ ┌────────────────────────────┐ │  │
-│  │  │ JdbcProductDAO  │ │ JdbcUserDAO               │ │  │
-│  │  │ JdbcTransactionDAO                             │ │  │
-│  │  └─────────────────┴────────────────────────────┘ │  │
-│  │                                                        │  │
-│  │  Fitur:                                               │  │
-│  │  - CRUD operations (Create, Read, Update, Delete)    │  │
-│  │  - Query building & parameter binding                │  │
-│  │  - Result set mapping ke objects                     │  │
-│  │  - Transaction management                            │  │
-│  └───────────┬────────────────────────────────────────┘  │
-│              │ (SQL via JDBC)                             │
-│  ┌───────────▼────────────────────────────────────────┐  │
-│  │         DATABASE LAYER (PostgreSQL 13+)            │  │
-│  │                                                     │  │
-│  │  ┌─────────────┐ ┌─────────────────────────────┐ │  │
-│  │  │   Tables    │ │  Relationships & Constraints │ │  │
-│  │  │             │ │                             │ │  │
-│  │  │ • products  │ │ • Foreign Keys              │ │  │
-│  │  │ • users     │ │ • Unique Constraints        │ │  │
-│  │  │ • trans.    │ │ • Primary Keys              │ │  │
-│  │  │ • cart_item │ │ • Check Constraints         │ │  │
-│  │  │ • discount  │ │ • Indexes                   │ │  │
-│  │  └─────────────┘ └─────────────────────────────┘ │  │
-│  └─────────────────────────────────────────────────┘  │
-│                                                        │
-│  Utilities & Infrastructure:                          │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ • DatabaseConnection (Singleton)                 │ │
-│  │ • DatabaseMigration (Auto-migration on startup) │ │
-│  │ • JDBC Connection Management                     │ │
-│  │ • PreparedStatement untuk SQL Injection prevention│ │
-│  │ • Logging dengan Java Util Logging              │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                        │
-└────────────────────────────────────────────────────────┘
-```
-
-## 3.5 Class Diagram (Visual)
+## 3.4 Class Diagram (Visual)
 
 ### Model Classes
 
@@ -788,7 +691,7 @@ src/main/java/com/upb/agripos/
 
 ![DAO Interface](/praktikum/week15-proyek-kelompok/screenshots/DAO%20interface.drawio%20(1).png)
 
-## 3.6 Sequence Diagrams
+## 3.5 Sequence Diagrams
 
 ### 3.6.1 Login Sequence
 
@@ -806,7 +709,7 @@ src/main/java/com/upb/agripos/
 
 ![Kasir Apply Discount](/praktikum/week15-proyek-kelompok/screenshots/Kasir%20Apply%20Discount%20.drawio.png)
 
-## 3.7 Design Patterns Summary
+## 3.6 Design Patterns Summary
 
 | Pattern | Class/Interface | Tujuan |
 |---------|-----------------|--------|
@@ -819,7 +722,7 @@ src/main/java/com/upb/agripos/
 | **Observer** | JavaFX `ObservableList` | Real-time sync discount changes |
 | **MVC** | View, Controller, Model | Separation of concerns |
 
-## 3.8 Database Schema (ERD)
+## 3.7 Database Schema (ERD)
 
 ![Database Schema (ERD)](/praktikum/week15-proyek-kelompok/screenshots/database%20schema%20(ERD).png)
 
@@ -827,1306 +730,199 @@ src/main/java/com/upb/agripos/
 
 ```
 RELASI:
-═══════
-• users (1) ──────< (*) transactions     : Satu user bisa punya banyak transaksi
-• transactions (1) ──────< (*) transaction_items : Satu transaksi punya banyak item
-• products (1) ──────< (*) transaction_items     : Satu produk bisa ada di banyak item
+â•â•â•â•â•â•â•
+â€¢ users (1) â”€â”€â”€â”€â”€â”€< (*) transactions     : Satu user bisa punya banyak transaksi
+â€¢ transactions (1) â”€â”€â”€â”€â”€â”€< (*) transaction_items : Satu transaksi punya banyak item
+â€¢ products (1) â”€â”€â”€â”€â”€â”€< (*) transaction_items     : Satu produk bisa ada di banyak item
 ```
 
-## 3.9 Class Diagram (Simplified - Domain Model)
+## 3.8 Class Diagram (Simplified - Domain Model)
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                      MODEL CLASSES (Entities)                    │
-└──────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                      MODEL CLASSES (Entities)                    â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
-┌────────────────────────────┐
-│         User              │
-├────────────────────────────┤
-│ - id: long                 │
-│ - username: String         │
-│ - password: String         │
-│ - email: String            │
-│ - role: UserRole (ENUM)    │
-│ - active: boolean          │
-│ - createdAt: LocalDateTime │
-├────────────────────────────┤
-│ + getters/setters()        │
-│ + toString()               │
-└────────────────────────────┘
-         ▲
-         │ role type
-         │
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚         User              â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ - id: long                 â”‚
+â”‚ - username: String         â”‚
+â”‚ - password: String         â”‚
+â”‚ - email: String            â”‚
+â”‚ - role: UserRole (ENUM)    â”‚
+â”‚ - active: boolean          â”‚
+â”‚ - createdAt: LocalDateTime â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ + getters/setters()        â”‚
+â”‚ + toString()               â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+         â–²
+         â”‚ role type
+         â”‚
     (ADMIN / KASIR)
 
 
-┌────────────────────────────┐
-│       Product             │
-├────────────────────────────┤
-│ - id: long                 │
-│ - code: String [UNIQUE]    │
-│ - name: String             │
-│ - category: String         │
-│ - price: double            │
-│ - stock: int               │
-│ - unit: String             │
-│ - description: String      │
-│ - active: boolean          │
-│ - createdAt: LocalDateTime │
-│ - updatedAt: LocalDateTime │
-├────────────────────────────┤
-│ + getters/setters()        │
-│ + isLowStock(): boolean    │
-│ + toString()               │
-└────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚       Product             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ - id: long                 â”‚
+â”‚ - code: String [UNIQUE]    â”‚
+â”‚ - name: String             â”‚
+â”‚ - category: String         â”‚
+â”‚ - price: double            â”‚
+â”‚ - stock: int               â”‚
+â”‚ - unit: String             â”‚
+â”‚ - description: String      â”‚
+â”‚ - active: boolean          â”‚
+â”‚ - createdAt: LocalDateTime â”‚
+â”‚ - updatedAt: LocalDateTime â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ + getters/setters()        â”‚
+â”‚ + isLowStock(): boolean    â”‚
+â”‚ + toString()               â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
 
-┌────────────────────────────┐
-│      CartItem             │
-├────────────────────────────┤
-│ - product: Product         │
-│ - quantity: int            │
-│ - discountPercent: double  │
-├────────────────────────────┤
-│ + getSubtotal(): double    │
-│ + getDiscountAmount(): double
-│ + getTotalAfterDiscount()  │
-│ + setQuantity(qty)         │
-│ + toString()               │
-└────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚      CartItem             â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ - product: Product         â”‚
+â”‚ - quantity: int            â”‚
+â”‚ - discountPercent: double  â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ + getSubtotal(): double    â”‚
+â”‚ + getDiscountAmount(): double
+â”‚ + getTotalAfterDiscount()  â”‚
+â”‚ + setQuantity(qty)         â”‚
+â”‚ + toString()               â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
 
-┌────────────────────────────┐
-│    Transaction           │
-├────────────────────────────┤
-│ - id: long                 │
-│ - code: String [UNIQUE]    │
-│ - cashierUsername: String  │
-│ - items: List<CartItem>    │
-│ - subtotal: double         │
-│ - discount: double         │
-│ - tax: double              │
-│ - total: double            │
-│ - paymentMethod: String    │
-│ - amountPaid: double       │
-│ - change: double           │
-│ - createdAt: LocalDateTime │
-├────────────────────────────┤
-│ + getters/setters()        │
-│ + toString()               │
-│ + toReceiptString()        │
-└────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚    Transaction           â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ - id: long                 â”‚
+â”‚ - code: String [UNIQUE]    â”‚
+â”‚ - cashierUsername: String  â”‚
+â”‚ - items: List<CartItem>    â”‚
+â”‚ - subtotal: double         â”‚
+â”‚ - discount: double         â”‚
+â”‚ - tax: double              â”‚
+â”‚ - total: double            â”‚
+â”‚ - paymentMethod: String    â”‚
+â”‚ - amountPaid: double       â”‚
+â”‚ - change: double           â”‚
+â”‚ - createdAt: LocalDateTime â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ + getters/setters()        â”‚
+â”‚ + toString()               â”‚
+â”‚ + toReceiptString()        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
 
-┌────────────────────────────┐
-│    PaymentMethod (I)      │ ◄─── Interface
-├────────────────────────────┤
-│ + validatePayment(): bool  │
-│ + processPayment(): double │
-│ + getMethodName(): String  │
-│ + getReceiptDescription()  │
-└────────────────────────────┘
-    ▲        ▲        ▲
-    │        │        │
-    │        │        └─── QrisPayment
-    │        └─────────────── EWalletPayment
-    │
-    └─────────────────────── CashPayment
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚    PaymentMethod (I)      â”‚ â—„â”€â”€â”€ Interface
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ + validatePayment(): bool  â”‚
+â”‚ + processPayment(): double â”‚
+â”‚ + getMethodName(): String  â”‚
+â”‚ + getReceiptDescription()  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+    â–²        â–²        â–²
+    â”‚        â”‚        â”‚
+    â”‚        â”‚        â””â”€â”€â”€ QrisPayment
+    â”‚        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ EWalletPayment
+    â”‚
+    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ CashPayment
     
-    ↑
-    └─── Strategy Pattern Implementation
-```
-
-## 3.4 Flowchart Proses Transaksi Utama
-
-```
-START: Kasir Buat Transaksi
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Create New Transaction              │
-│ - Auto-generate Transaction Code    │
-│ - Initialize empty cart             │
-│ - Set cashier username              │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Add Products to Cart Loop           │
-│                                     │
-│ 1. Search Product by code/name      │
-│ 2. Input Quantity                   │
-│ 3. Add to Cart                      │
-│    - Validate stock availability    │
-│    - Calculate item subtotal        │
-│ 4. Ask "Tambah produk lagi?" (Y/N)  │
-└─────────────────────────────────────┘
-  │
-  └──► NO ──────┐
-       YES      │
-       │        │
-       └◄───────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Apply Discount (Optional)           │
-│                                     │
-│ 1. Option: Skip or Apply            │
-│ 2. If Apply:                        │
-│    - Input diskon (% atau amount)   │
-│    - Choose: Per-Item or Trans?     │
-│    - Calculate discount             │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Calculate Summary                   │
-│                                     │
-│ Subtotal = Σ(price × qty)           │
-│ Diskon Total = dari step sebelumnya │
-│ Subtotal Setelah Diskon = Sub - Dis │
-│ Tax = Subtotal Setelah Diskon × 10% │
-│ TOTAL = Subtotal Setelah Dis + Tax  │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Select Payment Method               │
-│                                     │
-│ 1. Show options:                    │
-│    - Cash                           │
-│    - E-Wallet (OVO, GoPay, dll)    │
-│    - QRIS                           │
-│ 2. User choose one                  │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Process Payment                     │
-│                                     │
-│ IF Cash:                            │
-│   - Input amount paid               │
-│   - Calculate change                │
-│   - Validate: paid >= total         │
-│                                     │
-│ IF E-Wallet:                        │
-│   - Show e-wallet options           │
-│   - Input amount paid               │
-│   - Validate: paid = total          │
-│                                     │
-│ IF QRIS:                            │
-│   - Generate QRIS code              │
-│   - Scan dengan smartphone          │
-│   - Confirm success                 │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Validate Payment                    │
-├─────────────────────────────────────┤
-│ IF validation FAILED                │
-│   ├─ Show error message             │
-│   ├─ Ask "Ulangi?" (Y/N)            │
-│   ├─ IF Y: Go back to Payment select │
-│   └─ IF N: Cancel transaction       │
-│                                     │
-│ IF validation PASSED:               │
-│   └─ Continue to next step          │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Save Transaction to Database        │
-│                                     │
-│ INSERT into transactions table:     │
-│ - code, cashier, items, diskon      │
-│ - subtotal, tax, total              │
-│ - payment_method, amount_paid       │
-│ - change, created_at                │
-│                                     │
-│ UPDATE product stock:               │
-│ - Reduce stock for each item        │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Generate & Display Receipt          │
-│                                     │
-│ 1. Format receipt string            │
-│ 2. Include all transaction details  │
-│ 3. Display to kasir                 │
-│ 4. Offer Print option               │
-└─────────────────────────────────────┘
-  │
-  ▼
-┌─────────────────────────────────────┐
-│ Clear Cart & Reset                  │
-│ - Empty cart                        │
-│ - Ready for next transaction        │
-└─────────────────────────────────────┘
-  │
-  ▼
-END: Transaction Complete ✓
+    â†‘
+    â””â”€â”€â”€ Strategy Pattern Implementation
 ```
 
 ---
+
+
 
 # BAGIAN IV: IMPLEMENTASI OOP & DESIGN PATTERNS
 
 ## 4.1 Penerapan Konsep OOP
 
-### Pendahuluan: Filosofi OOP dalam Agri-POS
+Agri-POS mengintegrasikan keempat pilar OOP:
 
-Sebelum membahas implementasi teknis, penting untuk memahami **mengapa** OOP dipilih dan **bagaimana** keempat pilar OOP (Encapsulation, Inheritance, Polymorphism, Abstraction) saling terintegrasi dalam sistem Agri-POS.
+| Konsep | Implementasi | Contoh |
+|--------|--------------|--------|
+| **Encapsulation** | Private fields + validasi di setter | `Product.setStock()` menolak nilai negatif |
+| **Inheritance** | Interface implementation | `CashPayment` implements `PaymentMethod` |
+| **Polymorphism** | Runtime method dispatch | `processPayment()` berbeda per payment type |
+| **Abstraction** | DAO interfaces | `ProductDAO` menyembunyikan SQL dari service |
 
-**Analogi Sistem POS sebagai "Toko Fisik":**
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    ANALOGI: OOP = ORGANISASI TOKO                       │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  ENCAPSULATION = Brankas Toko                                          │
-│  └── Uang (data) disimpan di brankas, hanya kasir yang punya kunci     │
-│      → Private fields + public getters/setters dengan validasi         │
-│                                                                         │
-│  INHERITANCE = Job Description                                          │
-│  └── "Karyawan" adalah parent, "Kasir" dan "Admin" adalah children     │
-│      → Interface PaymentMethod di-implement oleh CashPayment, dll      │
-│                                                                         │
-│  POLYMORPHISM = Mesin Kasir Universal                                   │
-│  └── Mesin yang sama bisa proses Tunai, E-Wallet, QRIS                 │
-│      → processPayment() berbeda behavior tergantung PaymentMethod      │
-│                                                                         │
-│  ABSTRACTION = Tombol di Mesin Kasir                                    │
-│  └── Kasir tekan "Bayar", tidak perlu tahu algoritma di dalamnya       │
-│      → Interface menyembunyikan kompleksitas implementasi              │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
-```
-
-**Integrasi Keempat Pilar:**
-
-```
-User memilih pembayaran "E-Wallet"
-         │
-         ▼
-┌─────────────────┐
-│ ABSTRACTION     │ → Interface PaymentMethod (user tidak tahu detail)
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ POLYMORPHISM    │ → EWalletPayment dipilih saat runtime
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ INHERITANCE     │ → EWalletPayment implements PaymentMethod
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ ENCAPSULATION   │ → Private fields di Transaction, validasi di setter
-└─────────────────┘
-```
-
----
-
-### 1. **Encapsulation (Pembungkus Data)**
-
-**Definisi:** Menyembunyikan detail internal kelas dan hanya mengekspos interface public yang diperlukan.
-
-**Mengapa Encapsulation Penting di Agri-POS?**
-
-Bayangkan jika stock bisa diubah langsung:
+**Contoh Encapsulation:**
 ```java
-// TANPA ENCAPSULATION - Berbahaya!
-product.stock = -100;  // Bisa diset nilai tidak valid!
-```
-
-Dengan encapsulation:
-```java
-// DENGAN ENCAPSULATION - Aman dengan validasi
-product.setStock(-100);  // Throws IllegalArgumentException!
-```
-
-**Implementasi dalam Agri-POS:**
-
-```java
-// Product.java - Encapsulation Example
 public class Product {
-    // Private attributes - tidak dapat diakses langsung
-    private long id;
-    private String code;
-    private String name;
-    private double price;
     private int stock;
-    private boolean active;
-    
-    // Public methods untuk access dengan kontrol
-    public Product(String code, String name, double price) {
-        this.code = code;
-        this.name = name;
-        setPrice(price);  // Validasi melalui setter
-        this.stock = 0;
-        this.active = true;
-    }
-    
-    // Getter - read access dengan kontrol
-    public long getId() {
-        return id;
-    }
-    
-    public String getCode() {
-        return code;
-    }
-    
-    public double getPrice() {
-        return price;
-    }
-    
-    // Setter - write access dengan validasi
-    public void setPrice(double price) {
-        if (price < 0) {
-            throw new IllegalArgumentException("Price tidak boleh negatif");
-        }
-        this.price = price;
-    }
     
     public void setStock(int stock) {
-        if (stock < 0) {
-            throw new IllegalArgumentException("Stock tidak boleh negatif");
-        }
+        if (stock < 0) throw new IllegalArgumentException("Stock tidak boleh negatif");
         this.stock = stock;
     }
-    
-    // Business method - logic yang melibatkan internal state
-    public boolean isLowStock() {
-        return stock < 10;  // Threshold 10 units
-    }
-    
-    public boolean canBeSold(int quantity) {
-        return stock >= quantity;
-    }
 }
 ```
 
-**Manfaat:**
-- ✓ Data consistency: Validasi di setter mencegah state yang invalid
-- ✓ Encapsulation: Perubahan internal tidak mempengaruhi public interface
-- ✓ Maintainability: Business logic terpusat (isLowStock, canBeSold)
-
-### 2. **Inheritance (Pewarisan)**
-
-**Definisi:** Kelas dapat mewarisi properties dan methods dari kelas parent.
-
-**Implementasi dalam Agri-POS:**
-
+**Contoh Polymorphism:**
 ```java
-// PaymentMethod Interface - Contract untuk semua payment methods
-public interface PaymentMethod {
-    /**
-     * Mendapatkan nama metode pembayaran
-     */
-    String getMethodName();
-
-    /**
-     * Memproses pembayaran
-     * @param total jumlah yang harus dibayar
-     * @param amountPaid jumlah yang dibayarkan
-     * @return kembalian (jika ada)
-     * @throws PaymentException jika pembayaran gagal
-     */
-    double processPayment(double total, double amountPaid) throws PaymentException;
-
-    /**
-     * Validasi apakah pembayaran dapat dilakukan
-     */
-    boolean validatePayment(double total, double amountPaid);
-
-    /**
-     * Mendapatkan deskripsi metode pembayaran untuk struk
-     */
-    String getReceiptDescription(double amountPaid, double change);
-}
-
-// CashPayment - Strategy untuk pembayaran tunai
-public class CashPayment implements PaymentMethod {
-    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
-    
-    @Override
-    public String getMethodName() {
-        return "Tunai";
-    }
-    
-    @Override
-    public double processPayment(double total, double amountPaid) throws PaymentException {
-        if (!validatePayment(total, amountPaid)) {
-            throw new PaymentException(String.format(
-                "Pembayaran tunai tidak valid. Total: %s, Dibayar: %s",
-                currencyFormat.format(total), currencyFormat.format(amountPaid)));
-        }
-        return amountPaid - total; // Kembalian
-    }
-    
-    @Override
-    public boolean validatePayment(double total, double amountPaid) {
-        return amountPaid >= total && total > 0;
-    }
-    
-    @Override
-    public String getReceiptDescription(double amountPaid, double change) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Metode: TUNAI\n");
-        sb.append("Dibayar: ").append(currencyFormat.format(amountPaid)).append("\n");
-        sb.append("Kembalian: ").append(currencyFormat.format(change));
-        return sb.toString();
-    }
-}
-
-// EWalletPayment - Strategy untuk e-wallet
-public class EWalletPayment implements PaymentMethod {
-    private final String provider; // OVO, GoPay, DANA, ShopeePay
-    
-    public EWalletPayment(String provider) {
-        this.provider = provider;
-    }
-    
-    @Override
-    public String getMethodName() {
-        return "E-Wallet (" + provider + ")";
-    }
-    
-    @Override
-    public boolean validatePayment(double total, double amountPaid) {
-        return amountPaid == total && total > 0;  // Harus sama persis
-    }
-    
-    @Override
-    public double processPayment(double total, double amountPaid) throws PaymentException {
-        if (!validatePayment(total, amountPaid)) {
-            throw new PaymentException("Pembayaran " + provider + " harus sama dengan total!");
-        }
-        System.out.println("Pembayaran " + provider + " diproses...");
-        return 0; // Tidak ada kembalian untuk e-wallet
-    }
-}
+// Service layer - polymorphic call
+PaymentMethod method = PaymentMethodFactory.getPaymentMethod("Tunai");
+double change = method.processPayment(total, paid); // Behavior sesuai concrete class
 ```
 
-**Manfaat:**
-- ✓ Code Reuse: Common logic dalam interface, specific logic di implementasi
-- ✓ Polymorphism: Dapat treat CashPayment dan EWalletPayment sebagai PaymentMethod
-- ✓ Flexibility: Mudah tambah payment method baru
+### Mengapa OOP Penting dalam Agri-POS?
 
-### 3. **Polymorphism (Polimorfisme)**
-
-**Definisi:** Object dapat ditreat sebagai object dari parent class, tetapi method yang dipanggil adalah dari class aslinya.
-
-**Implementasi dalam Agri-POS:**
-
-```java
-// Service layer menggunakan polymorphism
-public class TransactionService {
-    
-    public CheckoutSummary checkout(
-        String cashierUsername, 
-        PaymentMethod paymentMethod,  // Interface reference
-        double total,
-        double amountPaid
-    ) throws PaymentException {
-        // Logic yang sama untuk semua payment methods
-        // Tetapi method validatePayment() dan processPayment() dipanggil sesuai implementation
-        
-        PaymentMethod actualPayment = paymentMethod;  // Bisa CashPayment, EWalletPayment, QrisPayment
-        
-        if (!actualPayment.validatePayment(total, amountPaid)) {
-            System.out.println("Validasi pembayaran gagal untuk " + 
-                actualPayment.getMethodName());
-            return null;
-        }
-        
-        // Polymorphic call - method yang dipanggil sesuai actual class
-        double change = actualPayment.processPayment(total, amountPaid);
-        
-        // Lanjut proses transaksi...
-    }
-}
-
-// Di sisi caller:
-public class PosController {
-    public void handleCheckout() {
-        double total = 154550;
-        double amountPaid = 160000;
-        
-        // User pilih metode pembayaran
-        String selectedMethod = getUserSelection(); // "Tunai" / "OVO" / "QRIS"
-        
-        // Menggunakan PaymentMethodFactory untuk mendapatkan payment method
-        PaymentMethod paymentMethod = PaymentMethodFactory.getPaymentMethod(selectedMethod);
-        
-        if (paymentMethod == null) {
-            System.out.println("Metode pembayaran tidak tersedia!");
-            return;
-        }
-        
-        // Polymorphic method call - compile time tidak tahu class mana yg sebenarnya
-        transactionService.checkout(currentUser, paymentMethod, total, amountPaid);
-    }
-}
-```
-
-**Manfaat:**
-- ✓ Flexibility: Bisa support berbagai payment method dengan code yang minimal
-- ✓ Extensibility: Tambah payment method baru cukup implement interface
-- ✓ Loose Coupling: Service layer tidak perlu tahu implementation detail
-
-### 4. **Abstraction (Abstraksi)**
-
-**Definisi:** Menyembunyikan kompleksitas dan hanya menampilkan fitur essential.
-
-**Implementasi dalam Agri-POS:**
-
-```java
-// DAO Interface - Abstraksi akses database
-public interface TransactionDAO {
-    void insert(Transaction transaction) throws SQLException;
-    
-    Transaction findById(long id) throws SQLException;
-    
-    List<Transaction> findAll() throws SQLException;
-    
-    List<Transaction> findByDate(LocalDate date) throws SQLException;
-    
-    List<Transaction> findByDateRange(LocalDate startDate, LocalDate endDate) 
-        throws SQLException;
-}
-
-// Service layer tidak perlu tahu detail JDBC, SQL, Connection management
-public class TransactionService {
-    private TransactionDAO transactionDAO;
-    
-    public TransactionService(TransactionDAO dao) {
-        this.transactionDAO = dao;
-    }
-    
-    public List<Transaction> getTransactionHistory(LocalDate startDate, LocalDate endDate) {
-        try {
-            // Abstraksi - tidak perlu tahu implementasi database
-            return transactionDAO.findByDateRange(startDate, endDate);
-        } catch (SQLException e) {
-            System.out.println("Error fetching transactions: " + e.getMessage());
-            return new ArrayList<>();
-        }
-    }
-}
-
-// Implementasi DAO - Tersembunyi dari controller/service
-public class JdbcTransactionDAO implements TransactionDAO {
-    
-    @Override
-    public void insert(Transaction transaction) throws SQLException {
-        String sql = "INSERT INTO transactions (" +
-            "code, cashier_username, subtotal, discount, tax, total, " +
-            "payment_method, amount_paid, change, created_at) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, transaction.getCode());
-            stmt.setString(2, transaction.getCashierUsername());
-            stmt.setDouble(3, transaction.getSubtotal());
-            stmt.setDouble(4, transaction.getDiscount());
-            stmt.setDouble(5, transaction.getTax());
-            stmt.setDouble(6, transaction.getTotal());
-            stmt.setString(7, transaction.getPaymentMethod());
-            stmt.setDouble(8, transaction.getAmountPaid());
-            stmt.setDouble(9, transaction.getChange());
-            stmt.setTimestamp(10, Timestamp.valueOf(transaction.getCreatedAt()));
-            
-            stmt.executeUpdate();
-        }
-    }
-    
-    // Implementasi lainnya...
-}
-```
-
-**Manfaat:**
-- ✓ Simplicity: Controller/Service tidak perlu deal dengan JDBC complexity
-- ✓ Database Agnostic: Bisa switch PostgreSQL → MySQL dengan ganti implementasi DAO
-- ✓ Testing: Mudah mock DAO untuk testing service layer
+Tanpa OOP, kode akan menjadi spaghetti code yang sulit di-maintain. Contoh masalah:
+- Tanpa **Encapsulation**: Stock bisa diset negatif → data korup
+- Tanpa **Polymorphism**: Setiap payment method butuh if-else panjang
+- Tanpa **Abstraction**: Perubahan database mempengaruhi seluruh aplikasi
 
 ## 4.2 Design Patterns yang Diterapkan
 
-### Penjelasan Konseptual: Mengapa Menggunakan Design Patterns?
+| Pattern | Implementasi | Tujuan |
+|---------|-------------|--------|
+| **Singleton** | `DatabaseConnection`, `DiscountConfigService` | Single shared instance |
+| **Strategy** | `PaymentMethod` (Cash, E-Wallet, QRIS) | Encapsulate algorithms |
+| **Factory** | `PaymentMethodFactory` | Centralized object creation |
+| **DAO** | `ProductDAO`, `UserDAO`, `TransactionDAO` | Database abstraction |
+| **Observer** | JavaFX `ObservableList` | Real-time UI update |
 
-**Pertanyaan Mendasar:** *"Apakah design pattern wajib? Bukankah bisa buat kode yang berfungsi tanpa pattern?"*
-
-**Jawaban:**
-
-Design patterns bukan tentang membuat kode "terlihat keren", melainkan **solusi teruji** untuk masalah yang **berulang** dalam pengembangan software. Dalam proyek Agri-POS, kami menghadapi masalah nyata yang diselesaikan dengan pattern:
-
-| Masalah Nyata | Solusi Pattern | Alasan Pemilihan |
-|---------------|----------------|------------------|
-| Banyak objek perlu akses database yang sama → resource boros | **Singleton** | Satu instance shared, hemat memory |
-| Metode pembayaran bisa bertambah (Tunai, E-Wallet, QRIS, ...) → if-else panjang | **Strategy** | Encapsulate tiap metode, gampang tambah yang baru |
-| Kasir tidak perlu tahu cara buat objek PaymentMethod | **Factory** | Sembunyikan kompleksitas pembuatan objek |
-| UI perlu update otomatis saat data berubah | **Observer** | Data push perubahan ke UI, bukan UI yang polling |
-
-**Filosofi Pemilihan Pattern:**
-
-Kami memilih pattern berdasarkan prinsip:
-1. **YAGNI** (You Aren't Gonna Need It) - Hanya gunakan pattern yang benar-benar dibutuhkan
-2. **KISS** (Keep It Simple, Stupid) - Pattern harus menyederhanakan, bukan memperumit
-3. **Solve Real Problems** - Setiap pattern harus menjawab masalah nyata dalam proyek
-
----
-
-### Pattern 1: Singleton Pattern
-
-**Tujuan:** Memastikan hanya ada satu instance dari class yang shared di seluruh aplikasi.
-
-**Mengapa Singleton untuk DatabaseConnection?**
-
-Bayangkan skenario tanpa Singleton:
+**Singleton - DatabaseConnection:**
 ```java
-// TANPA SINGLETON - Setiap class buat koneksi sendiri
-public class ProductDAO {
-    Connection conn = DriverManager.getConnection(URL, USER, PASS);  // Koneksi 1
-}
-public class UserDAO {
-    Connection conn = DriverManager.getConnection(URL, USER, PASS);  // Koneksi 2
-}
-public class TransactionDAO {
-    Connection conn = DriverManager.getConnection(URL, USER, PASS);  // Koneksi 3
-}
-// 100 class = 100 koneksi → Database overload!
-```
-
-Dengan Singleton:
-```java
-// DENGAN SINGLETON - Semua class share satu instance
-DatabaseConnection.getInstance().getConnection();  // Managed oleh satu titik
-```
-
-**Mengapa Singleton untuk DiscountConfigService?**
-
-Masalah nyata: Admin menambah diskon baru, tapi Kasir harus **restart aplikasi** untuk melihat diskon tersebut. Dengan Singleton, Admin dan Kasir mengakses **instance yang sama**, sehingga perubahan langsung terlihat.
-
-**Implementasi 1 - DatabaseConnection:**
-```java
-// DatabaseConnection.java
 public class DatabaseConnection {
-    private static final String URL = "jdbc:postgresql://localhost:5432/agripos";
-    private static final String USER = "postgres";
-    private static final String PASS = "1234";
-
     private static DatabaseConnection instance;
     
-    // Private constructor - tidak bisa di-instantiate dari luar
-    private DatabaseConnection() {
-        try {
-            // Memastikan driver PostgreSQL dimuat
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("PostgreSQL JDBC Driver not found: " + e.getMessage());
-        }
-    }
+    private DatabaseConnection() { }
     
-    // Static method untuk get instance
     public static synchronized DatabaseConnection getInstance() {
-        if (instance == null) {
-            instance = new DatabaseConnection();
-        }
+        if (instance == null) instance = new DatabaseConnection();
         return instance;
     }
-    
-    // Mendapatkan koneksi database baru setiap kali dipanggil
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASS);
-    }
-    
-    // Test koneksi database
-    public boolean testConnection() {
-        try (Connection conn = getConnection()) {
-            return conn != null && !conn.isClosed();
-        } catch (SQLException e) {
-            System.err.println("Database connection test failed: " + e.getMessage());
-            return false;
-        }
-    }
-}
-
-// Usage dengan try-with-resources:
-public class ProductDAO {
-    public List<Product> getAll() throws Exception {
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM products");
-             ResultSet rs = stmt.executeQuery()) {
-            // Process results
-        }
-    }
 }
 ```
 
-**Implementasi 2 - DiscountConfigService (NEW):**
+**Strategy - PaymentMethod:**
 ```java
-// DiscountConfigService.java - Singleton untuk shared discount configuration
-public class DiscountConfigService {
-    private static DiscountConfigService instance;
-    private final ObservableList<DiscountConfig> discountConfigs;
-    
-    private DiscountConfigService() {
-        discountConfigs = FXCollections.observableArrayList();
-        loadDefaultDiscounts();
-    }
-    
-    public static synchronized DiscountConfigService getInstance() {
-        if (instance == null) {
-            instance = new DiscountConfigService();
-        }
-        return instance;
-    }
-    
-    public ObservableList<DiscountConfig> getActiveDiscounts() {
-        return discountConfigs.filtered(DiscountConfig::isActive);
-    }
-    
-    public void addDiscount(DiscountConfig config) {
-        discountConfigs.add(config);
-    }
-    
-    public DiscountConfig findByCode(String code) {
-        return discountConfigs.stream()
-            .filter(d -> d.getCode().equalsIgnoreCase(code))
-            .findFirst()
-            .orElse(null);
-    }
-    
-    // Inner class untuk konfigurasi diskon
-    public static class DiscountConfig {
-        private String name, code, type;
-        private double value, minPurchase;
-        private int minItems;
-        private boolean active;
-        // ... getters and setters
-    }
-}
-
-// Usage di Admin (DiscountManagementView):
-DiscountConfigService service = DiscountConfigService.getInstance();
-service.addDiscount(new DiscountConfig("Promo Lebaran", "LEBARAN25", "Persentase", 25, 0, 0, true));
-
-// Usage di Kasir (TransactionView):
-DiscountConfigService service = DiscountConfigService.getInstance();
-for (DiscountConfig config : service.getActiveDiscounts()) {
-    discountCombo.getItems().add(config.getDisplayName());
-}
-```
-
-**Manfaat:**
-- ✓ Single Responsibility: Satu database connection / satu discount configuration
-- ✓ Resource Efficiency: Tidak ada memory leak dari multiple instances
-- ✓ Thread Safety: Synchronized getInstance() untuk multi-threading
-- ✓ Real-time Sync: Perubahan di Admin langsung terlihat di Kasir (shared instance)
-
-### Pattern 2: Strategy Pattern
-
-**Tujuan:** Define keluarga algorithm, encapsulate each one, dan membuat mereka interchangeable.
-
-**Mengapa Strategy untuk Payment Methods?**
-
-Masalah yang kami hadapi:
-
-```java
-// TANPA STRATEGY - If-else nightmare
-public void processPayment(String method, double total, double paid) {
-    if (method.equals("Tunai")) {
-        // Logika tunai: hitung kembalian
-        double change = paid - total;
-        if (change < 0) throw new Exception("Uang kurang");
-    } else if (method.equals("E-Wallet OVO")) {
-        // Logika OVO: tidak ada kembalian, harus pas
-        if (paid != total) throw new Exception("Nominal harus pas");
-    } else if (method.equals("E-Wallet GoPay")) {
-        // Sama dengan OVO, tapi beda provider...
-    } else if (method.equals("QRIS")) {
-        // Logika QRIS berbeda lagi
-    }
-    // Tambah metode baru = tambah if-else = kode makin panjang dan rentan bug
-}
-```
-
-Dengan Strategy Pattern:
-```java
-// DENGAN STRATEGY - Clean, extensible
-PaymentMethod method = PaymentMethodFactory.getPaymentMethod("Tunai");
-double change = method.processPayment(total, paid);
-// Mau tambah metode baru? Buat class baru implements PaymentMethod
-// Tidak perlu ubah kode yang sudah ada - Open/Closed Principle!
-```
-
-**Bukti Keunggulan:**
-- Saat menambah payment "Transfer Bank", kami cukup buat class `BankTransferPayment implements PaymentMethod`
-- Kode di `TransactionService` dan UI **tidak berubah sama sekali**
-
-```java
-// Strategy interface
 public interface PaymentMethod {
-    String getMethodName();
-    double processPayment(double total, double amountPaid) throws PaymentException;
+    double processPayment(double total, double amountPaid);
     boolean validatePayment(double total, double amountPaid);
-    String getReceiptDescription(double amountPaid, double change);
 }
 
-// Concrete strategies
 public class CashPayment implements PaymentMethod {
-    // Implementasi untuk pembayaran tunai
+    public boolean validatePayment(double total, double paid) {
+        return paid >= total; // Tunai: bayar >= total
+    }
 }
 
 public class EWalletPayment implements PaymentMethod {
-    // Implementasi untuk pembayaran e-wallet (OVO, GoPay, DANA, ShopeePay)
-}
-
-public class QRISPayment implements PaymentMethod {
-    // Implementasi untuk pembayaran QRIS
-}
-
-// Client yang menggunakan strategy
-public class TransactionService {
-    public void processPayment(PaymentMethod strategy, double total, double amountPaid) 
-        throws PaymentException {
-        if (strategy.validatePayment(total, amountPaid)) {
-            double change = strategy.processPayment(total, amountPaid);
-            System.out.println(strategy.getReceiptDescription(amountPaid, change));
-            // Success
-        } else {
-            throw new PaymentException("Validasi pembayaran gagal");
-        }
-    }
-}
-
-// Penggunaan:
-TransactionService service = new TransactionService();
-
-// Bisa ganti strategy tanpa ubah service code - menggunakan Factory
-PaymentMethod cashPayment = PaymentMethodFactory.getPaymentMethod("Tunai");
-service.processPayment(cashPayment, 154550, 160000);
-
-PaymentMethod ewalletPayment = PaymentMethodFactory.getPaymentMethod("E-Wallet (OVO)");
-service.processPayment(ewalletPayment, 154550, 154550);
-```
-
-**Manfaat:**
-- ✓ Flexibility: Runtime decide payment method
-- ✓ Extensibility: Tambah payment method tanpa ubah service
-- ✓ Testability: Mudah test berbagai payment scenarios dengan mock
-
-### Pattern 3: Factory Pattern (Registry Pattern)
-
-**Tujuan:** Create object tanpa specify exact class, dengan registry untuk menyimpan instances.
-
-```java
-// Factory/Registry class
-public class PaymentMethodFactory {
-    private static final Map<String, PaymentMethod> paymentMethods = new HashMap<>();
-
-    static {
-        // Register default payment methods
-        registerPaymentMethod(new CashPayment());
-        registerPaymentMethod(new EWalletPayment("OVO"));
-        registerPaymentMethod(new EWalletPayment("GoPay"));
-        registerPaymentMethod(new EWalletPayment("DANA"));
-        registerPaymentMethod(new EWalletPayment("ShopeePay"));
-        registerPaymentMethod(new EWalletPayment("LinkAja"));
-        registerPaymentMethod(new QRISPayment());
-    }
-
-    public static void registerPaymentMethod(PaymentMethod paymentMethod) {
-        paymentMethods.put(paymentMethod.getMethodName(), paymentMethod);
-    }
-
-    public static PaymentMethod getPaymentMethod(String methodName) {
-        return paymentMethods.get(methodName);
-    }
-
-    public static Set<String> getAvailableMethods() {
-        return paymentMethods.keySet();
-    }
-
-    public static boolean isMethodAvailable(String methodName) {
-        return paymentMethods.containsKey(methodName);
-    }
-}
-
-// Usage:
-public class PosController {
-    public void handleCheckout(String paymentType) {
-        PaymentMethod payment = PaymentMethodFactory.getPaymentMethod(paymentType);
-        
-        if (payment == null) {
-            System.out.println("Metode pembayaran tidak tersedia!");
-            return;
-        }
-        
-        transactionService.checkout(payment, total, amountPaid);
-    }
-}
-```
-
-**Manfaat:**
-- ✓ Decoupling: Controller tidak perlu tahu tentang concrete payment classes
-- ✓ Centralized Creation: Semua object creation logic di satu tempat
-- ✓ Easy Extension: Tambah payment method di factory, tidak perlu ubah controller
-
-### Pattern 4: DAO (Data Access Object) Pattern
-
-**Tujuan:** Abstraksi akses database, memisahkan business logic dari database logic.
-
-```java
-// DAO Interface - Contract
-public interface ProductDAO {
-    void insert(Product product) throws Exception;
-    void update(Product product) throws Exception;
-    void delete(String code) throws Exception;
-    Product findByCode(String code) throws Exception;
-    List<Product> findAll() throws Exception;
-    List<Product> findByCategory(String category) throws Exception;
-    void updateStock(String code, int newStock) throws Exception;
-}
-
-// Concrete DAO Implementation
-public class JdbcProductDAO implements ProductDAO {
-    private static final Logger LOGGER = Logger.getLogger(JdbcProductDAO.class.getName());
-    
-    @Override
-    public void insert(Product product) throws Exception {
-        validateProduct(product);
-        String sql = "INSERT INTO products (code, name, category, price, stock) VALUES (?, ?, ?, ?, ?)";
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
-            stmt.setString(1, product.getCode());
-            stmt.setString(2, product.getName());
-            stmt.setString(3, product.getCategory());
-            stmt.setDouble(4, product.getPrice());
-            stmt.setInt(5, product.getStock());
-            
-            int rows = stmt.executeUpdate();
-            if (rows == 0) {
-                throw new SQLException("Insert gagal untuk produk: " + product.getCode());
-            }
-            LOGGER.info("Produk berhasil ditambahkan: " + product.getCode());
-        }
-    }
-    
-    @Override
-    public List<Product> findAll() throws Exception {
-        List<Product> products = new ArrayList<>();
-        String sql = "SELECT code, name, category, price, stock FROM products";
-        
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                products.add(mapResultSetToProduct(rs));
-            }
-        }
-        return products;
-    }
-    
-    // Methods lainnya...
-}
-
-// Service layer menggunakan DAO interface
-public class ProductService {
-    private ProductDAO productDAO;
-    
-    public ProductService(ProductDAO dao) {
-        this.productDAO = dao;  // Dependency injection
-    }
-    
-    public void addProduct(Product product) {
-        try {
-            productDAO.insert(product);
-            System.out.println("Product added successfully");
-        } catch (Exception e) {
-            System.out.println("Error adding product: " + e.getMessage());
-        }
-    }
-}
-```
-
-**Manfaat:**
-- ✓ Abstraction: Service layer tidak tahu about JDBC, SQL, Connection
-- ✓ Testability: Mudah mock ProductDAO dengan dummy implementation
-- ✓ Flexibility: Database bisa switch tanpa ubah service layer
-
-### Pattern 5: Strategy Pattern - Discount
-
-**Tujuan:** Define keluarga algorithm untuk berbagai tipe diskon dengan interface yang sama.
-
-```java
-// Strategy Interface untuk Discount
-public interface DiscountStrategy {
-    /**
-     * Hitung besarnya diskon
-     * @param subtotal harga sebelum diskon
-     * @param itemCount jumlah item di keranjang
-     * @return besarnya diskon dalam Rp
-     */
-    double calculateDiscount(double subtotal, int itemCount);
-    
-    /**
-     * Cek apakah diskon bisa diterapkan
-     */
-    boolean isApplicable(double subtotal, int itemCount);
-    
-    /**
-     * Deskripsi diskon untuk ditampilkan ke user
-     */
-    String getDescription();
-}
-
-// Concrete Strategy - Percentage Discount
-public class PercentageDiscount implements DiscountStrategy {
-    private final double percentage;
-    private final double minPurchase;
-    private final String name;
-    
-    public PercentageDiscount(double percentage, String name) {
-        this(percentage, 0, name);
-    }
-    
-    public PercentageDiscount(double percentage, double minPurchase, String name) {
-        if (percentage <= 0 || percentage > 100) {
-            throw new IllegalArgumentException("Persentase harus antara 0-100");
-        }
-        this.percentage = percentage;
-        this.minPurchase = minPurchase;
-        this.name = name;
-    }
-    
-    @Override
-    public double calculateDiscount(double subtotal, int itemCount) {
-        if (isApplicable(subtotal, itemCount)) {
-            return subtotal * percentage / 100;
-        }
-        return 0;
-    }
-    
-    @Override
-    public boolean isApplicable(double subtotal, int itemCount) {
-        return subtotal >= minPurchase;
-    }
-    
-    @Override
-    public String getDescription() {
-        if (minPurchase > 0) {
-            return name + " (" + percentage + "% min Rp " + String.format("%.0f", minPurchase) + ")";
-        }
-        return name + " (" + percentage + "%)";
-    }
-}
-
-// Concrete Strategy - Fixed Discount
-public class FixedDiscount implements DiscountStrategy {
-    private final double amount;
-    private final double minPurchase;
-    private final String name;
-    
-    public FixedDiscount(double amount, double minPurchase, String name) {
-        this.amount = amount;
-        this.minPurchase = minPurchase;
-        this.name = name;
-    }
-    
-    @Override
-    public double calculateDiscount(double subtotal, int itemCount) {
-        if (isApplicable(subtotal, itemCount)) {
-            return Math.min(amount, subtotal);
-        }
-        return 0;
-    }
-    
-    @Override
-    public boolean isApplicable(double subtotal, int itemCount) {
-        return subtotal >= minPurchase;
-    }
-    
-    @Override
-    public String getDescription() {
-        return name + " (Rp " + String.format("%.0f", amount) + ")";
-    }
-}
-
-// Concrete Strategy - Bulk Discount
-public class BulkDiscount implements DiscountStrategy {
-    private final int minQuantity;
-    private final double percentage;
-    private final String name;
-    
-    public BulkDiscount(int minQuantity, double percentage, String name) {
-        this.minQuantity = minQuantity;
-        this.percentage = percentage;
-        this.name = name;
-    }
-    
-    @Override
-    public double calculateDiscount(double subtotal, int itemCount) {
-        if (isApplicable(subtotal, itemCount)) {
-            return subtotal * percentage / 100;
-        }
-        return 0;
-    }
-    
-    @Override
-    public boolean isApplicable(double subtotal, int itemCount) {
-        return itemCount >= minQuantity;
-    }
-    
-    @Override
-    public String getDescription() {
-        return name + " (" + percentage + "% untuk >= " + minQuantity + " items)";
-    }
-}
-```
-
-**Manfaat:**
-- ✓ Flexibility: Mudah menambah tipe diskon baru
-- ✓ Reusability: Logic diskon dapat dipakai ulang
-- ✓ Testability: Setiap strategy dapat ditest secara independen
-
-### Pattern 6: Dependency Injection
-
-**Tujuan:** Decouple classes dengan inject dependencies daripada create sendiri.
-
-```java
-// Before (Tight Coupling):
-public class ProductService {
-    private ProductDAO productDAO = new JdbcProductDAO();  // Hard dependency
-}
-
-// After (Dependency Injection):
-public class ProductService {
-    private ProductDAO productDAO;
-    
-    // Constructor injection
-    public ProductService(ProductDAO productDAO) {
-        this.productDAO = productDAO;
-    }
-    
-    // Setter injection (alternative)
-    public void setProductDAO(ProductDAO productDAO) {
-        this.productDAO = productDAO;
-    }
-    
-    public List<Product> getAllProducts() {
-        return productDAO.findAll();
-    }
-}
-
-// Usage dengan injection:
-ProductDAO dao = new JdbcProductDAO();
-ProductService service = new ProductService(dao);
-
-// Untuk testing - inject mock:
-ProductDAO mockDAO = mock(ProductDAO.class);
-when(mockDAO.findAll()).thenReturn(Arrays.asList(new Product(...)));
-ProductService serviceUnderTest = new ProductService(mockDAO);
-```
-
-**Manfaat:**
-- ✓ Loose Coupling: Service tidak tergantung pada implementation DAO
-- ✓ Testability: Mudah inject mock untuk testing
-- ✓ Flexibility: Runtime bisa inject different implementations
-
-## 4.3 Implementasi Login dengan Role Selection
-
-### Fitur Login:
-- Input username dan password
-- Pilihan role (Admin/Kasir) dengan toggle button
-- Validasi role sebelum login
-- Responsive design (mobile/desktop)
-
-```java
-public class LoginView {
-    private TextField usernameField;
-    private PasswordField passwordField;
-    private ToggleGroup roleToggle;
-    private ToggleButton adminButton, kasirButton;
-    private String selectedRole = null;
-    
-    private VBox createRoleSelection() {
-        Label roleLabel = new Label("Pilih Role:");
-        
-        adminButton = new ToggleButton("👔 Admin");
-        adminButton.setOnAction(e -> selectedRole = "ADMIN");
-        
-        kasirButton = new ToggleButton("🏪 Kasir");
-        kasirButton.setOnAction(e -> selectedRole = "KASIR");
-        
-        roleToggle = new ToggleGroup();
-        adminButton.setToggleGroup(roleToggle);
-        kasirButton.setToggleGroup(roleToggle);
-        
-        HBox roleBox = new HBox(10, adminButton, kasirButton);
-        return new VBox(5, roleLabel, roleBox);
-    }
-    
-    private void handleLogin() {
-        // Validasi role harus dipilih
-        if (selectedRole == null) {
-            showError("Silakan pilih role terlebih dahulu!");
-            return;
-        }
-        
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        
-        User user = loginController.authenticate(username, password, selectedRole);
-        if (user != null) {
-            openMainView(user);
-        } else {
-            showError("Login gagal! Username, password, atau role tidak sesuai.");
-        }
-    }
-}
-```
-
-## 4.4 Implementasi Responsive Design
-
-```java
-public class LoginView {
-    private void applyResponsiveStyles(Scene scene) {
-        scene.widthProperty().addListener((obs, oldVal, newVal) -> {
-            double width = newVal.doubleValue();
-            
-            if (width < 400) {
-                // Mobile portrait
-                applyMobileStyles();
-            } else if (width < 600) {
-                // Tablet
-                applyTabletStyles();
-            } else {
-                // Desktop
-                applyDesktopStyles();
-            }
-        });
-    }
-    
-    private void applyMobileStyles() {
-        loginCard.setPrefWidth(300);
-        titleLabel.setStyle("-fx-font-size: 20px;");
-        usernameField.setPrefWidth(250);
-    }
-    
-    private void applyDesktopStyles() {
-        loginCard.setPrefWidth(450);
-        titleLabel.setStyle("-fx-font-size: 28px;");
-        usernameField.setPrefWidth(350);
+    public boolean validatePayment(double total, double paid) {
+        return paid == total; // E-Wallet: harus pas
     }
 }
 ```
@@ -2137,247 +933,44 @@ public class LoginView {
 
 ## 5.1 Fitur Manajemen Produk
 
-### Database Schema:
-```sql
-CREATE TABLE products (
-    id BIGSERIAL PRIMARY KEY,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    category VARCHAR(50),
-    price DECIMAL(12,2) NOT NULL,
-    stock INT NOT NULL DEFAULT 0,
-    unit VARCHAR(20),
-    description TEXT,
-    active BOOLEAN DEFAULT true,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
-    CONSTRAINT chk_price CHECK (price > 0),
-    CONSTRAINT chk_stock CHECK (stock >= 0)
-);
+| Fitur | Deskripsi | Implementasi |
+|-------|-----------|---------------|
+| **CRUD Produk** | Tambah, edit, hapus produk | `ProductService` + `JdbcProductDAO` |
+| **Search** | Cari berdasarkan nama/kode | `findByCode()`, `findByName()` |
+| **Filter Kategori** | Filter produk per kategori | ComboBox + `findByCategory()` |
+| **Low Stock Alert** | Peringatan stok < 10 | `isLowStock()` method |
 
-CREATE INDEX idx_product_code ON products(code);
-CREATE INDEX idx_product_category ON products(category);
+## 5.2 Fitur Transaksi
+
+**Workflow Transaksi:**
+```
+Pilih Produk → Add to Cart → Set Quantity → Apply Diskon → Pilih Payment → Checkout → Print Struk
 ```
 
-### Service Implementation:
-```java
-public class ProductService {
-    private ProductDAO productDAO;
-    
-    public ProductService(ProductDAO productDAO) {
-        this.productDAO = productDAO;
-    }
-    
-    public void addProduct(Product product) {
-        if (productDAO.existsByCode(product.getCode())) {
-            throw new IllegalArgumentException("Kode produk sudah ada");
-        }
-        productDAO.insert(product);
-    }
-    
-    public void updateProduct(Product product) {
-        if (!productDAO.existsById(product.getId())) {
-            throw new IllegalArgumentException("Produk tidak ditemukan");
-        }
-        productDAO.update(product);
-    }
-    
-    public List<Product> getAll() {
-        return productDAO.findAll();
-    }
-    
-    public Product getById(long id) {
-        return productDAO.findById(id);
-    }
-    
-    public List<Product> searchByCode(String code) {
-        return productDAO.findByCode(code);
-    }
-    
-    public List<Product> getByCategory(String category) {
-        return productDAO.findByCategory(category);
-    }
-    
-    public List<Product> getLowStockProducts() {
-        return getAll().stream()
-            .filter(Product::isLowStock)
-            .collect(Collectors.toList());
-    }
-}
+| Komponen | Fungsi |
+|----------|--------|
+| `CartService` | Kelola item keranjang, hitung total |
+| `TransactionService` | Proses checkout, simpan ke database |
+| `ReceiptService` | Generate struk transaksi |
+
+**Kalkulasi Otomatis:**
 ```
-
-## 5.2 Fitur Sistem Transaksi
-
-### Workflow Transaksi:
-1. Kasir buat transaksi baru
-2. Search dan add produk ke cart
-3. Apply diskon (optional)
-4. Checkout dengan payment method
-5. System validasi dan save transaksi
-6. Generate struk
-
-### Implementation:
-```java
-// CartService - Manage cart items
-public class CartService {
-    private List<CartItem> cartItems;
-    
-    public CartService() {
-        this.cartItems = new ArrayList<>();
-    }
-    
-    public void addItem(Product product, int quantity) {
-        if (!product.canBeSold(quantity)) {
-            throw new IllegalArgumentException("Stok tidak cukup");
-        }
-        
-        // Check if product already in cart
-        cartItems.stream()
-            .filter(item -> item.getProduct().getId() == product.getId())
-            .findFirst()
-            .ifPresentOrElse(
-                item -> item.setQuantity(item.getQuantity() + quantity),
-                () -> cartItems.add(new CartItem(product, quantity))
-            );
-    }
-    
-    public void removeItem(long productId) {
-        cartItems.removeIf(item -> item.getProduct().getId() == productId);
-    }
-    
-    public void updateQuantity(long productId, int newQuantity) {
-        cartItems.stream()
-            .filter(item -> item.getProduct().getId() == productId)
-            .findFirst()
-            .ifPresent(item -> item.setQuantity(newQuantity));
-    }
-    
-    public double getCartTotal() {
-        return cartItems.stream()
-            .mapToDouble(CartItem::getTotal)
-            .sum();
-    }
-    
-    public void clear() {
-        cartItems.clear();
-    }
-}
-
-// TransactionService - Process checkout
-public class TransactionService {
-    private TransactionDAO transactionDAO;
-    private ProductDAO productDAO;
-    private CartService cartService;
-    
-    public Transaction checkout(String cashierUsername, PaymentMethod paymentMethod, 
-                                double amountPaid) throws Exception {
-        
-        // Validate payment
-        double total = calculateTotal();
-        if (!paymentMethod.validatePayment(total, amountPaid)) {
-            throw new PaymentException("Pembayaran tidak valid");
-        }
-        
-        // Calculate amounts
-        double subtotal = cartService.getCartTotal();
-        double discount = calculateDiscount();
-        double taxableAmount = subtotal - discount;
-        double tax = taxableAmount * 0.10;
-        double total = taxableAmount + tax;
-        double change = amountPaid - total;
-        
-        // Create transaction object
-        Transaction transaction = new Transaction();
-        transaction.setCode("TRX" + System.currentTimeMillis());
-        transaction.setCashierUsername(cashierUsername);
-        transaction.setItems(new ArrayList<>(cartService.getCartItems()));
-        transaction.setSubtotal(subtotal);
-        transaction.setDiscount(discount);
-        transaction.setTax(tax);
-        transaction.setTotal(total);
-        transaction.setPaymentMethod(paymentMethod.getMethodName());
-        transaction.setAmountPaid(amountPaid);
-        transaction.setChange(change);
-        transaction.setCreatedAt(LocalDateTime.now());
-        
-        // Save to database
-        transactionDAO.insert(transaction);
-        
-        // Update product stock
-        updateProductStocks();
-        
-        // Clear cart
-        cartService.clear();
-        
-        return transaction;
-    }
-}
+Subtotal = Σ(harga × quantity)
+Diskon = Subtotal × persentase_diskon
+Pajak = (Subtotal - Diskon) × 10%
+Total = Subtotal - Diskon + Pajak
 ```
 
 ## 5.3 Fitur Diskon
 
-### Implementation:
-```java
-public class DiscountService {
-    
-    // Apply per-item discount
-    public void applyPerItemDiscount(CartItem item, double discountPercent) {
-        if (discountPercent < 0 || discountPercent > 100) {
-            throw new IllegalArgumentException("Diskon harus 0-100%");
-        }
-        item.setDiscountPercent(discountPercent);
-    }
-    
-    // Apply transaction-level discount
-    public double calculateTransactionDiscount(List<CartItem> items, double discountAmount) {
-        double subtotal = items.stream()
-            .mapToDouble(CartItem::getSubtotal)
-            .sum();
-        
-        if (discountAmount > subtotal) {
-            throw new IllegalArgumentException("Diskon tidak boleh melebihi subtotal");
-        }
-        
-        return discountAmount;
-    }
-    
-    // Calculate total discount
-    public double getTotalDiscount(List<CartItem> items, double transactionDiscount) {
-        double itemDiscounts = items.stream()
-            .mapToDouble(CartItem::getDiscountAmount)
-            .sum();
-        
-        return itemDiscounts + transactionDiscount;
-    }
-}
+| Tipe Diskon | Contoh | Cara Kerja |
+|-------------|--------|------------|
+| **Persentase** | Diskon 10% | `subtotal × 0.10` |
+| **Nominal** | Potongan Rp50.000 | `subtotal - 50000` |
+| **Bulk** | Beli 5+ diskon 15% | Cek quantity, apply jika memenuhi |
+| **Voucher** | Kode PROMO2026 | Input kode, validasi, apply |
 
-// CartItem - Individual cart item dengan diskon
-public class CartItem {
-    private Product product;
-    private int quantity;
-    private double discountPercent;
-    
-    public CartItem(Product product, int quantity) {
-        this.product = product;
-        this.quantity = quantity;
-        this.discountPercent = 0;
-    }
-    
-    public double getSubtotal() {
-        return product.getPrice() * quantity;
-    }
-    
-    public double getDiscountAmount() {
-        return getSubtotal() * (discountPercent / 100.0);
-    }
-    
-    public double getTotalAfterDiscount() {
-        return getSubtotal() - getDiscountAmount();
-    }
-    
-    // Getters and setters
-}
-```
+**Sync Admin-Kasir:** Admin menambah diskon → `DiscountConfigService` (Singleton) → Kasir refresh → Diskon muncul di dropdown
 
 ---
 
@@ -2385,1043 +978,143 @@ public class CartItem {
 
 ## 6.1 Strategi Testing
 
-### Unit Testing dengan JUnit 5
+Testing dilakukan dengan pendekatan **unit testing** menggunakan JUnit 5 dan Mockito:
 
-```java
-@DisplayName("ProductService Tests")
-public class ProductServiceTest {
-    
-    private ProductService productService;
-    private ProductDAO mockProductDAO;
-    
-    @BeforeEach
-    void setUp() {
-        mockProductDAO = mock(ProductDAO.class);
-        productService = new ProductService(mockProductDAO);
-    }
-    
-    @Test
-    @DisplayName("Should add product successfully")
-    void testAddProductSuccess() {
-        // Arrange
-        Product product = new Product("CODE001", "Beras", 50000);
-        when(mockProductDAO.existsByCode("CODE001")).thenReturn(false);
-        
-        // Act
-        productService.addProduct(product);
-        
-        // Assert
-        verify(mockProductDAO, times(1)).insert(product);
-    }
-    
-    @Test
-    @DisplayName("Should throw exception when adding duplicate code")
-    void testAddProductDuplicateCode() {
-        // Arrange
-        Product product = new Product("CODE001", "Beras", 50000);
-        when(mockProductDAO.existsByCode("CODE001")).thenReturn(true);
-        
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            productService.addProduct(product);
-        });
-    }
-    
-    @Test
-    @DisplayName("Should get all products")
-    void testGetAllProducts() {
-        // Arrange
-        List<Product> expectedProducts = Arrays.asList(
-            new Product("P001", "Beras", 50000),
-            new Product("P002", "Pupuk", 12500)
-        );
-        when(mockProductDAO.findAll()).thenReturn(expectedProducts);
-        
-        // Act
-        List<Product> actualProducts = productService.getAll();
-        
-        // Assert
-        assertEquals(2, actualProducts.size());
-        assertEquals("Beras", actualProducts.get(0).getName());
-    }
-}
+| Jenis Test | Tools | Tujuan |
+|------------|-------|--------|
+| Unit Test | JUnit 5 | Test method individual |
+| Mock Test | Mockito | Isolasi dependency (DAO) |
+| Integration | JUnit + DB | Test koneksi database |
 
-@DisplayName("CartService Tests")
-public class CartServiceTest {
-    
-    private CartService cartService;
-    
-    @BeforeEach
-    void setUp() {
-        cartService = new CartService();
-    }
-    
-    @Test
-    @DisplayName("Should add item to cart")
-    void testAddItem() {
-        // Arrange
-        Product product = new Product("P001", "Beras", 50000);
-        product.setStock(100);
-        
-        // Act
-        cartService.addItem(product, 2);
-        
-        // Assert
-        assertEquals(1, cartService.getCartItems().size());
-        assertEquals(2, cartService.getCartItems().get(0).getQuantity());
-    }
-    
-    @Test
-    @DisplayName("Should throw exception when stock insufficient")
-    void testAddItemInsufficientStock() {
-        // Arrange
-        Product product = new Product("P001", "Beras", 50000);
-        product.setStock(5);
-        
-        // Act & Assert
-        assertThrows(IllegalArgumentException.class, () -> {
-            cartService.addItem(product, 10);
-        });
-    }
-    
-    @Test
-    @DisplayName("Should calculate cart total correctly")
-    void testGetCartTotal() {
-        // Arrange
-        Product p1 = new Product("P001", "Beras", 50000);
-        p1.setStock(100);
-        Product p2 = new Product("P002", "Pupuk", 12500);
-        p2.setStock(100);
-        
-        cartService.addItem(p1, 2);  // 100.000
-        cartService.addItem(p2, 3);  // 37.500
-        
-        // Act
-        double total = cartService.getCartTotal();
-        
-        // Assert
-        assertEquals(137500, total);
-    }
-}
-```
+## 6.2 Contoh Unit Test
 
-## 6.2 Test Coverage
-
-**Target Coverage:** >70% untuk critical paths
-
-### Test Coverage Summary
-
-| Package | Class Coverage | Method Coverage | Line Coverage |
-|---------|---------------|-----------------|---------------|
-| model | 100% | 95% | 92% |
-| service | 100% | 88% | 85% |
-| service.payment | 100% | 90% | 88% |
-| service.discount | 100% | 90% | 88% |
-| dao | 80% | 75% | 70% |
-| **Total** | **95%** | **87%** | **84%** |
-
-### Sample Test Cases
-
+**Test Payment Validation:**
 ```java
 @Test
-void shouldAddItemToCart() throws OutOfStockException {
-    Product product = new Product("P001", "Beras", "Beras", 65000, 100);
-    cartService.addToCart(product, 2);
-    assertFalse(cartService.isCartEmpty());
-}
-
-@Test
-void shouldThrowExceptionWhenInsufficientStock() {
-    Product product = new Product("P001", "Beras", "Beras", 65000, 5);
-    assertThrows(OutOfStockException.class, () -> 
-        cartService.addToCart(product, 100));
-}
-
-@Test
-@DisplayName("Should calculate discount correctly")
-void testPercentageDiscount() {
-    // Given
-    DiscountStrategy discount = new PercentageDiscount(10, "Member");
-    
-    // When
-    double result = discount.calculateDiscount(100000, 5);
-    
-    // Then
-    assertEquals(10000, result, 0.01);
-}
-
-@Test
-@DisplayName("Should validate cash payment")
 void testCashPaymentValidation() {
-    // Given
     CashPayment payment = new CashPayment();
-    
-    // When & Then
-    assertTrue(payment.validatePayment(125000, 150000));
-    double change = payment.processPayment(125000, 150000);
-    assertEquals(25000, change, 0.01);
+    assertTrue(payment.validatePayment(100000, 150000)); // paid >= total ✓
+    assertFalse(payment.validatePayment(100000, 50000)); // paid < total ✗
+    assertEquals(50000, payment.processPayment(100000, 150000)); // kembalian
 }
 ```
 
-**Test Results:**
-- ✓ ProductService: 85% coverage
-- ✓ CartService: 90% coverage
-- ✓ TransactionService: 78% coverage
-- ✓ PaymentMethods: 92% coverage
-- ✓ DAO Layer: 75% coverage
-
-## 6.3 Pembuktian Koneksi Database
-
-### Mengapa Perlu Pembuktian?
-
-Pembuktian koneksi database penting untuk memastikan:
-1. Aplikasi dapat terhubung ke PostgreSQL
-2. CRUD operations berjalan dengan benar
-3. Data tersimpan dan terbaca dengan konsisten
-
-### Metode Pembuktian
-
-#### A. Unit Test Koneksi Database
-
+**Test Cart Service:**
 ```java
-// DatabaseConnectionTest.java
-@DisplayName("Database Connection Tests")
-public class DatabaseConnectionTest {
-    
-    @Test
-    @DisplayName("Should connect to database successfully")
-    void testDatabaseConnection() {
-        // Act
-        boolean isConnected = DatabaseConnection.getInstance().testConnection();
-        
-        // Assert
-        assertTrue(isConnected, "Database connection should be successful");
-    }
-    
-    @Test
-    @DisplayName("Should get valid connection object")
-    void testGetConnection() throws SQLException {
-        // Act
-        Connection conn = DatabaseConnection.getInstance().getConnection();
-        
-        // Assert
-        assertNotNull(conn, "Connection should not be null");
-        assertFalse(conn.isClosed(), "Connection should be open");
-        
-        // Cleanup
-        conn.close();
-    }
+@Test
+void testCartServiceAddItem() {
+    Product product = new Product("P001", "Beras", 50000);
+    product.setStock(100);
+    cartService.addItem(product, 2);
+    assertEquals(100000, cartService.getCartTotal());
+    assertEquals(1, cartService.getCartItems().size());
+}
+
+@Test
+void testCartServiceInsufficientStock() {
+    Product product = new Product("P001", "Beras", 50000);
+    product.setStock(5);
+    assertThrows(OutOfStockException.class, () -> cartService.addItem(product, 10));
+}
+```
+
+## 6.3 Test Coverage
+
+| Package | Class | Method | Line | Status |
+|---------|-------|--------|------|--------|
+| model | 100% | 95% | 92% | ✅ |
+| service | 100% | 88% | 85% | ✅ |
+| service.payment | 100% | 90% | 88% | ✅ |
+| dao | 80% | 75% | 70% | ✅ |
+| **Total** | **95%** | **87%** | **84%** | ✅ |
+
+> Target coverage >70% tercapai untuk semua critical path.
+
+## 6.4 Pembuktian Koneksi Database
+
+**Test Koneksi:**
+```java
+@Test
+void testDatabaseConnection() {
+    boolean connected = DatabaseConnection.getInstance().testConnection();
+    assertTrue(connected, "Database harus terhubung");
+}
+
+@Test
+void testCRUDProduct() {
+    Product p = new Product("TEST01", "Test Product", 10000);
+    productDAO.insert(p);           // CREATE
+    Product found = productDAO.findByCode("TEST01"); // READ
+    assertNotNull(found);
+    productDAO.delete("TEST01");    // DELETE
 }
 ```
 
 **Hasil Test:**
-```
-DatabaseConnectionTest
-├── ✓ testDatabaseConnection() - PASSED (45ms)
-└── ✓ testGetConnection() - PASSED (12ms)
-
-Tests run: 2, Failures: 0, Errors: 0
-```
-
-#### B. Integration Test - CRUD Operations
-
-```java
-// ProductDAOIntegrationTest.java
-@DisplayName("Product DAO Integration Tests")
-public class ProductDAOIntegrationTest {
-    
-    private ProductDAO productDAO;
-    
-    @BeforeEach
-    void setUp() {
-        productDAO = new JdbcProductDAO();
-    }
-    
-    @Test
-    @DisplayName("Should INSERT product to database")
-    void testInsertProduct() throws Exception {
-        // Arrange
-        Product product = new Product("TEST001", "Test Product", 10000);
-        product.setStock(50);
-        
-        // Act
-        productDAO.insert(product);
-        
-        // Assert - Verify data exists in database
-        Product found = productDAO.findByCode("TEST001");
-        assertNotNull(found);
-        assertEquals("Test Product", found.getName());
-        assertEquals(10000, found.getPrice());
-        
-        // Cleanup
-        productDAO.delete("TEST001");
-    }
-    
-    @Test
-    @DisplayName("Should SELECT all products from database")
-    void testFindAllProducts() throws Exception {
-        // Act
-        List<Product> products = productDAO.findAll();
-        
-        // Assert
-        assertNotNull(products);
-        assertTrue(products.size() > 0, "Should have at least seed data");
-        
-        // Print for verification
-        System.out.println("Products in database: " + products.size());
-        products.forEach(p -> System.out.println("- " + p.getCode() + ": " + p.getName()));
-    }
-    
-    @Test
-    @DisplayName("Should UPDATE product in database")
-    void testUpdateProduct() throws Exception {
-        // Arrange - Insert test data
-        Product product = new Product("TEST002", "Original Name", 15000);
-        productDAO.insert(product);
-        
-        // Act - Update
-        product.setName("Updated Name");
-        product.setPrice(20000);
-        productDAO.update(product);
-        
-        // Assert
-        Product updated = productDAO.findByCode("TEST002");
-        assertEquals("Updated Name", updated.getName());
-        assertEquals(20000, updated.getPrice());
-        
-        // Cleanup
-        productDAO.delete("TEST002");
-    }
-    
-    @Test
-    @DisplayName("Should DELETE product from database")
-    void testDeleteProduct() throws Exception {
-        // Arrange
-        Product product = new Product("TEST003", "To Delete", 5000);
-        productDAO.insert(product);
-        
-        // Act
-        productDAO.delete("TEST003");
-        
-        // Assert
-        Product found = productDAO.findByCode("TEST003");
-        assertNull(found, "Product should be deleted");
-    }
-}
-```
-
-**Hasil Integration Test:**
-```
-ProductDAOIntegrationTest
-├── ✓ testInsertProduct() - PASSED (156ms)
-├── ✓ testFindAllProducts() - PASSED (89ms)
-├── ✓ testUpdateProduct() - PASSED (201ms)
-└── ✓ testDeleteProduct() - PASSED (134ms)
-
-Tests run: 4, Failures: 0, Errors: 0
-```
-
-#### C. Screenshot Bukti Database Terhubung
-
-**1. Bukti Koneksi Berhasil (Console Log)**
-
-Saat aplikasi dijalankan, console menampilkan:
-```
-[INFO] 2026-01-29 10:15:23 - DatabaseConnection: Attempting to connect to PostgreSQL...
-[INFO] 2026-01-29 10:15:23 - DatabaseConnection: Connection URL: jdbc:postgresql://localhost:5432/agripos
-[INFO] 2026-01-29 10:15:24 - DatabaseConnection: ✓ Connection established successfully!
-[INFO] 2026-01-29 10:15:24 - DatabaseMigration: Checking for pending migrations...
-[INFO] 2026-01-29 10:15:24 - DatabaseMigration: ✓ Database schema is up to date
-[INFO] 2026-01-29 10:15:25 - Application: Starting Agri-POS...
-```
-
-**2. Bukti Data dari Database Tampil di GUI**
-
-![Data Produk dari Database](screenshots/manajemen%20product%20admin.png)
-
-*Gambar di atas menunjukkan data produk yang diambil dari tabel `products` di PostgreSQL dan ditampilkan di TableView JavaFX.*
-
-**3. Bukti Transaksi Tersimpan di Database**
-
-Setelah melakukan checkout:
-- GUI menampilkan struk dengan Transaction ID
-- Data dapat dicek di database:
-
-```sql
--- Query untuk verifikasi transaksi tersimpan
-SELECT * FROM transactions ORDER BY created_at DESC LIMIT 5;
-
--- Hasil:
- id |   code    | cashier_username | subtotal | discount |  total  | payment_method 
-----+-----------+------------------+----------+----------+---------+----------------
- 15 | TRX-00015 | kasir1           | 162500   | 8125     | 154375  | Tunai
- 14 | TRX-00014 | kasir1           | 85000    | 0        | 85000   | E-Wallet (OVO)
- 13 | TRX-00013 | kasir2           | 220500   | 22050    | 198450  | QRIS
-```
-
-**4. Bukti Stok Berkurang Setelah Transaksi**
-
-```sql
--- Sebelum transaksi:
-SELECT code, name, stock FROM products WHERE code = 'PRD001';
--- Hasil: PRD001 | Beras Premium | 100
-
--- Setelah checkout 5 kg Beras:
-SELECT code, name, stock FROM products WHERE code = 'PRD001';
--- Hasil: PRD001 | Beras Premium | 95
-
--- Stok berkurang 5 (100 - 5 = 95) ✓
-```
-
-#### D. Diagram Alur Pembuktian Koneksi
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    PEMBUKTIAN KONEKSI DATABASE                          │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                         │
-│  [1] TEST KONEKSI                                                       │
-│  ─────────────────                                                      │
-│  DatabaseConnection.testConnection() → return true ✓                    │
-│                                                                         │
-│  [2] TEST CRUD - INSERT                                                 │
-│  ──────────────────────                                                 │
-│  productDAO.insert(product)                                             │
-│       │                                                                 │
-│       ▼                                                                 │
-│  Database: INSERT INTO products (...) VALUES (...)                      │
-│       │                                                                 │
-│       ▼                                                                 │
-│  productDAO.findByCode() → return product ✓ (data tersimpan)            │
-│                                                                         │
-│  [3] TEST CRUD - SELECT                                                 │
-│  ──────────────────────                                                 │
-│  productDAO.findAll() → return List<Product> ✓                          │
-│       │                                                                 │
-│       ▼                                                                 │
-│  GUI TableView menampilkan data dari database ✓                         │
-│                                                                         │
-│  [4] TEST END-TO-END                                                    │
-│  ────────────────────                                                   │
-│  User checkout di GUI                                                   │
-│       │                                                                 │
-│       ▼                                                                 │
-│  Transaction tersimpan di database                                      │
-│       │                                                                 │
-│       ▼                                                                 │
-│  Stock produk berkurang di database                                     │
-│       │                                                                 │
-│       ▼                                                                 │
-│  Riwayat transaksi tampil di GUI ✓                                      │
-│                                                                         │
-└─────────────────────────────────────────────────────────────────────────┘
-```
-
-### Kesimpulan Pembuktian
-
-| Test | Metode | Hasil | Status |
-|------|--------|-------|--------|
-| Koneksi Database | `testConnection()` | true | ✅ PASS |
-| INSERT Operation | Insert + FindByCode | Data ditemukan | ✅ PASS |
-| SELECT Operation | FindAll | List tidak kosong | ✅ PASS |
-| UPDATE Operation | Update + FindByCode | Data berubah | ✅ PASS |
-| DELETE Operation | Delete + FindByCode | Data null | ✅ PASS |
-| End-to-End | Checkout → Database | Transaksi tersimpan | ✅ PASS |
-| GUI-Database Sync | TableView refresh | Data tampil | ✅ PASS |
-
-**Semua test PASSED** → Database terintegrasi dengan baik ✅
+- ✅ Database terhubung ke PostgreSQL
+- ✅ Tabel `users`: 3 rows (admin, kasir1, kasir2)
+- ✅ Tabel `products`: 5 rows (data seed)
+- ✅ CRUD operations berjalan normal
 
 ---
 
-# BAGIAN VII: DATABASE DESIGN & INTEGRATION
+# BAGIAN VII: SCREENSHOT APLIKASI
 
-## 7.1 Database Schema
-
-```sql
--- Users table
-CREATE TABLE users (
-    id BIGSERIAL PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100),
-    role VARCHAR(20) NOT NULL CHECK (role IN ('ADMIN', 'KASIR')),
-    active BOOLEAN DEFAULT true,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Products table
-CREATE TABLE products (
-    id BIGSERIAL PRIMARY KEY,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    category VARCHAR(50),
-    price DECIMAL(12,2) NOT NULL,
-    stock INT NOT NULL DEFAULT 0,
-    unit VARCHAR(20),
-    description TEXT,
-    active BOOLEAN DEFAULT true,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
-    CONSTRAINT chk_price CHECK (price > 0),
-    CONSTRAINT chk_stock CHECK (stock >= 0)
-);
-
--- Transactions table (dengan discount column)
-CREATE TABLE transactions (
-    id BIGSERIAL PRIMARY KEY,
-    code VARCHAR(50) UNIQUE NOT NULL,
-    cashier_username VARCHAR(50) NOT NULL REFERENCES users(username),
-    subtotal DECIMAL(12,2) NOT NULL,
-    discount DECIMAL(12,2) NOT NULL DEFAULT 0,
-    tax DECIMAL(12,2) NOT NULL,
-    total DECIMAL(12,2) NOT NULL,
-    payment_method VARCHAR(50) NOT NULL,
-    amount_paid DECIMAL(12,2) NOT NULL,
-    change DECIMAL(12,2),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (cashier_username) REFERENCES users(username),
-    CONSTRAINT chk_total CHECK (total > 0)
-);
-
--- Transaction items table
-CREATE TABLE transaction_items (
-    id BIGSERIAL PRIMARY KEY,
-    transaction_id BIGINT NOT NULL REFERENCES transactions(id) ON DELETE CASCADE,
-    product_id BIGINT NOT NULL REFERENCES products(id),
-    quantity INT NOT NULL,
-    price_per_unit DECIMAL(12,2) NOT NULL,
-    discount_percent DECIMAL(5,2) DEFAULT 0,
-    subtotal DECIMAL(12,2) NOT NULL,
-    CONSTRAINT chk_qty CHECK (quantity > 0)
-);
-
--- Indexes for performance
-CREATE INDEX idx_user_username ON users(username);
-CREATE INDEX idx_product_code ON products(code);
-CREATE INDEX idx_product_category ON products(category);
-CREATE INDEX idx_transaction_code ON transactions(code);
-CREATE INDEX idx_transaction_date ON transactions(created_at);
-CREATE INDEX idx_transaction_cashier ON transactions(cashier_username);
-```
-
-## 7.2 Database Auto-Migration
-
-**Fitur:** Aplikasi otomatis menambahkan kolom `discount` jika belum ada (untuk backward compatibility).
-
-```java
-// DatabaseMigration.java
-public class DatabaseMigration {
-    
-    public static void runMigrations() {
-        addDiscountColumnIfNotExists();
-    }
-    
-    private static void addDiscountColumnIfNotExists() {
-        String checkColumnSQL = "SELECT column_name FROM information_schema.columns " +
-            "WHERE table_name='transactions' AND column_name='discount'";
-        
-        String addColumnSQL = "ALTER TABLE transactions ADD COLUMN discount DECIMAL(12,2) " +
-            "NOT NULL DEFAULT 0";
-        
-        try (Connection conn = DatabaseConnection.getInstance().getConnection();
-             Statement stmt = conn.createStatement()) {
-            
-            ResultSet rs = stmt.executeQuery(checkColumnSQL);
-            
-            if (!rs.next()) {
-                System.out.println("Menambahkan kolom 'discount' ke table transactions...");
-                stmt.executeUpdate(addColumnSQL);
-                System.out.println("Kolom 'discount' berhasil ditambahkan");
-            } else {
-                System.out.println("Kolom 'discount' sudah ada");
-            }
-            
-        } catch (SQLException e) {
-            System.out.println("Error during migration: " + e.getMessage());
-        }
-    }
-}
-
-// AppJavaFx.java - Call migration pada startup
-public class AppJavaFx extends Application {
-    
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        // Run database migrations first
-        DatabaseMigration.runMigrations();
-        
-        // ... rest of initialization
-    }
-}
-```
+| Screenshot | Deskripsi |
+|------------|-----------|
+| ![Login](/praktikum/week15-proyek-kelompok/screenshots/login%20agripos.png) | Login dengan role selection |
+| ![Dashboard](/praktikum/week15-proyek-kelompok/screenshots/dasboard%20admin.png) | Dashboard Admin |
+| ![Produk](/praktikum/week15-proyek-kelompok/screenshots/manajemen%20product%20admin.png) | Manajemen Produk |
+| ![Diskon](/praktikum/week15-proyek-kelompok/screenshots/manajement%20diskon%20admin.png) | Manajemen Diskon |
+| ![Transaksi](/praktikum/week15-proyek-kelompok/screenshots/transaksi%20kasir.png) | Transaksi Kasir |
+| ![Laporan](/praktikum/week15-proyek-kelompok/screenshots/Laporan%20Penjualan(admin).jpg) | Laporan Penjualan |
+| ![Riwayat](/praktikum/week15-proyek-kelompok/screenshots/Riwayat%20Transaksi%20(kasir).jpg) | Riwayat Transaksi |
 
 ---
 
-# BAGIAN VII-B: SCREENSHOT APLIKASI
+# BAGIAN VII-B: ANALISIS KUALITAS DAN KETERPADUAN
 
-## 7B.1 Login Screen
+## Evaluasi Keterpaduan Sistem
 
-![Login Screen](/praktikum/week15-proyek-kelompok/screenshots/login%20agripos.png)
+| Aspek | Evaluasi | Rating |
+|-------|----------|--------|
+| **OOP Integration** | 4 pilar terintegrasi dengan baik |  |
+| **Database Integration** | JDBC + PreparedStatement + DAO |  |
+| **GUI Integration** | JavaFX + ObservableList + MVC |  |
+| **Design Patterns** | Singleton, Strategy, Factory, DAO |  |
 
-**Fitur:**
-- Input username dan password
-- Pilihan role (Admin/Kasir) dengan toggle button
-- Validasi role sebelum login
-- Responsive design (mobile/desktop)
-
-## 7B.2 Dashboard Admin
-
-![Dashboard Admin](/praktikum/week15-proyek-kelompok/screenshots/dasboard%20admin.png)
-
-**Fitur:**
-- Total transaksi hari ini
-- Revenue harian
-- Produk terjual
-- Low stock alert
-- Grafik penjualan
-
-## 7B.3 Manajemen Produk (Admin)
-
-![Manajemen Product (Admin)](/praktikum/week15-proyek-kelompok/screenshots/manajemen%20product%20admin.png)
-
-**Fitur:**
-- Tabel produk dengan pagination
-- Form tambah/edit produk
-- Search dan filter kategori
-- CRUD operations
-
-## 7B.4 Manajemen Diskon (Admin)
-
-![Manajemen Diskon (Admin)](/praktikum/week15-proyek-kelompok/screenshots/manajement%20diskon%20admin.png)
-
-**Fitur:**
-- Tabel diskon dengan status aktif/nonaktif
-- Form tambah diskon (Persentase, Nominal, Bulk, Voucher)
-- Edit dan hapus diskon
-- Toggle aktif/nonaktif
-- Search diskon
-- Real-time sync ke Kasir
-
-## 7B.5 Transaksi (Kasir)
-
-![Transaksi (Kasir)](/praktikum/week15-proyek-kelompok/screenshots/transaksi%20kasir.png)
-
-**Fitur:**
-- Pencarian produk
-- Keranjang belanja
-- Apply diskon dari dropdown (dikelola Admin)
-- Input voucher code
-- Multi payment method
-- Preview struk
-
-## 7B.6 Laporan Penjualan (Admin)
-
-![Laporan Penjualan (Admin)](/praktikum/week15-proyek-kelompok/screenshots/Laporan%20Penjualan(admin).jpg)
-
-**Fitur:**
-- Laporan harian
-- Laporan periode
-- Export report
-
-## 7B.7 Riwayat Transaksi (Kasir)
-
-![Riwayat Transaksi (Kasir)](/praktikum/week15-proyek-kelompok/screenshots/Riwayat%20Transaksi%20(kasir).jpg)
-
-**Fitur:**
-- Daftar transaksi
-- Filter tanggal
-- Detail transaksi
-- Cetak ulang struk
-
----
-
-# BAGIAN VII-C: ANALISIS KUALITAS DAN KETERPADUAN SISTEM
-
-## 7C.1 Analisis Keterpaduan OOP
-
-### Evaluasi Penerapan Konsep OOP
-
-| Konsep OOP | Implementasi | Kualitas | Keterangan |
-|------------|--------------|----------|------------|
-| **Encapsulation** | Private fields + public getters/setters | ⭐⭐⭐⭐⭐ | Semua model class menggunakan access modifier yang tepat, validasi di setter |
-| **Inheritance** | Interface implementation (PaymentMethod, DAO) | ⭐⭐⭐⭐⭐ | Hierarki interface yang jelas, mudah di-extend |
-| **Polymorphism** | Strategy pattern di payment methods | ⭐⭐⭐⭐⭐ | Runtime polymorphism berjalan sempurna |
-| **Abstraction** | DAO interfaces, Service layer | ⭐⭐⭐⭐⭐ | Business logic terpisah dari implementasi detail |
-
-### Keterpaduan Antar Layer
-
+**Alur Integrasi:**
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    ANALISIS KETERPADUAN                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  [GUI - JavaFX]                                                 │
-│       │                                                         │
-│       │ ← Event-driven, observable properties                   │
-│       ▼                                                         │
-│  [Controller Layer]                                             │
-│       │                                                         │
-│       │ ← Dependency Injection, loose coupling                  │
-│       ▼                                                         │
-│  [Service Layer]                                                │
-│       │                                                         │
-│       │ ← Interface-based, strategy pattern                     │
-│       ▼                                                         │
-│  [DAO Layer]                                                    │
-│       │                                                         │
-│       │ ← PreparedStatement, connection pooling                 │
-│       ▼                                                         │
-│  [PostgreSQL Database]                                          │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
+GUI (JavaFX)  Controller  Service  DAO  Database (PostgreSQL)
+                                                |
+      Data Response 
 ```
-
-## 7D.2 Analisis Keterpaduan Database
-
-### Evaluasi Integrasi JDBC/DAO
-
-| Aspek | Implementasi | Kualitas |
-|-------|--------------|----------|
-| **Connection Management** | Singleton DatabaseConnection | ⭐⭐⭐⭐⭐ |
-| **SQL Injection Prevention** | PreparedStatement di semua query | ⭐⭐⭐⭐⭐ |
-| **Transaction Management** | Auto-commit dengan try-with-resources | ⭐⭐⭐⭐ |
-| **Error Handling** | SQLException dengan logging | ⭐⭐⭐⭐ |
-| **Data Mapping** | ResultSet → Object mapping manual | ⭐⭐⭐⭐ |
-| **Database Migration** | Auto-migration saat startup | ⭐⭐⭐⭐⭐ |
-
-### Konsistensi Data Flow
-
-```java
-// Contoh alur data yang terintegrasi dari GUI → Database
-GUI (TransactionView)
-    ↓ User click "Checkout"
-Controller (PosController.handleCheckout())
-    ↓ Validasi input, call service
-Service (TransactionService.checkout())
-    ↓ Business logic, kalkulasi, create Transaction object
-DAO (JdbcTransactionDAO.insert())
-    ↓ PreparedStatement, execute INSERT
-Database (PostgreSQL - transactions table)
-    ↓ Data tersimpan
-DAO (return generated ID)
-    ↓ 
-Service (update stock, return CheckoutSummary)
-    ↓
-Controller (show receipt, clear cart)
-    ↓
-GUI (display success message, print struk)
-```
-
-## 7D.3 Analisis Keterpaduan GUI
-
-### Evaluasi Integrasi JavaFX
-
-| Aspek | Implementasi | Kualitas |
-|-------|--------------|----------|
-| **MVC Pattern** | View-Controller separation | ⭐⭐⭐⭐⭐ |
-| **Event Handling** | Lambda expressions, EventHandler | ⭐⭐⭐⭐⭐ |
-| **Data Binding** | ObservableList untuk TableView | ⭐⭐⭐⭐⭐ |
-| **Responsive Design** | WidthProperty listener | ⭐⭐⭐⭐ |
-| **User Experience** | Intuitive layout, clear feedback | ⭐⭐⭐⭐⭐ |
-| **Real-time Update** | Singleton service untuk sync Admin-Kasir | ⭐⭐⭐⭐⭐ |
-
-### Integrasi GUI-Service-Database
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    GUI INTEGRATION FLOW                         │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  TransactionView                                                │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ TableView<CartItem> ←── ObservableList<CartItem>        │   │
-│  │      │                                                   │   │
-│  │      │ addListener() untuk auto-update summary          │   │
-│  │      ▼                                                   │   │
-│  │ Label totalLabel ←── cartService.getCartTotal()         │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│  DiscountManagementView (Admin)                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │ TableView<DiscountConfig>                                │   │
-│  │      │                                                   │   │
-│  │      │ DiscountConfigService.getInstance() ← Singleton   │   │
-│  │      ▼                                                   │   │
-│  │ Kasir ComboBox ←── getActiveDiscounts() ← Same instance │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
-
-## 7D.4 Analisis Keseluruhan Sistem
-
-### Strengths (Kekuatan)
-
-1. **Clean Architecture**: Separation of concerns yang jelas antar layer
-2. **Design Patterns**: Penggunaan pattern yang tepat sesuai kebutuhan
-3. **Type Safety**: Strong typing dengan Java generics
-4. **Testability**: Mudah di-unit test karena dependency injection
-5. **Maintainability**: Kode modular, mudah di-extend
-6. **Real-time Sync**: Admin-Kasir discount sync menggunakan Singleton
-
-### Weaknesses (Area Improvement)
-
-1. **Connection Pooling**: Belum menggunakan HikariCP untuk production
-2. **Password Security**: Belum ada hashing (BCrypt)
-3. **Caching**: Belum ada caching layer untuk optimasi
-4. **Logging**: Bisa ditingkatkan dengan SLF4J + Logback
-
-### Metrics Kualitas
-
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Test Coverage | >70% | 84% | ✅ Exceeded |
-| Code Complexity | Low-Medium | Low | ✅ Good |
-| Coupling | Loose | Loose | ✅ Good |
-| Cohesion | High | High | ✅ Good |
-| Documentation | Complete | Complete | ✅ Good |
-
-## 7D.5 Penjelasan Logis: Bagaimana Sistem Bekerja Secara Terintegrasi
-
-### Skenario: Kasir Melakukan Transaksi dengan Diskon
-
-Berikut penjelasan **alur logis** bagaimana semua komponen sistem berkolaborasi:
-
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│               ALUR LOGIS TRANSAKSI DENGAN DISKON                            │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  STEP 1: KASIR LOGIN                                                        │
-│  ════════════════════════════════════════════════════════════════════       │
-│  User input: kasir1 / kasir123 / Role: Kasir                               │
-│       │                                                                     │
-│       ▼                                                                     │
-│  LoginController.handleLogin()                                              │
-│       │ ← Validasi input tidak kosong                                       │
-│       ▼                                                                     │
-│  AuthService.authenticate(username, password, role)                         │
-│       │ ← Cek role sesuai, panggil DAO                                      │
-│       ▼                                                                     │
-│  JdbcUserDAO.findByUsername() → Query: SELECT * FROM users WHERE username=? │
-│       │ ← PreparedStatement mencegah SQL injection                          │
-│       ▼                                                                     │
-│  Return User object → Controller navigate ke MainView dengan role KASIR     │
-│                                                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  STEP 2: KASIR MEMILIH PRODUK                                               │
-│  ════════════════════════════════════════════════════════════════════       │
-│  User action: Click "Beras Premium" dari daftar produk                      │
-│       │                                                                     │
-│       ▼                                                                     │
-│  TransactionView.onProductClick(product)                                    │
-│       │ ← EventHandler (Lambda expression)                                  │
-│       ▼                                                                     │
-│  CartService.addItem(product, qty)                                          │
-│       │ ← Business logic: cek stok, hitung subtotal                         │
-│       │ ← Encapsulation: CartItem memvalidasi qty > 0                       │
-│       ▼                                                                     │
-│  ObservableList<CartItem> di-update                                         │
-│       │ ← Observer Pattern: TableView auto-refresh                          │
-│       ▼                                                                     │
-│  UI: Keranjang menampilkan item baru, total ter-update                      │
-│                                                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  STEP 3: KASIR MENERAPKAN DISKON                                            │
-│  ════════════════════════════════════════════════════════════════════       │
-│  User action: Pilih "Diskon 10%" dari ComboBox                              │
-│       │                                                                     │
-│       ▼                                                                     │
-│  DiscountConfigService.getInstance().getActiveDiscounts()                   │
-│       │ ← Singleton Pattern: Mengambil instance yang sama dengan Admin      │
-│       ▼                                                                     │
-│  User action: Klik "Terapkan Diskon"                                        │
-│       │                                                                     │
-│       ▼                                                                     │
-│  DiscountStrategy strategy = DiscountFactory.createDiscount(config)         │
-│       │ ← Factory Pattern: Buat strategy sesuai tipe diskon                 │
-│       │ ← Jika PERCENTAGE → new PercentageDiscount(10)                      │
-│       ▼                                                                     │
-│  double diskonAmount = strategy.calculateDiscount(subtotal)                 │
-│       │ ← Strategy Pattern: Polymorphism - berbeda behavior per tipe        │
-│       │ ← PercentageDiscount: return subtotal * 0.1                         │
-│       ▼                                                                     │
-│  UI: Total diupdate = Subtotal - DiskonAmount                               │
-│                                                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  STEP 4: KASIR PROSES PEMBAYARAN                                            │
-│  ════════════════════════════════════════════════════════════════════       │
-│  User action: Pilih "Tunai", input "Rp 200.000", click "Checkout"           │
-│       │                                                                     │
-│       ▼                                                                     │
-│  PaymentMethodFactory.getPaymentMethod("Tunai")                             │
-│       │ ← Factory Pattern: Return CashPayment instance                      │
-│       ▼                                                                     │
-│  CashPayment.validatePayment(total=154375, paid=200000)                     │
-│       │ ← Strategy Pattern: Validasi khusus tunai (paid >= total)           │
-│       ▼                                                                     │
-│  CashPayment.processPayment() → return change = 200000 - 154375 = 45625     │
-│       │ ← Polymorphism: Method yang sama, behavior berbeda                  │
-│       ▼                                                                     │
-│  TransactionService.checkout()                                              │
-│       │ ← Create Transaction object dengan semua data                       │
-│       │ ← Encapsulation: Validasi di constructor/setter                     │
-│       ▼                                                                     │
-│  JdbcTransactionDAO.insert(transaction)                                     │
-│       │ ← DAO Pattern: Abstraksi database                                   │
-│       │ ← INSERT INTO transactions (...) VALUES (?, ?, ?, ...)              │
-│       ▼                                                                     │
-│  JdbcProductDAO.updateStock(productId, newStock)                            │
-│       │ ← Kurangi stok di database                                          │
-│       ▼                                                                     │
-│  Return CheckoutSummary → Controller → UI display receipt                   │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
-
-### Kesimpulan Integrasi Sistem
-
-**Bagaimana OOP, Design Pattern, Database, dan GUI Saling Terhubung:**
-
-| Komponen | Peran | Konsep OOP yang Diterapkan |
-|----------|-------|---------------------------|
-| **Model** (Product, Transaction) | Data holder dengan validasi | Encapsulation |
-| **DAO Interface** | Kontrak akses database | Abstraction |
-| **JdbcDAO Implementation** | Implementasi konkret | Inheritance (implements) |
-| **PaymentMethod** | Strategy berbeda per metode | Polymorphism |
-| **Service Layer** | Orchestrator business logic | Dependency Injection |
-| **Controller** | Penghubung View-Service | MVC Pattern |
-| **JavaFX View** | UI dengan data binding | Observer Pattern |
-
-**Bukti Integrasi Berhasil:**
-1. ✅ Admin menambah diskon → Kasir langsung melihat (Singleton + Observer)
-2. ✅ Transaksi sukses → Stok berkurang otomatis (Service → DAO → Database)
-3. ✅ Metode bayar baru → Hanya tambah class, tidak ubah existing code (Strategy + Factory)
-4. ✅ Unit test bisa mock DAO → Service testable tanpa database (Interface-based)
 
 ---
 
 # BAGIAN VIII: KESIMPULAN
 
-## 8.1 Pencapaian Pembelajaran
+Proyek Agri-POS berhasil mengintegrasikan seluruh konsep Pemrograman Berorientasi Objek (OOP), database, dan GUI dalam satu sistem Point of Sale yang fungsional, maintainable, dan scalable.
 
-### ✓ Konsep OOP Terintegrasi
-Proyek ini berhasil mengintegrasikan semua konsep OOP fundamental:
-- **Encapsulation**: Data hiding dengan private attributes dan public methods
-- **Inheritance**: Polymorphism melalui interface implementation
-- **Polymorphism**: Dynamic method dispatch untuk payment methods
-- **Abstraction**: DAO pattern untuk abstraksi database access
+**Pencapaian Pembelajaran:**
+- ✅ **Konsep OOP** - Encapsulation, Inheritance, Polymorphism, Abstraction terintegrasi dalam arsitektur sistem
+- ✅ **Design Patterns** - Singleton, Strategy, Factory, DAO diterapkan sesuai kebutuhan
+- ✅ **Layered Architecture** - 5 layer terpisah dengan clean separation of concerns
+- ✅ **Database Integration** - PostgreSQL + JDBC + PreparedStatement untuk keamanan
+- ✅ **GUI** - JavaFX dengan MVC pattern dan responsive design
+- ✅ **Testing** - JUnit 5 + Mockito dengan coverage 84%
 
-### ✓ Design Patterns Diterapkan
-Tujuh design patterns berhasil diimplementasikan dengan tepat:
-- Singleton (DatabaseConnection, DiscountConfigService)
-- Strategy (PaymentMethod)
-- Factory (PaymentMethodFactory)
-- DAO (ProductDAO, UserDAO, TransactionDAO)
-- Dependency Injection
-- Template Method (Service layer)
-- Observer (JavaFX ObservableList untuk real-time sync)
-
-### ✓ Arsitektur Berlapis
-Clean architecture dengan 5 layer jelas memisahkan concerns:
-- Presentation → Controller → Service → DAO → Database
-
-### ✓ Fitur Lengkap
-Semua fitur POS modern berhasil diimplementasikan:
-- Manajemen produk komprehensif
-- Sistem transaksi end-to-end
-- Multi-method pembayaran
-- Sistem diskon fleksibel dengan manajemen terpusat (Admin-Kasir sync)
-- Manajemen diskon oleh Admin (CRUD diskon, toggle aktif/nonaktif)
-- Struk dan laporan terstruktur
-- Dashboard admin dengan statistik real-time
-- Responsive design (support mobile dan desktop)
-
-### ✓ Kualitas Kode
-- Unit testing >70% coverage
-- Clean code dengan naming convention
-- JavaDoc documentation lengkap
-- Error handling dan validation
-
-### ✓ Database Integration
-- PostgreSQL dengan JDBC
-- Prepared statements untuk SQL injection prevention
-- Auto-migration untuk backward compatibility
-- Proper normalization (3NF)
-
-## 8.2 Pembelajaran Tambahan
-
-Melalui proyek ini, tim mendapatkan pemahaman praktis tentang:
-- Enterprise-level application architecture
-- Design pattern selection dan implementation
-- Database design dan optimization
-- Testing strategy dan mocking techniques
-- Version control collaboration
-- Code review dan documentation
-
-## 8.3 Peluang Pengembangan Lanjutan
-
-Untuk phase berikutnya, fitur yang dapat ditambahkan:
-1. **Inventory Management**: Automatic reordering, supplier management
-2. **Advanced Analytics**: Sales forecasting, trend analysis
-3. **Multi-Store Support**: Centralized dashboard untuk multiple stores
-4. **Mobile App**: Android/iOS client untuk akses remot
-5. **Cloud Deployment**: AWS/Azure cloud infrastructure
-6. **API Layer**: RESTful API untuk third-party integration
-7. **Loyalty Program**: Customer points, membership tiers
-8. **Advanced Security**: OAuth2, JWT tokens
-9. **Real-time Sync**: Live inventory update across devices
-10. **Blockchain Integration**: Transparent transaction audit trail
-
-## 8.4 Apresiasi
-
-Terima kasih kepada:
-- Dosen pembimbing atas bimbingan dan arahan
-- Tim development atas dedikasi dan kolaborasi
-- PostgreSQL community atas database yang reliable
-- JavaFX community atas framework yang powerful
+Pengalaman mengembangkan proyek ini memberikan pemahaman praktis tentang pengembangan aplikasi enterprise-level dengan arsitektur yang baik dan dapat di-maintain untuk pengembangan lebih lanjut.
 
 ---
 
 # BAGIAN IX: LAMPIRAN PENDUKUNG
 
 ## A. Slide Presentasi
-
-Slide presentasi proyek Agri-POS dapat diakses melalui:
-- **File Lokal**: `docs/Presentasi_AgriPOS.pptx`
 - **Google Slides**: [Link Presentasi](https://docs.google.com/presentation/d/YOUR_PRESENTATION_ID)
 
-### Outline Slide Presentasi:
-1. **Slide 1**: Judul & Tim Pengembang
-2. **Slide 2-3**: Latar Belakang & Permasalahan
-3. **Slide 4-5**: Tujuan & Ruang Lingkup
-4. **Slide 6-8**: Arsitektur Sistem & Design Patterns
-5. **Slide 9-12**: Demo Fitur Aplikasi
-6. **Slide 13-14**: Implementasi OOP
-7. **Slide 15**: Testing & Quality Assurance
-8. **Slide 16**: Kesimpulan & Future Work
-9. **Slide 17**: Q&A
-
-## B. Bukti Presentasi dan Demo
-
-### Screenshot Demo Aplikasi
-
-| No | Screenshot | Deskripsi |
-|----|------------|-----------|
-| 1 | ![Login](/praktikum/week15-proyek-kelompok/screenshots/login%20agripos.png) | Halaman Login dengan role selection |
-| 2 | ![Dashboard](/praktikum/week15-proyek-kelompok/screenshots/dasboard%20admin.png) | Dashboard Admin dengan statistik |
-| 3 | ![Produk](/praktikum/week15-proyek-kelompok/screenshots/manajemen%20product%20admin.png) | Manajemen Produk CRUD |
-| 4 | ![Diskon](/praktikum/week15-proyek-kelompok/screenshots/manajement%20diskon%20admin.png) | Manajemen Diskon Admin |
-| 5 | ![Transaksi](/praktikum/week15-proyek-kelompok/screenshots/transaksi%20kasir.png) | Transaksi Kasir |
-| 6 | ![Laporan](/praktikum/week15-proyek-kelompok/screenshots/Laporan%20Penjualan(admin).jpg) | Laporan Penjualan |
-| 7 | ![Riwayat](/praktikum/week15-proyek-kelompok/screenshots/Riwayat%20Transaksi%20(kasir).jpg) | Riwayat Transaksi |
-
-### Link Video Demo
-- **YouTube**: [Demo Aplikasi Agri-POS](https://youtube.com/watch?v=YOUR_VIDEO_ID)
-- **Google Drive**: [Video Demo](https://drive.google.com/file/d/YOUR_FILE_ID)
+## B. Video Demo
+- **YouTube**: [Demo Agri-POS](https://youtube.com/watch?v=YOUR_VIDEO_ID)
 
 ## C. Manual Book Penggunaan Aplikasi
 
@@ -3433,17 +1126,15 @@ Slide presentasi proyek Agri-POS dapat diakses melalui:
 
 ---
 
-### DAFTAR ISI MANUAL BOOK
+### DAFTAR ISI
 
 1. [Pendahuluan](#c1-pendahuluan)
 2. [Persyaratan Sistem](#c2-persyaratan-sistem)
 3. [Panduan Instalasi](#c3-panduan-instalasi)
-4. [Memulai Aplikasi](#c4-memulai-aplikasi)
+4. [Memulai Aplikasi (Login)](#c4-memulai-aplikasi)
 5. [Panduan Kasir](#c5-panduan-kasir)
 6. [Panduan Admin](#c6-panduan-admin)
-7. [Fitur Tambahan](#c7-fitur-tambahan)
-8. [FAQ & Troubleshooting](#c8-faq--troubleshooting)
-9. [Kontak & Dukungan](#c9-kontak--dukungan)
+7. [FAQ & Troubleshooting](#c7-faq--troubleshooting)
 
 ---
 
@@ -3451,7 +1142,7 @@ Slide presentasi proyek Agri-POS dapat diakses melalui:
 
 #### Apa itu Agri-POS?
 
-**Agri-POS** adalah aplikasi Point of Sale (POS) yang dirancang khusus untuk toko pertanian. Aplikasi ini membantu proses penjualan, manajemen stok, dan pencatatan transaksi secara digital dan terintegrasi.
+**Agri-POS** adalah aplikasi Point of Sale (POS) desktop yang dirancang khusus untuk toko pertanian. Aplikasi ini membantu proses penjualan, manajemen stok, dan pencatatan transaksi secara digital dan terintegrasi.
 
 #### Fitur Utama
 
@@ -3484,22 +1175,22 @@ Slide presentasi proyek Agri-POS dapat diakses melalui:
 
 #### Software yang Dibutuhkan
 
-| Software | Versi | Download Link |
-|----------|-------|---------------|
-| Java JDK | 17 atau lebih tinggi | [Oracle JDK](https://www.oracle.com/java/technologies/downloads/) |
-| Apache Maven | 3.8.x | [Maven Download](https://maven.apache.org/download.cgi) |
-| PostgreSQL | 13 atau lebih tinggi | [PostgreSQL](https://www.postgresql.org/download/) |
-| Git | Latest | [Git SCM](https://git-scm.com/downloads) |
+| Software | Versi | Fungsi |
+|----------|-------|--------|
+| Java JDK | 17+ | Runtime aplikasi |
+| Apache Maven | 3.8+ | Build tool |
+| PostgreSQL | 13+ | Database server |
+| Git | Latest | Version control |
 
 #### Verifikasi Instalasi
 
-Buka terminal/command prompt dan jalankan:
+Buka terminal/command prompt dan jalankan perintah berikut untuk memastikan software terinstall:
 
 ```bash
-java -version      # Harus menampilkan "17.x.x"
-mvn -version       # Harus menampilkan "Apache Maven 3.8.x"
-psql --version     # Harus menampilkan "psql (PostgreSQL) 13.x"
-git --version      # Harus menampilkan "git version x.x.x"
+java -version      # Output: openjdk version "17.x.x"
+mvn -version       # Output: Apache Maven 3.8.x
+psql --version     # Output: psql (PostgreSQL) 13.x
+git --version      # Output: git version x.x.x
 ```
 
 ---
@@ -3509,7 +1200,7 @@ git --version      # Harus menampilkan "git version x.x.x"
 #### Langkah 1: Download Source Code
 
 ```bash
-# Clone dari repository
+# Clone repository dari GitHub
 git clone https://github.com/YOUR_USERNAME/agripos.git
 
 # Masuk ke folder project
@@ -3518,6 +1209,7 @@ cd agripos
 
 #### Langkah 2: Setup Database PostgreSQL
 
+**Windows (Command Prompt):**
 ```bash
 # Login ke PostgreSQL
 psql -U postgres
@@ -3538,6 +1230,13 @@ CREATE DATABASE agripos;
 \q
 ```
 
+**Linux/Mac:**
+```bash
+sudo -u postgres psql -c "CREATE DATABASE agripos"
+sudo -u postgres psql -d agripos -f sql/schema.sql
+sudo -u postgres psql -d agripos -f sql/seed.sql
+```
+
 #### Langkah 3: Konfigurasi Koneksi Database
 
 Edit file `src/main/java/com/upb/agripos/util/DatabaseConnection.java`:
@@ -3545,14 +1244,14 @@ Edit file `src/main/java/com/upb/agripos/util/DatabaseConnection.java`:
 ```java
 // Sesuaikan dengan konfigurasi PostgreSQL Anda
 private static final String URL = "jdbc:postgresql://localhost:5432/agripos";
-private static final String USER = "postgres";       // Username Anda
-private static final String PASS = "password123";    // Password Anda
+private static final String USER = "postgres";       // Username PostgreSQL Anda
+private static final String PASS = "password123";    // Password PostgreSQL Anda
 ```
 
 #### Langkah 4: Build dan Jalankan Aplikasi
 
 ```bash
-# Compile project
+# Compile project dengan Maven
 mvn clean compile
 
 # Jalankan aplikasi
@@ -3561,38 +1260,36 @@ mvn javafx:run
 
 #### ✅ Tanda Instalasi Berhasil
 
-Jika berhasil, akan muncul jendela login Agri-POS seperti gambar berikut:
-
-![Login Screen](screenshots/login%20agripos.png)
+Jika berhasil, akan muncul jendela login Agri-POS.
 
 ---
 
-### C.4 Memulai Aplikasi
+### C.4 Memulai Aplikasi (Login)
 
-#### Halaman Login
+#### Tampilan Login
 
-Saat aplikasi dibuka, Anda akan melihat halaman login dengan field:
+Saat aplikasi dibuka, Anda akan melihat halaman login dengan:
 
 | Field | Keterangan |
 |-------|------------|
 | **Username** | Nama pengguna yang terdaftar |
 | **Password** | Kata sandi pengguna |
-| **Role** | Pilih peran: Admin atau Kasir |
+| **Role** | Pilih peran: Admin atau Kasir (toggle button) |
 
 #### Akun Default
 
-| Role | Username | Password |
-|------|----------|----------|
-| 👔 Admin | `admin` | `admin123` |
-| 🏪 Kasir 1 | `kasir1` | `kasir123` |
-| 🏪 Kasir 2 | `kasir2` | `kasir123` |
+| Role | Username | Password | Akses |
+|------|----------|----------|-------|
+| 👔 Admin | `admin` | `admin123` | Full access |
+| 🏪 Kasir 1 | `kasir1` | `kasir123` | Transaksi & Riwayat |
+| 🏪 Kasir 2 | `kasir2` | `kasir123` | Transaksi & Riwayat |
 
 #### Cara Login
 
 1. Buka aplikasi Agri-POS
-2. Masukkan **Username** 
-3. Masukkan **Password**
-4. Pilih **Role** (Admin/Kasir) dari dropdown
+2. Masukkan **Username** (contoh: `kasir1`)
+3. Masukkan **Password** (contoh: `kasir123`)
+4. Klik tombol **Role** yang sesuai (Admin/Kasir)
 5. Klik tombol **🔐 Login**
 
 > ⚠️ **Penting**: Pastikan role yang dipilih sesuai dengan akun. Admin tidak bisa login sebagai Kasir dan sebaliknya.
@@ -3601,7 +1298,6 @@ Saat aplikasi dibuka, Anda akan melihat halaman login dengan field:
 
 1. Klik tombol **🚪 Logout** di pojok kanan atas
 2. Anda akan kembali ke halaman login
-3. Konfirmasi logout jika diminta
 
 ---
 
@@ -3609,86 +1305,73 @@ Saat aplikasi dibuka, Anda akan melihat halaman login dengan field:
 
 #### 5.1 Tampilan Utama Kasir
 
-Setelah login sebagai Kasir, Anda akan melihat tampilan dengan tab:
+Setelah login sebagai Kasir, Anda akan melihat tampilan dengan 2 tab:
 - 🛒 **Transaksi Baru** - Untuk membuat penjualan
 - 📋 **Riwayat Transaksi** - Melihat transaksi sebelumnya
-
-![Tampilan Kasir](screenshots/transaksi%20kasir.png)
 
 ---
 
 #### 5.2 Membuat Transaksi Baru
 
-**Langkah-langkah:**
+**Langkah-langkah Lengkap:**
 
-| Step | Aksi | Keterangan |
-|------|------|------------|
-| 1 | Klik tab **🛒 Transaksi Baru** | Membuka form transaksi |
-| 2 | Cari produk | Gunakan search box atau filter kategori |
-| 3 | Klik produk | Produk ditambahkan ke keranjang |
-| 4 | Atur quantity | Ubah jumlah dengan +/- atau input manual |
-| 5 | Pilih diskon (opsional) | Pilih dari dropdown atau input kode voucher |
-| 6 | Pilih metode bayar | Tunai / E-Wallet / QRIS |
-| 7 | Input nominal bayar | Masukkan jumlah uang yang diterima |
-| 8 | Klik **Checkout** | Proses pembayaran |
-| 9 | Cetak struk | Klik **Cetak** atau **Selesai** |
+| Step | Aksi | Cara |
+|------|------|------|
+| 1 | **Buka tab Transaksi** | Klik tab 🛒 Transaksi Baru |
+| 2 | **Cari produk** | Ketik nama/kode di search box ATAU pilih kategori dari dropdown |
+| 3 | **Tambah ke keranjang** | Klik produk yang diinginkan, produk akan masuk ke keranjang |
+| 4 | **Atur jumlah** | Ubah quantity dengan tombol +/- atau ketik angka langsung |
+| 5 | **Hapus item (jika perlu)** | Klik tombol ❌ di samping item |
+| 6 | **Pilih diskon (opsional)** | Pilih dari dropdown diskon ATAU masukkan kode voucher |
+| 7 | **Pilih metode bayar** | Klik salah satu: Tunai / E-Wallet / QRIS |
+| 8 | **Input nominal bayar** | Masukkan jumlah uang yang diterima dari pelanggan |
+| 9 | **Proses checkout** | Klik tombol **✅ Checkout** |
+| 10 | **Cetak struk** | Klik **🖨️ Cetak Struk** atau **Selesai** |
 
-**Detail Langkah:**
+---
 
-**Step 1-3: Memilih Produk**
+**Detail Tampilan Keranjang:**
+
 ```
-┌─────────────────────────────────────┐
-│  🔍 Cari produk...                  │
-├─────────────────────────────────────┤
-│ Filter: [Semua ▼] [Beras ▼] [Pupuk]│
-├─────────────────────────────────────┤
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐│
-│ │ Beras   │ │ Pupuk   │ │ Bibit   ││
-│ │ Premium │ │ Urea    │ │ Padi    ││
-│ │Rp50.000 │ │Rp12.500 │ │ Rp8.000 ││
-│ └─────────┘ └─────────┘ └─────────┘│
-└─────────────────────────────────────┘
-```
-
-**Step 4: Keranjang Belanja**
-```
-┌─────────────────────────────────────────────┐
-│ KERANJANG                                   │
-├──────────────────┬─────┬─────────┬──────────┤
-│ Nama Produk      │ Qty │ Harga   │ Subtotal │
-├──────────────────┼─────┼─────────┼──────────┤
-│ Beras Premium    │ [2] │ 50.000  │ 100.000  │
-│ Pupuk Urea       │ [5] │ 12.500  │  62.500  │
-├──────────────────┴─────┴─────────┼──────────┤
-│                        Subtotal  │ 162.500  │
-│                        Diskon    │  -8.125  │
-│                        TOTAL     │ 154.375  │
-└──────────────────────────────────┴──────────┘
+┌─────────────────────────────────────────────────────┐
+│ KERANJANG BELANJA                                   │
+├──────────────────┬──────┬───────────┬───────────────┤
+│ Nama Produk      │ Qty  │ Harga     │ Subtotal      │
+├──────────────────┼──────┼───────────┼───────────────┤
+│ Beras Premium    │ [2]  │ Rp 50.000 │ Rp 100.000    │
+│ Pupuk Urea       │ [5]  │ Rp 12.500 │ Rp  62.500    │
+│ Bibit Jagung     │ [3]  │ Rp  8.000 │ Rp  24.000    │
+├──────────────────┴──────┴───────────┼───────────────┤
+│                          Subtotal   │ Rp 186.500    │
+│                          Diskon 5%  │ Rp  -9.325    │
+│                          Pajak 10%  │ Rp  17.718    │
+├─────────────────────────────────────┼───────────────┤
+│                          TOTAL      │ Rp 194.893    │
+└─────────────────────────────────────┴───────────────┘
 ```
 
-**Step 5: Menerapkan Diskon**
+---
 
-| Tipe Diskon | Cara Penggunaan | Contoh |
-|-------------|-----------------|--------|
-| Persentase | Pilih dari dropdown | Diskon 10% → potongan 10% dari total |
-| Nominal | Pilih dari dropdown | Diskon Rp5.000 → potongan Rp5.000 |
-| Voucher | Input kode di field voucher | `AGRI2026` → diskon sesuai voucher |
-| Bulk | Otomatis jika beli ≥ qty tertentu | Beli 10 kg, gratis 1 kg |
+**Metode Pembayaran:**
 
-**Step 6-7: Pembayaran**
-```
-┌──────────────────────────────────┐
-│ PEMBAYARAN                       │
-├──────────────────────────────────┤
-│ Metode: ○ Tunai ● E-Wallet ○ QRIS│
-├──────────────────────────────────┤
-│ Total      : Rp 154.375          │
-│ Bayar      : [Rp 200.000      ]  │
-│ Kembalian  : Rp  45.625          │
-├──────────────────────────────────┤
-│      [ 🛒 CHECKOUT ]             │
-└──────────────────────────────────┘
-```
+| Metode | Cara Penggunaan | Kembalian |
+|--------|-----------------|-----------|
+| 💵 **Tunai** | Input nominal ≥ total | Ya, dihitung otomatis |
+| 📱 **E-Wallet** | Input nominal = total (OVO, GoPay, Dana) | Tidak ada |
+| 📷 **QRIS** | Scan QR code, konfirmasi pembayaran | Tidak ada |
+
+---
+
+**Menerapkan Diskon:**
+
+| Tipe Diskon | Cara | Contoh |
+|-------------|------|--------|
+| **Diskon Umum** | Pilih dari dropdown "Pilih Diskon" | Diskon 5%, 10% |
+| **Diskon Member** | Pilih dari dropdown | Member 10% |
+| **Voucher** | Ketik kode di field "Kode Voucher" → Klik "Terapkan" | PROMO50K |
+| **Bulk Discount** | Otomatis jika beli ≥ jumlah tertentu | Beli 5+ dapat 15% |
+
+> 💡 **Tips**: Klik tombol **🔄 Refresh Diskon** untuk memperbarui daftar diskon terbaru dari Admin.
 
 ---
 
@@ -3697,24 +1380,21 @@ Setelah login sebagai Kasir, Anda akan melihat tampilan dengan tab:
 **Langkah-langkah:**
 
 1. Klik tab **📋 Riwayat Transaksi**
-2. Gunakan filter tanggal untuk mencari transaksi tertentu
-3. Klik baris transaksi untuk melihat detail
-4. Klik **Cetak Ulang** untuk mencetak struk lagi
+2. Gunakan filter tanggal untuk mencari transaksi tertentu:
+   - **Tanggal Tunggal**: Pilih satu tanggal
+   - **Periode**: Pilih tanggal mulai dan akhir
+3. Klik baris transaksi untuk melihat **detail lengkap**
+4. Klik **🖨️ Cetak Ulang** untuk mencetak struk lagi
 
-**Tampilan Riwayat:**
-```
-┌────────────────────────────────────────────────────────┐
-│ 📋 RIWAYAT TRANSAKSI                                   │
-├──────┬────────────┬────────────┬───────────┬──────────┤
-│ ID   │ Tanggal    │ Waktu      │ Total     │ Kasir    │
-├──────┼────────────┼────────────┼───────────┼──────────┤
-│ T001 │ 29/01/2026 │ 09:15:23   │ Rp154.375 │ kasir1   │
-│ T002 │ 29/01/2026 │ 10:30:45   │ Rp 85.000 │ kasir1   │
-│ T003 │ 29/01/2026 │ 11:20:10   │ Rp220.500 │ kasir2   │
-└──────┴────────────┴────────────┴───────────┴──────────┘
-```
+**Informasi yang Ditampilkan:**
 
-![Riwayat Transaksi](screenshots/Riwayat%20Transaksi%20(kasir).jpg)
+| Kolom | Keterangan |
+|-------|------------|
+| ID Transaksi | Kode unik transaksi (TRX-00001) |
+| Tanggal | Tanggal dan waktu transaksi |
+| Total | Jumlah total pembayaran |
+| Metode Bayar | Tunai / E-Wallet / QRIS |
+| Kasir | Username kasir yang melayani |
 
 ---
 
@@ -3722,54 +1402,51 @@ Setelah login sebagai Kasir, Anda akan melihat tampilan dengan tab:
 
 #### 6.1 Tampilan Utama Admin
 
-Setelah login sebagai Admin, Anda akan melihat tampilan dengan tab:
-- 📊 **Dashboard** - Statistik dan overview
+Setelah login sebagai Admin, Anda akan melihat tampilan dengan 4 tab:
+- 📊 **Dashboard** - Statistik dan overview bisnis
 - 📦 **Manajemen Produk** - CRUD produk
 - 🎁 **Manajemen Diskon** - Kelola diskon
-- 📈 **Laporan Penjualan** - Lihat laporan
-
-![Dashboard Admin](screenshots/dasboard%20admin.png)
+- 📈 **Laporan Penjualan** - Lihat dan export laporan
 
 ---
 
 #### 6.2 Dashboard
 
-Dashboard menampilkan ringkasan bisnis:
+Dashboard menampilkan ringkasan bisnis secara real-time:
 
 | Widget | Deskripsi |
 |--------|-----------|
-| **Total Transaksi Hari Ini** | Jumlah transaksi pada hari ini |
-| **Revenue Hari Ini** | Total pendapatan hari ini |
-| **Items Terjual** | Jumlah item yang terjual |
-| **Low Stock Alert** | Produk dengan stok < 10 unit |
-| **Grafik Penjualan** | Visualisasi trend penjualan |
+| **💰 Total Transaksi Hari Ini** | Jumlah transaksi dalam 24 jam terakhir |
+| **📈 Revenue Hari Ini** | Total pendapatan (setelah diskon & pajak) |
+| **📦 Items Terjual** | Jumlah unit produk yang terjual |
+| **⚠️ Low Stock Alert** | Produk dengan stok < 10 unit |
+| **🏆 Top 5 Produk** | Produk terlaris hari ini |
 
 ---
 
 #### 6.3 Manajemen Produk
-
-![Manajemen Produk](screenshots/manajemen%20product%20admin.png)
 
 **A. Menambah Produk Baru**
 
 | Step | Aksi |
 |------|------|
 | 1 | Klik tab **📦 Manajemen Produk** |
-| 2 | Isi form di panel kanan: |
-| | - **Kode Produk**: Kode unik (contoh: PRD001) |
-| | - **Nama Produk**: Nama lengkap produk |
-| | - **Kategori**: Pilih kategori dari dropdown |
-| | - **Harga**: Harga jual per unit |
-| | - **Stok**: Jumlah stok awal |
-| | - **Satuan**: Unit satuan (kg, liter, pack) |
-| 3 | Klik tombol **💾 Simpan** |
+| 2 | Klik tombol **➕ Tambah Produk** |
+| 3 | Isi form: |
+| | • **Kode Produk**: Kode unik (contoh: PRD001) |
+| | • **Nama Produk**: Nama lengkap (contoh: Beras Premium) |
+| | • **Kategori**: Pilih dari dropdown (Beras, Pupuk, Bibit, dll) |
+| | • **Harga**: Harga jual per unit (contoh: 50000) |
+| | • **Stok**: Jumlah stok awal (contoh: 100) |
+| | • **Satuan**: Unit satuan (kg, liter, pack, pcs) |
+| 4 | Klik tombol **💾 Simpan** |
 
 **B. Mengedit Produk**
 
 | Step | Aksi |
 |------|------|
-| 1 | Klik produk yang ingin diedit di tabel |
-| 2 | Data produk akan muncul di form |
+| 1 | Klik baris produk yang ingin diedit di tabel |
+| 2 | Data produk akan muncul di form sebelah kanan |
 | 3 | Ubah data yang diperlukan |
 | 4 | Klik tombol **🔄 Update** |
 
@@ -3777,9 +1454,9 @@ Dashboard menampilkan ringkasan bisnis:
 
 | Step | Aksi |
 |------|------|
-| 1 | Klik produk yang ingin dihapus di tabel |
+| 1 | Klik baris produk yang ingin dihapus |
 | 2 | Klik tombol **🗑️ Hapus** |
-| 3 | Konfirmasi penghapusan |
+| 3 | Konfirmasi penghapusan pada dialog |
 
 > ⚠️ **Perhatian**: Produk yang sudah ada dalam transaksi tidak dapat dihapus.
 
@@ -3787,21 +1464,19 @@ Dashboard menampilkan ringkasan bisnis:
 
 - Gunakan **search box** di atas tabel
 - Ketik nama produk atau kode
-- Hasil filter akan tampil real-time
+- Hasil filter tampil secara real-time
 
 ---
 
 #### 6.4 Manajemen Diskon
 
-![Manajemen Diskon](screenshots/manajement%20diskon%20admin.png)
-
 **Tipe Diskon yang Tersedia:**
 
 | Tipe | Deskripsi | Contoh |
 |------|-----------|--------|
-| **PERCENTAGE** | Potongan persentase | 10% off |
-| **NOMINAL** | Potongan nominal tetap | Rp 5.000 off |
-| **BULK** | Diskon untuk pembelian banyak | Beli 10, diskon 15% |
+| **PERCENTAGE** | Potongan persentase dari total | 10% off |
+| **NOMINAL** | Potongan nominal tetap | Rp 50.000 off |
+| **BULK** | Diskon jika beli jumlah tertentu | Beli 10+, diskon 15% |
 | **VOUCHER** | Diskon dengan kode promo | Kode: AGRI2026 |
 
 **A. Menambah Diskon Baru**
@@ -3809,39 +1484,40 @@ Dashboard menampilkan ringkasan bisnis:
 | Step | Aksi |
 |------|------|
 | 1 | Klik tab **🎁 Manajemen Diskon** |
-| 2 | Isi form: |
-| | - **Nama Diskon**: Nama deskriptif |
-| | - **Kode**: Kode unik (untuk voucher) |
-| | - **Tipe**: Pilih jenis diskon |
-| | - **Nilai**: Persentase atau nominal |
-| | - **Min. Pembelian**: Minimal belanja (opsional) |
-| | - **Tanggal Mulai/Akhir**: Periode berlaku |
-| 3 | Klik **➕ Tambah** |
+| 2 | Klik tombol **➕ Tambah Diskon** |
+| 3 | Isi form: |
+| | • **Nama Diskon**: Nama deskriptif (Diskon Lebaran) |
+| | • **Kode**: Kode unik untuk voucher (LEBARAN25) |
+| | • **Tipe**: Pilih jenis diskon |
+| | • **Nilai**: Persentase (10) atau Nominal (50000) |
+| | • **Min. Pembelian**: Minimal belanja (opsional) |
+| | • **Min. Item**: Minimal item untuk bulk discount |
+| 4 | Klik **💾 Simpan** |
 
 **B. Mengaktifkan/Menonaktifkan Diskon**
 
-- Klik **checkbox** di kolom "Aktif" untuk toggle status
-- Diskon non-aktif tidak akan muncul di tampilan Kasir
+- Klik **toggle switch** di kolom "Status" untuk mengubah status
+- ✅ Aktif = Diskon muncul di tampilan Kasir
+- ❌ Nonaktif = Diskon tidak tersedia untuk Kasir
+
+> 💡 **Tips**: Perubahan diskon langsung tersinkron ke semua Kasir secara real-time.
 
 ---
 
-#### 6.5 Melihat Laporan Penjualan
-
-![Laporan Penjualan](screenshots/Laporan%20Penjualan(admin).jpg)
+#### 6.5 Laporan Penjualan
 
 **Jenis Laporan:**
 
-| Jenis | Deskripsi |
-|-------|-----------|
-| **Laporan Harian** | Transaksi pada tanggal tertentu |
-| **Laporan Periode** | Transaksi dalam rentang tanggal |
-| **Laporan per Produk** | Penjualan per item produk |
-| **Laporan per Kasir** | Penjualan per kasir |
+| Jenis | Deskripsi | Cara Generate |
+|-------|-----------|---------------|
+| **Laporan Harian** | Transaksi pada tanggal tertentu | Pilih tanggal → Klik "Generate" |
+| **Laporan Periode** | Transaksi dalam rentang tanggal | Pilih start & end date → Klik "Generate" |
+| **Laporan per Produk** | Penjualan per item produk | Pilih tab "Per Produk" → Generate |
 
-**Langkah Membuat Laporan:**
+**Langkah Generate Laporan:**
 
 1. Klik tab **📈 Laporan Penjualan**
-2. Pilih **Jenis Laporan**
+2. Pilih **Jenis Laporan** dari dropdown
 3. Pilih **Tanggal** atau **Periode**
 4. Klik **📊 Generate Laporan**
 5. Laporan ditampilkan di area bawah
@@ -3849,84 +1525,24 @@ Dashboard menampilkan ringkasan bisnis:
 
 ---
 
-### C.7 Fitur Tambahan
-
-#### 7.1 Cetak Struk
-
-Setelah checkout, struk dapat dicetak:
-
-```
-═══════════════════════════════════
-         🌾 AGRI-POS 🌾
-    Toko Pertanian Sejahtera
-   Jl. Pertanian No. 123, Kota
-═══════════════════════════════════
-No. Transaksi : T001
-Tanggal       : 29/01/2026 09:15:23
-Kasir         : kasir1
-───────────────────────────────────
-ITEM                    QTY   HARGA
-───────────────────────────────────
-Beras Premium            2   100.000
-Pupuk Urea               5    62.500
-───────────────────────────────────
-Subtotal                     162.500
-Diskon (5%)                   -8.125
-═══════════════════════════════════
-TOTAL                        154.375
-Bayar                        200.000
-Kembalian                     45.625
-═══════════════════════════════════
-  Terima kasih atas kunjungan Anda!
-     Selamat bertani! 🌱
-═══════════════════════════════════
-```
-
-#### 7.2 Low Stock Alert
-
-Sistem akan menampilkan peringatan jika stok produk < 10 unit:
-
-```
-⚠️ LOW STOCK ALERT
-┌──────────────┬───────┬────────┐
-│ Produk       │ Stok  │ Action │
-├──────────────┼───────┼────────┤
-│ Bibit Jagung │   5   │ [Restock]│
-│ Pestisida A  │   3   │ [Restock]│
-└──────────────┴───────┴────────┘
-```
-
-#### 7.3 Keyboard Shortcuts
-
-| Shortcut | Fungsi |
-|----------|--------|
-| `F1` | Bantuan |
-| `F2` | Transaksi Baru |
-| `F5` | Refresh Data |
-| `Ctrl + P` | Cetak |
-| `Ctrl + L` | Logout |
-| `Esc` | Batal / Tutup Dialog |
-
----
-
-### C.8 FAQ & Troubleshooting
+### C.7 FAQ & Troubleshooting
 
 #### ❓ Frequently Asked Questions
 
 **Q1: Lupa password, bagaimana cara reset?**
-> Hubungi Admin untuk mereset password Anda. Admin dapat mengubah password melalui database atau fitur manajemen user.
+> Hubungi Admin untuk mereset password. Admin dapat mengubah password melalui database.
 
 **Q2: Transaksi tidak tersimpan, apa yang harus dilakukan?**
-> Pastikan koneksi database aktif. Cek apakah PostgreSQL service berjalan. Jika masih gagal, restart aplikasi.
+> Pastikan koneksi database aktif. Cek apakah PostgreSQL service berjalan. Restart aplikasi jika perlu.
 
-**Q3: Struk tidak tercetak, kenapa?**
+**Q3: Struk tidak tercetak?**
 > Pastikan printer terhubung dan driver terinstall. Cek setting printer default di sistem operasi.
 
 **Q4: Produk tidak muncul di pencarian Kasir?**
 > Pastikan produk memiliki stok > 0 dan status aktif. Admin dapat mengecek di Manajemen Produk.
 
-**Q5: Diskon tidak terapply, mengapa?**
-> Cek apakah diskon masih aktif dan dalam periode berlaku. Cek juga minimum pembelian jika ada syarat.
+**Q5: Diskon tidak terapply?**
+> Cek apakah diskon masih aktif. Klik "Refresh Diskon" untuk memperbarui daftar.
 
 ---
 
@@ -3940,11 +1556,9 @@ Solusi:
    - Linux: sudo systemctl start postgresql
 
 2. Cek konfigurasi di DatabaseConnection.java
-   - URL: jdbc:postgresql://localhost:5432/agripos
-   - User dan Password sesuai
+   - URL, Username, Password harus sesuai
 
 3. Pastikan database 'agripos' sudah dibuat
-   - psql -U postgres → \l → cek apakah agripos ada
 ```
 
 **Error: "Login Failed - Invalid Credentials"**
@@ -3952,9 +1566,7 @@ Solusi:
 Solusi:
 1. Pastikan username dan password benar (case-sensitive)
 2. Pastikan role yang dipilih sesuai dengan akun
-3. Coba dengan akun default:
-   - Admin: admin / admin123
-   - Kasir: kasir1 / kasir123
+3. Coba dengan akun default: admin/admin123 atau kasir1/kasir123
 ```
 
 **Error: "JavaFX Runtime Components Missing"**
@@ -3965,48 +1577,24 @@ Solusi:
 3. Jangan jalankan langsung dengan java -jar
 ```
 
-**Error: "Out of Memory"**
-```
-Solusi:
-1. Tutup aplikasi lain yang tidak digunakan
-2. Tambahkan memory di pom.xml:
-   <jvmArgs>-Xmx1024m</jvmArgs>
-3. Restart aplikasi
-```
-
 **Aplikasi Berjalan Lambat**
 ```
 Solusi:
-1. Tutup tab browser yang tidak digunakan
-2. Pastikan tidak ada proses berat lainnya
-3. Upgrade RAM jika < 4GB
-4. Gunakan SSD untuk performa lebih baik
+1. Tutup aplikasi lain yang tidak digunakan
+2. Pastikan RAM tersedia minimal 4GB
+3. Restart aplikasi
 ```
 
 ---
 
-### C.9 Kontak & Dukungan
+### 📞 Kontak & Dukungan
 
-#### Tim Pengembang
-
-| Nama | Role | Kontak |
-|------|------|--------|
+| Nama | Role | Email |
+|------|------|-------|
 | Indah Ruwahna A. | Project Lead | 240202866@student.upb.ac.id |
 | Lia Lusianti | Frontend Dev | 240202869@student.upb.ac.id |
 | Fikianto | Backend Dev | 240202899@student.upb.ac.id |
 | Rizal Ramadhani | QA & Docs | 240202883@student.upb.ac.id |
-
-#### Melaporkan Bug
-
-Jika menemukan bug atau masalah:
-1. Buka GitHub Issues di repository
-2. Jelaskan langkah untuk reproduce bug
-3. Sertakan screenshot jika memungkinkan
-4. Sebutkan versi aplikasi dan OS yang digunakan
-
-#### Saran & Feedback
-
-Kami menerima saran untuk pengembangan aplikasi selanjutnya. Kirim ke email tim atau buat GitHub Issue dengan label "enhancement".
 
 ---
 
@@ -4016,127 +1604,45 @@ Kami menerima saran untuk pengembangan aplikasi selanjutnya. Kirim ke email tim 
 
 ---
 
-## D. Tautan Repositori GitHub
-
-### Repository Utama
+## D. GitHub Repository
 - **URL**: [https://github.com/YOUR_USERNAME/agripos](https://github.com/YOUR_USERNAME/agripos)
-- **Branch Utama**: `main`
-- **License**: MIT License
-
-### Struktur Repository
-
-```
-agripos/
-├── README.md                 # Dokumentasi utama
-├── pom.xml                   # Maven configuration
-├── sql/
-│   ├── schema.sql           # Database schema
-│   └── seed.sql             # Sample data
-├── src/
-│   ├── main/java/           # Source code
-│   └── test/java/           # Unit tests
-├── docs/
-│   ├── Presentasi.pptx      # Slide presentasi
-│   └── Manual_Book.pdf      # Manual penggunaan
-└── screenshots/              # Bukti screenshot
-```
-
-### Riwayat Commit (Highlights)
-
-| Commit | Tanggal | Deskripsi | Author |
-|--------|---------|-----------|--------|
-| `abc1234` | 15 Jan 2026 | Initial project setup | Indah |
-| `def5678` | 16 Jan 2026 | Implement DAO layer | Indah |
-| `ghi9012` | 16 Jan 2026 | Add JavaFX views | Lia |
-| `jkl3456` | 17 Jan 2026 | Implement payment strategies | Fikianto |
-| `mno7890` | 17 Jan 2026 | Add unit tests | Rizal |
-| `pqr1234` | 18 Jan 2026 | Add discount management | Indah & Lia |
-| `stu5678` | 18 Jan 2026 | Final testing & bug fixes | Rizal |
 
 ## E. Bukti Implementasi
 
-### E.1 Potongan Kode Inti
+### Potongan Kode Inti
 
-#### Singleton Pattern - DatabaseConnection
+**Singleton Pattern:**
 ```java
-public class DatabaseConnection {
-    private static DatabaseConnection instance;
-    
-    private DatabaseConnection() { }
-    
-    public static synchronized DatabaseConnection getInstance() {
-        if (instance == null) {
-            instance = new DatabaseConnection();
-        }
-        return instance;
-    }
+public static synchronized DatabaseConnection getInstance() {
+    if (instance == null) instance = new DatabaseConnection();
+    return instance;
 }
 ```
 
-#### Strategy Pattern - PaymentMethod
+**Strategy Pattern:**
 ```java
 public interface PaymentMethod {
-    String getMethodName();
-    double processPayment(double total, double amountPaid) throws PaymentException;
-    boolean validatePayment(double total, double amountPaid);
-}
-
-public class CashPayment implements PaymentMethod {
-    @Override
-    public double processPayment(double total, double amountPaid) {
-        return amountPaid - total; // Kembalian
-    }
+    double processPayment(double total, double amountPaid);
 }
 ```
 
-#### DAO Pattern - ProductDAO
+**DAO Pattern:**
 ```java
 public interface ProductDAO {
-    void insert(Product product) throws Exception;
-    void update(Product product) throws Exception;
-    void delete(String code) throws Exception;
-    Product findByCode(String code) throws Exception;
-    List<Product> findAll() throws Exception;
+    void insert(Product product);
+    List<Product> findAll();
 }
 ```
 
-### E.2 Screenshot Kode di IDE
+## F. Pembagian Peran Tim
 
-Screenshot bukti implementasi kode dapat dilihat di folder:
-- `screenshots/code_implementation/`
-
-## F. Pembagian Peran dan Kontribusi Tim
-
-### Tim Pengembang
-
-| No | Nama | NIM | Peran | Kontribusi |
-|----|------|-----|-------|------------|
-| 1 | Indah Ruwahna Anugraheni | 240202866 | Project Lead & Backend | Arsitektur sistem, DAO layer, Service layer, Database design, Code review |
-| 2 | Lia Lusianti | 240202869 | Frontend Developer | UI/UX JavaFX, FXML files, Dashboard, Transaction view |
-| 3 | Fikianto | 240202899 | Backend Developer | Payment system, Business logic, Integration testing |
-| 4 | Rizal Ramadhani | 240202883 | QA & Documentation | Testing, Bug fixing, Unit test, Documentation |
-
-### Persentase Kontribusi
-
-```
-Indah Ruwahna    : ████████████████████████████████████ 30%
-Lia Lusianti     : ████████████████████████████ 25%
-Fikianto         : ████████████████████████████ 25%
-Rizal Ramadhani  : ████████████████████ 20%
-```
-
-### Detail Kontribusi per Fitur
-
-| Fitur | Indah | Lia | Fikianto | Rizal |
-|-------|-------|-----|----------|-------|
-| Database Design | ✅ Lead | - | - | Support |
-| DAO Layer | ✅ Lead | - | Support | - |
-| Service Layer | ✅ Lead | - | ✅ Lead | - |
-| JavaFX UI | Support | ✅ Lead | - | - |
-| Payment System | - | - | ✅ Lead | - |
-| Discount System | ✅ Lead | Support | - | - |
-| Testing | Support | - | - | ✅ Lead |
-| Documentation | - | - | - | ✅ Lead |
+| Nama | NIM | Peran | Kontribusi |
+|------|-----|-------|------------|
+| Indah Ruwahna A. | 240202866 | Project Lead | Arsitektur, DAO, Service (30%) |
+| Lia Lusianti | 240202869 | Frontend | UI/UX JavaFX (25%) |
+| Fikianto | 240202899 | Backend | Payment, Business Logic (25%) |
+| Rizal Ramadhani | 240202883 | QA & Docs | Testing, Documentation (20%) |
 
 ---
 
+** END OF DOCUMENT**
